@@ -121,7 +121,13 @@ class App extends Component {
         {/* USER LIST START */}
         <section className="userList">
           {/* where user list will be displayed */}
-          <UserList />
+          <UserList
+          // key={}
+          // id={
+          doable1={this.state.userList.doable1}
+          doable2={this.state.userList.doable2}
+          dailyGoal={this.state.userList.dailyGoal} 
+          />
         </section>
         {/* USER LIST END */}
 
