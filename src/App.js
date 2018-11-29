@@ -66,13 +66,14 @@ class App extends Component {
     //preventing the button to refresh the page
     event.preventDefault();
 
-    //making a variable to store empty data to be sent to firebase
+    //making a variable to store empty values to be sent to firebase
     const newList = {
       doable1: "",
       doable2: "",
       dailyGoal: ""
     }
 
+    //updating firebase with the empty object
     dbRef.set(newList);
   }
 
@@ -140,12 +141,8 @@ class App extends Component {
           doable1={this.state.userList.doable1}
           doable2={this.state.userList.doable2}
           dailyGoal={this.state.userList.dailyGoal} 
-          />
-
-          <input
-          onClick={this.resetList} 
-          type="submit" 
-          value="Reset the list" className="userList__reset"/>
+          resetList={this.resetList}
+          />          
         </section>
         {/* USER LIST END */}
 
