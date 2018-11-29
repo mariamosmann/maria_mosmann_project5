@@ -42,7 +42,7 @@ class App extends Component {
     event.preventDefault();
 
     //making a variable to store the data that will be send to firebase
-    const newList = {
+    const updateList = {
       doable1: this.state.doable1,
       doable2: this.state.doable2,
       dailyGoal: this.state.dailyGoal
@@ -50,7 +50,7 @@ class App extends Component {
 
     //sending the info to firebase
     //using set so the user updates the list instead of creating a new list
-    dbRef.set(newList);
+    dbRef.set(updateList);
 
     //clearing form and state
     this.setState({
@@ -60,8 +60,21 @@ class App extends Component {
     })
   }
 
-  //Delete List
-  //deleting current list
+  //Reset List
+  //reseting whole list
+  resetList = (event) => {
+    //preventing the button to refresh the page
+    event.preventDefault();
+
+    //making a variable to store empty data to be sent to firebase
+    const newList = {
+      doable1: "",
+      doable2: "",
+      dailyGoal: ""
+    }
+
+    dbRef.set(newList);
+  }
 
   //FUNCTIONS END
 
@@ -123,11 +136,16 @@ class App extends Component {
           {/* where user list will be displayed */}
           <UserList
           // key={}
-          // id={
+          // id={}
           doable1={this.state.userList.doable1}
           doable2={this.state.userList.doable2}
           dailyGoal={this.state.userList.dailyGoal} 
           />
+
+          <input
+          onClick={this.resetList} 
+          type="submit" 
+          value="Reset the list" className="userList__reset"/>
         </section>
         {/* USER LIST END */}
 
