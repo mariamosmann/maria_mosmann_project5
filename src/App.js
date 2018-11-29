@@ -3,7 +3,7 @@ import './App.css';
 // import axios from 'axios';
 import firebase from "./firebase";
 
-const dbRef = firebase.database().ref(); 
+const dbRef = firebase.database().ref("userCanDoList"); 
 
 class App extends Component {
   // CONSTRUCTOR START
@@ -47,7 +47,7 @@ class App extends Component {
     //sending the info to firebase
     dbRef.push(newList);
 
-    //clearing the form
+    //clearing form and state
     this.setState({
       doable1: "",
       doable2: "",
