@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-// import axios from 'axios';
 import firebase from "./firebase";
+import UserList from "./UserList";
+// import axios from 'axios';
 
-const dbRef = firebase.database().ref("userCanDoList"); 
+const dbRef = firebase.database().ref("userList"); 
 
+// APP START
 class App extends Component {
   // CONSTRUCTOR START
   constructor() {
@@ -14,7 +16,7 @@ class App extends Component {
       doable1: "",
       doable2: "",
       dailyGoal: "",
-      //the return from fire base
+      //information sent after form submit will go to firebase and then be stored here 
       userList: {}
     }
   }
@@ -22,6 +24,7 @@ class App extends Component {
 
   //FUNCTIONS START
 
+  //Handle Change
   //value being typed updating the respective state property inside constructor
   handleChange = (event) => {
     // console.log(event.target.value); //just checking if I connected everything right
@@ -32,6 +35,7 @@ class App extends Component {
     }) 
   }
 
+  //Handle Submit
   //submiting user entries
   handleSubmit = (event) => {
     //preventing the form to refresh the page
@@ -45,7 +49,8 @@ class App extends Component {
     };
 
     //sending the info to firebase
-    dbRef.push(newList);
+    //using set so the user updates the list instead of creating a new list
+    dbRef.set(newList);
 
     //clearing form and state
     this.setState({
@@ -55,6 +60,8 @@ class App extends Component {
     })
   }
 
+  //Delete List
+  //deleting current list
 
   //FUNCTIONS END
 
@@ -114,6 +121,7 @@ class App extends Component {
         {/* USER LIST START */}
         <section className="userList">
           {/* where user list will be displayed */}
+          <UserList />
         </section>
         {/* USER LIST END */}
 
@@ -135,10 +143,20 @@ class App extends Component {
       </div>
     );
   }
-}
-// RENDER END
+  // RENDER END
 
-//COMPONENT DID MOUNT START
+  //COMPONENT DID MOUNT START
+  componentDidMount() {
+    //attach event listenet to firebase
+    dbRef.on("value", snapshot => {
+      this.setState({
+        userList: snapshot.val()
+      })
+    })
+  }
+  //COMPONENT DID MOUNT END
+}
+// APP END
 
 // componentDidMount() {
 //   axios({
@@ -155,7 +173,5 @@ class App extends Component {
 //     console.log(response)
 //   })
 // }
-
-//COMPONENT DID MOUNT END
 
 export default App;
