@@ -6,55 +6,88 @@ import firebase from "./firebase";
 const dbRef = firebase.database().ref(); 
 
 class App extends Component {
+  // CONSTRUCTOR START
   constructor() {
     super();
     this.state = {
 
     }
   }
+  // CONSTRUCTOR END
 
+  // RENDER START
   render() {
     return (
       <div className="App">
+        {/* HEADER START */}
         <header className="header">
-          <h1 className="header__heading">Hello!</h1>
+          <div className="header__wrapper wrapper">
+            <h1 className="header__heading">Hello!</h1>
+          </div>
         </header>
+        {/* HEADER END */}
 
-        <section className="list">
-          <h2 className="list__heading">My List</h2>
+        {/* USER ENTRIES START */}
+        <section className="userEntries">
+          <div className="userEntries__wrapper wrapper">
+            <h2 className="userEntries__heading">Tasks I can do Today</h2>
 
-          <p className="list__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis vel, atque perferendis ab quas deleniti necessitatibus eveniet? Atque soluta ex temporibus eum qui quisquam rerum nostrum est sunt, doloribus ipsa?</p>
+            <p className="userEntries__text">You can do this!</p>
 
-          <form action="" className="list__form form">
-            <label htmlFor="" className="form__label"></label>
-            <input type="text" className="form__field"/>
+            <form action="" className="userEntries__form form">
+              <label htmlFor="doable1" className="form__label">I can do this task today:</label>
+              <input 
+              type="text" 
+              className="form__field"
+              id="doable1"
+              />
 
-            <label htmlFor="" className="form__label"></label>
-            <input type="text" className="form__field"/>
+              <label htmlFor="doable2" className="form__label">Once I finish the fist task I'll focus on just doing this:</label>
+              <input 
+              type="text" 
+              className="form__field"
+              id="doable2"
+              />
 
-            <label htmlFor="" className="form__label"></label>
-            <input type="text" className="form__field"/>
+              <label htmlFor="dailyGoal" className="form__label">This that scares me but I'll do my best to try to accomplish today:</label>
+              <input 
+              type="text" 
+              className="form__field"
+              id="dailyGoal"
+              />
 
-            <input type="submit" value="" className="form__submit"/>
-          </form>
+              <input type="submit" value="" className="form__submit"/>
+            </form>
+          </div>
+        </section>
+        {/* USER ENTRIES END */}
 
-          <div className="mascot">
+        {/* USER LIST START */}
+        <section className="userList">
+          {/* where user list will be displayed */}
+        </section>
+        {/* USER LIST END */}
+
+        {/* MASCOT START */}
+        <aside className="mascot">
+          <div className="mascot__wrapper wrapper">
             <div className="mascot__imageContainer">
-              <img src="" alt="" className="mascot__image"/>
+              <img src="" alt="" className="mascot__image" />
             </div>
 
             <div className="mascot__textContainer">
-              <img src="" alt="" className="mascot__textBubble"/>
+              <img src="" alt="" className="mascot__textBubble" />
               <p className="mascot__text"></p>
             </div>
           </div>
-        </section>
-
+        </aside>
+        {/* MASCOT END */}
 
       </div>
     );
   }
 }
+// RENDER END
 
 // componentDidMount() {
 //   axios({
