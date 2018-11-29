@@ -100,16 +100,16 @@ class App extends Component {
 
             <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
               <label htmlFor="doable1" className="form__label">I can do this task today:</label>
-              <input 
+              <input required
               type="text" 
               onChange={this.handleChange}
               id="doable1"
               className="form__field"
-              value={this.state.doable1}
+              value={this.state.doable1}              
               />
 
               <label htmlFor="doable2" className="form__label">Once I finish the fist task I'll focus on just doing this:</label>
-              <input 
+              <input required
               type="text" 
               onChange={this.handleChange}
               id="doable2"
@@ -118,7 +118,7 @@ class App extends Component {
               />
 
               <label htmlFor="dailyGoal" className="form__label">This that scares me but I'll do my best to try to accomplish today:</label>
-              <input 
+              <input required
               type="text" 
               onChange={this.handleChange}
               id="dailyGoal"
