@@ -10,10 +10,53 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
+      //user input
+      doable1: "",
+      doable2: "",
+      dailyGoal: "",
+      //the return from fire base
+      userList: {}
     }
   }
   // CONSTRUCTOR END
+
+  //FUNCTIONS START
+
+  //value being typed updating the respective state property inside constructor
+  handleChange = (event) => {
+    // console.log(event.target.value); //just checking if I connected everything right
+
+    //updating state using the id of the input where the user is typing
+    this.setState({
+      [event.target.id]: event.target.value
+    }) 
+  }
+
+  //submiting user entries
+  handleSubmit = (event) => {
+    //preventing the form to refresh the page
+    event.preventDefault();
+
+    //making a variable to store the data that will be send to firebase
+    const newList = {
+      doable1: this.state.doable1,
+      doable2: this.state.doable2,
+      dailyGoal: this.state.dailyGoal
+    };
+
+    //sending the info to firebase
+    dbRef.push(newList);
+
+    //clearing the form
+    this.setState({
+      doable1: "",
+      doable2: "",
+      dailyGoal: ""
+    })
+  }
+
+
+  //FUNCTIONS END
 
   // RENDER START
   render() {
@@ -34,29 +77,35 @@ class App extends Component {
 
             <p className="userEntries__text">You can do this!</p>
 
-            <form action="" className="userEntries__form form">
+            <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
               <label htmlFor="doable1" className="form__label">I can do this task today:</label>
               <input 
               type="text" 
-              className="form__field"
+              onChange={this.handleChange}
               id="doable1"
+              className="form__field"
+              value={this.state.doable1}
               />
 
               <label htmlFor="doable2" className="form__label">Once I finish the fist task I'll focus on just doing this:</label>
               <input 
               type="text" 
-              className="form__field"
+              onChange={this.handleChange}
               id="doable2"
+              className="form__field"
+              value={this.state.doable2}
               />
 
               <label htmlFor="dailyGoal" className="form__label">This that scares me but I'll do my best to try to accomplish today:</label>
               <input 
               type="text" 
-              className="form__field"
+              onChange={this.handleChange}
               id="dailyGoal"
+              className="form__field"
+              value={this.state.dailyGoal}
               />
 
-              <input type="submit" value="" className="form__submit"/>
+              <input type="submit" value="You've got this!" className="form__submit"/>
             </form>
           </div>
         </section>
@@ -89,6 +138,8 @@ class App extends Component {
 }
 // RENDER END
 
+//COMPONENT DID MOUNT START
+
 // componentDidMount() {
 //   axios({
 //     method: 'GET',
@@ -104,5 +155,7 @@ class App extends Component {
 //     console.log(response)
 //   })
 // }
+
+//COMPONENT DID MOUNT END
 
 export default App;
