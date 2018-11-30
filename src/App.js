@@ -27,7 +27,7 @@ class App extends Component {
   //Handle Change
   //value being typed updating the respective state property inside constructor
   handleChange = (event) => {
-    // console.log(event.target.value); //just checking if I connected everything right
+    console.log(event.target.value); //just checking if I connected everything right
 
     //updating state using the id of the input where the user is typing
     this.setState({
