@@ -4,7 +4,7 @@ import firebase from "./firebase";
 import UserList from "./UserList";
 // import axios from 'axios';
 
-const dbRef = firebase.database().ref("userList"); 
+const dbRef = firebase.database().ref("dtbList"); 
 
 // APP START
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
       doable2: "",
       dailyGoal: "",
       //information sent after form submit will go to firebase and then be stored here 
-      userList: {}
+      dtbList: {}
     }
   }
   // CONSTRUCTOR END
@@ -138,9 +138,9 @@ class App extends Component {
           <UserList
           // key={}
           // id={}
-          doable1={this.state.userList.doable1}
-          doable2={this.state.userList.doable2}
-          dailyGoal={this.state.userList.dailyGoal} 
+          doable1={this.state.dtbList.doable1}
+          doable2={this.state.dtbList.doable2}
+          dailyGoal={this.state.dtbList.dailyGoal} 
           resetList={this.resetList}
           />          
         </section>
@@ -171,13 +171,15 @@ class App extends Component {
     //attach event listenet to firebase
     dbRef.on("value", snapshot => {
       this.setState({
-        userList: snapshot.val()
+        dtbList: snapshot.val()
       })
     })
   }
   //COMPONENT DID MOUNT END
 }
 // APP END
+
+export default App;
 
 // componentDidMount() {
 //   axios({
@@ -194,5 +196,3 @@ class App extends Component {
 //     console.log(response)
 //   })
 // }
-
-export default App;
