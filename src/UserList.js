@@ -5,27 +5,26 @@ class UserList extends Component {
     constructor() {
         super();
         this.state = {
-            
-            taskComplete: false
+            doable1Task: false,
+            doable2Task: false,
+            dailyGoalTask: false
         }
     }
     // CONSTRUCTOR END
 
     //FUNCTIONS START
-    taskDone = (event) => {
-        alert("You did it! Keep up the good work!");
-
+    taskDone = (event) => { 
         const thisTask = event.target.id 
 
-        console.log(thisTask)
+        if(this.state[thisTask] == false) {
+            alert("You did it! Keep up the good work!");
 
-        if(this.state.taskComplete == false) {
             this.setState({
-                taskComplete: true
+                [thisTask]: true
             })
-        } else if (this.state.taskComplete == true) {
+        } else if (this.state[thisTask] == true) {
             this.setState({
-                taskComplete: false
+                [thisTask]: false
             })
         }            
     }
@@ -36,9 +35,16 @@ class UserList extends Component {
             <div className="userList__wrapper wrapper">
                 <h2>User List</h2>
 
-                    <p id="doable1" className="userList__text" onClick={this.taskDone}>{this.props.doable1} <span className="userList__span">
-                    <i className={
-                        this.state.taskComplete
+                    <p className={
+                        this.state.doable1Task
+                        ?
+                        "userList__text--taskCompleted"
+                        :
+                        "userList__text"
+                    }>
+                    {this.props.doable1} <span className="userList__span">
+                        <i onClick={this.taskDone} id="doable1Task" className={
+                        this.state.doable1Task
                         ? 
                         "userList__icon far fa-check-square"
                          :
@@ -47,25 +53,53 @@ class UserList extends Component {
                     </span>
                     </p>
 
-                    <p id="doable2" className="userList__text" onClick={this.taskDone}>{this.props.doable2} <span className="userList__span"><i className={
-                        this.state.taskComplete
-                            ?
-                            "userList__icon far fa-check-square"
-                            :
-                            "userList__icon far fa-square"
+                    <p className={
+                        this.state.doable2Task
+                        ?
+                        "userList__text--taskCompleted"
+                        :
+                        "userList__text"
+                    }>
+                    {this.props.doable2} <span className="userList__span">
+                        <i onClick={this.taskDone} id="doable2Task" className={
+                        this.state.doable2Task
+                        ?
+                        "userList__icon far fa-check-square"
+                        :
+                        "userList__icon far fa-square"
                     }></i>
                     </span>
                     </p>
 
-                    <p id="dailyGoal" className="userList__text" onClick={this.taskDone}>{this.props.dailyGoal} <span className="userList__span"><i className={
-                        this.state.taskComplete
+                    <p className={
+                        this.state.dailyGoalTask
+                        ?
+                        "userList__text--taskCompleted"
+                        :
+                        "userList__text"
+                    }>
+                    {this.props.dailyGoal} <span className="userList__span">
+                        <i onClick={this.taskDone} id="dailyGoalTask" className={
+                        this.state.dailyGoalTask
+                        ?
+                        "userList__icon far fa-check-square"
+                        :
+                        "userList__icon far fa-square"
+                        }></i>
+                    </span>
+                    </p>
+
+                    
+
+                    {/* <p id="dailyGoalTask" className="userList__text" onClick={this.taskDone}>{this.props.dailyGoal} <span className="userList__span"><i className={
+                        this.state.dailyGoalTask
                             ?
                             "userList__icon far fa-check-square"
                             :
                             "userList__icon far fa-square"
                     }></i>
                     </span>
-                    </p>
+                    </p> */}
 
                 <input
                     onClick={this.props.resetList}
