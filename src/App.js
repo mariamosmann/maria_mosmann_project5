@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import firebase from "./firebase";
 import UserList from "./UserList";
-// import axios from 'axios';
+import axios from "axios";
 
 const dbRef = firebase.database().ref("dtbList"); 
+
+const apiKey = `LvqwJKjT`
 
 // APP START
 class App extends Component {
@@ -209,26 +211,56 @@ class App extends Component {
       this.setState({
         dtbList: snapshot.val()
       })
-    })    
+    }) 
+    
+    // AXIOS START
+    axios({
+      method: 'GET',
+      url: `https://www.rijksmuseum.nl/api/en/collection`,
+        dataResponse: 'json',
+          params: {
+            key: apiKey,
+            format: 'json',
+            hasImage: true
+          }
+      }).then((response) => {
+    // when we have the response from the API, we reassign a variable (to be a little cleaner)
+    response = response.data.artObjects
+
+    console.log(response)
+    // set the state to be the value of the response
+    // this.setState({
+    //   art: response
+    // })
+   })
+    
+
   }
   //COMPONENT DID MOUNT END
+
+//   axios({
+//     method: 'GET',
+//     url: `https://www.rijksmuseum.nl/api/en/collection`,
+//       dataResponse: 'json',
+//         params: {
+//           key: apiKey,
+//           format: 'json',
+//           hasImage: true
+//         }
+//     }).then((response) => {
+//   // when we have the response from the API, we reassign a variable (to be a little cleaner)
+//   response = response.data.artObjects
+
+//   console.log(response)
+//   // set the state to be the value of the response
+//   // this.setState({
+//   //   art: response
+//   // })
+// })
+
+  
 }
 // APP END
 
 export default App;
 
-// componentDidMount() {
-//   axios({
-//     method: 'GET',
-//     url: `https://www.rijksmuseum.nl/api/en/collection`,
-//     dataResponse: 'json',
-//     params: {
-//       key: apiKey,
-//       format: 'json',
-//       hasImage: true
-//     }
-
-//   }).then((response) => {
-//     console.log(response)
-//   })
-// }
