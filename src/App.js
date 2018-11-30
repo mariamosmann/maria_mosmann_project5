@@ -153,7 +153,7 @@ class App extends Component {
               value={this.state.doable2}
               />
 
-              <label htmlFor="dailyGoal" className="form__label">This that scares me but I'll do my best to try to accomplish today:</label>
+              <label htmlFor="dailyGoal" className="form__label">This task scares me but I'll do my best and try to accomplish it today:</label>
               <input required
               type="text" 
               onChange={this.handleChange}
@@ -173,7 +173,7 @@ class App extends Component {
           {/* where user list will be displayed */}
           <UserList         
           // key={}
-          // id={}
+          // id={this.state.dtbList}
           doable1={this.state.dtbList.doable1.task}
           doable2={this.state.dtbList.doable2.task}
           dailyGoal={this.state.dtbList.dailyGoal.task} 
