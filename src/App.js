@@ -17,7 +17,21 @@ class App extends Component {
       doable2: "",
       dailyGoal: "",
       //information sent after form submit will go to firebase and then be stored here 
-      dtbList: {}
+      dtbList: {
+        doable1: {
+          task: "",
+          complete: false
+        },
+
+        doable2: {
+          task: "",
+          complete: false
+        },
+        dailyGoal: {
+          task: "",
+          complete: false
+        }
+      }
     }
   }
   // CONSTRUCTOR END
@@ -26,8 +40,9 @@ class App extends Component {
 
   //Handle Change
   //value being typed updating the respective state property inside constructor
-  handleChange = (event) => {
-    console.log(event.target.value); //just checking if I connected everything right
+  handleChange = (event) => {      
+
+    // console.log(event.target.value); //just checking if I connected everything right
 
     //updating state using the id of the input where the user is typing
     this.setState({
@@ -43,9 +58,19 @@ class App extends Component {
 
     //making a variable to store the data that will be send to firebase
     const updateList = {
-      doable1: this.state.doable1,
-      doable2: this.state.doable2,
-      dailyGoal: this.state.dailyGoal
+      doable1: {
+        task: this.state.doable1,
+        complete: false
+      },
+
+      doable2: {
+        task: this.state.doable2,
+        complete: false
+      },
+      dailyGoal: {
+        task: this.state.dailyGoal,
+        complete: false
+      }
     };
 
     //sending the info to firebase
@@ -68,9 +93,19 @@ class App extends Component {
 
     //making a variable to store empty values to be sent to firebase
     const newList = {
-      doable1: "",
-      doable2: "",
-      dailyGoal: ""
+      doable1: {
+        task: "",
+        complete: false
+      },
+
+      doable2: {
+        task: "",
+        complete: false
+      },
+      dailyGoal: {
+        task: "",
+        complete: false
+      }
     }
 
     //updating firebase with the empty object
@@ -82,7 +117,8 @@ class App extends Component {
   // RENDER START
   render() {
     return (
-      <div className="App">
+      <div className="App"> 
+
         {/* HEADER START */}
         <header className="header">
           <div className="header__wrapper wrapper">
@@ -135,12 +171,12 @@ class App extends Component {
         {/* USER LIST START */}
         <section className="userList">
           {/* where user list will be displayed */}
-          <UserList
+          <UserList         
           // key={}
           // id={}
-          doable1={this.state.dtbList.doable1}
-          doable2={this.state.dtbList.doable2}
-          dailyGoal={this.state.dtbList.dailyGoal} 
+          doable1={this.state.dtbList.doable1.task}
+          doable2={this.state.dtbList.doable2.task}
+          dailyGoal={this.state.dtbList.dailyGoal.task} 
           resetList={this.resetList}
           />          
         </section>
@@ -173,7 +209,7 @@ class App extends Component {
       this.setState({
         dtbList: snapshot.val()
       })
-    })
+    })    
   }
   //COMPONENT DID MOUNT END
 }
