@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import firebase from "./firebase";
 import UserList from "./UserList";
-import axios from "axios";
+import MoreInfo from "./MoreInfo";
 
 const dbRef = firebase.database().ref("dtbList"); 
-
-const apiKey = `LvqwJKjT`
 
 // APP START
 class App extends Component {
@@ -18,7 +16,7 @@ class App extends Component {
       doable1: "",
       doable2: "",
       dailyGoal: "",
-      //information sent after form submit will go to firebase and then be stored here 
+      //information sent to firebase is stored here when firebase returns the info
       dtbList: {
         doable1: {
           task: "",
@@ -33,7 +31,9 @@ class App extends Component {
           task: "",
           complete: false
         }
-      }
+      },
+      //more info button
+      infoButton: false
     }
   }
   // CONSTRUCTOR END
@@ -41,7 +41,7 @@ class App extends Component {
   //FUNCTIONS START
 
   //Handle Change
-  //value being typed updating the respective state property inside constructor
+  //value being typed updating the respective state property in constructor
   handleChange = (event) => {      
 
     // console.log(event.target.value); //just checking if I connected everything right
@@ -53,12 +53,12 @@ class App extends Component {
   }
 
   //Handle Submit
-  //submiting user entries
+  //submitting user entries
   handleSubmit = (event) => {
-    //preventing the form to refresh the page
+    //preventing the form from refreshing the page
     event.preventDefault();
 
-    //making a variable to store the data that will be send to firebase
+    //making a variable to store the data that will be sent to firebase
     const updateList = {
       doable1: {
         task: this.state.doable1,
@@ -114,6 +114,23 @@ class App extends Component {
     dbRef.set(newList);
   }
 
+  //Button click
+  //setting the button so it can display or hide MoreInfo component
+  buttonClick = (event) => {
+    //preventing the button from refreshing the page
+    event.preventDefault();
+
+    if (this.state.infoButton == false) {
+      this.setState({
+        infoButton: true
+      })
+    } else if (this.state.infoButton == true) {
+      this.setState({
+        infoButton: false
+      })
+    }
+  }
+
   //FUNCTIONS END
 
   // RENDER START
@@ -136,6 +153,7 @@ class App extends Component {
 
             <p className="userEntries__text">You can do this!</p>
 
+            {/* FORM START */}
             <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
               <label htmlFor="doable1" className="form__label">I can do this task today:</label>
               <input required
@@ -166,6 +184,8 @@ class App extends Component {
 
               <input type="submit" value="You've got this!" className="form__submit"/>
             </form>
+            {/* FORM END */}
+
           </div>
         </section>
         {/* USER ENTRIES END */}
@@ -174,8 +194,6 @@ class App extends Component {
         <section className="userList">
           {/* where user list will be displayed */}
           <UserList         
-          // key={}
-          // id={this.state.dtbList}
           doable1={this.state.dtbList.doable1.task}
           doable2={this.state.dtbList.doable2.task}
           dailyGoal={this.state.dtbList.dailyGoal.task} 
@@ -185,17 +203,34 @@ class App extends Component {
         {/* USER LIST END */}
 
         {/* MASCOT START */}
-        <aside className="mascot">
+        <aside className="mascot">   
           <div className="mascot__wrapper wrapper">
-            <div className="mascot__imageContainer">
-              <img src="" alt="" className="mascot__image" />
-            </div>
 
+            {/* MORE INFO START */}
+            <div className="mascot__moreInfo moreInfo">
+              <button 
+              className="moreInfo__button" onClick={this.buttonClick}>More Info</button>
+
+              <MoreInfo
+              infoButton={this.state.infoButton} 
+              />
+            </div>
+            {/* MORE INFO END */}
+
+            {/* MASCOT TEXT START */}
             <div className="mascot__textContainer">
               <img src="" alt="" className="mascot__textBubble" />
               <p className="mascot__text"></p>
             </div>
-          </div>
+            {/* MASCOT TEXT END */}
+
+            {/* MASCOT IMAGE START */}
+            <div className="mascot__imageContainer">
+              <img src="" alt="" className="mascot__image" />
+            </div>
+            {/* MASCOT IMAGE END */}            
+
+          </div>          
         </aside>
         {/* MASCOT END */}
 
@@ -211,54 +246,10 @@ class App extends Component {
       this.setState({
         dtbList: snapshot.val()
       })
-    }) 
-    
-    // AXIOS START
-    axios({
-      method: 'GET',
-      url: `https://www.rijksmuseum.nl/api/en/collection`,
-        dataResponse: 'json',
-          params: {
-            key: apiKey,
-            format: 'json',
-            hasImage: true
-          }
-      }).then((response) => {
-    // when we have the response from the API, we reassign a variable (to be a little cleaner)
-    response = response.data.artObjects
-
-    console.log(response)
-    // set the state to be the value of the response
-    // this.setState({
-    //   art: response
-    // })
-   })
-    
-
+    })  
   }
   //COMPONENT DID MOUNT END
 
-//   axios({
-//     method: 'GET',
-//     url: `https://www.rijksmuseum.nl/api/en/collection`,
-//       dataResponse: 'json',
-//         params: {
-//           key: apiKey,
-//           format: 'json',
-//           hasImage: true
-//         }
-//     }).then((response) => {
-//   // when we have the response from the API, we reassign a variable (to be a little cleaner)
-//   response = response.data.artObjects
-
-//   console.log(response)
-//   // set the state to be the value of the response
-//   // this.setState({
-//   //   art: response
-//   // })
-// })
-
-  
 }
 // APP END
 

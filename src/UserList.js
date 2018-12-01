@@ -5,6 +5,7 @@ class UserList extends Component {
     constructor() {
         super();
         this.state = {
+            // task completion state
             doable1Task: false,
             doable2Task: false,
             dailyGoalTask: false
@@ -12,7 +13,10 @@ class UserList extends Component {
     }
     // CONSTRUCTOR END
 
-    //FUNCTIONS START
+    // FUNCTIONS START
+
+    // Task done
+    // updates task completion state and alerts message
     taskDone = (event) => { 
         const thisTask = event.target.id 
 
@@ -29,6 +33,8 @@ class UserList extends Component {
         }            
     }
     
+    // Display
+    // function for displaying user list if there is one 
     display = () => {
         if(this.props.doable1 != "") {
             return (
@@ -89,18 +95,6 @@ class UserList extends Component {
                     </span>
                     </p>
 
-                    
-
-                    {/* <p id="dailyGoalTask" className="userList__text" onClick={this.taskDone}>{this.props.dailyGoal} <span className="userList__span"><i className={
-                        this.state.dailyGoalTask
-                            ?
-                            "userList__icon far fa-check-square"
-                            :
-                            "userList__icon far fa-square"
-                    }></i>
-                    </span>
-                    </p> */}
-
                 <input
                     onClick={this.props.resetList}
                     type="submit"
@@ -110,12 +104,12 @@ class UserList extends Component {
             )
         } else {
             return (
-                <div className="userList__wrapper--empty wrapper">
+                <div className="userList__wrapper userList__wrapper--empty wrapper">
                 </div>
             )
         }
     } 
-    //FUNCTIONS END
+    // FUNCTIONS END
     
     // RENDER START
     render() {
