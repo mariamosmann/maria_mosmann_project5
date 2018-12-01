@@ -5,6 +5,8 @@ import UserList from "./UserList";
 import MoreInfo from "./MoreInfo";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg";
+// import messages from "./messages";
+import Mascot from "./Mascot";
 
 const dbRef = firebase.database().ref("dtbList"); 
 
@@ -137,7 +139,7 @@ class App extends Component {
 
   // RENDER START
   render() {
-    return (
+    return (      
       <div className="App"> 
 
         {/* HEADER START */}
@@ -212,7 +214,7 @@ class App extends Component {
             <div className="mascot__moreInfo moreInfo">
               <button 
               className="moreInfo__button" onClick={this.buttonClick}>More Info</button>
-
+              {/* displaying more info about anxiety */}
               <MoreInfo
               infoButton={this.state.infoButton} 
               />
@@ -226,7 +228,10 @@ class App extends Component {
               </div>
 
               <div className="mascot__textContainer">
-                <p className="mascot__text">You're doing great!</p>
+                <p className="mascot__text">
+                {/* displaying mascot messages */}
+                <Mascot />
+                </p>
               </div>  
             </div>          
             {/* MASCOT TEXT BUBBLE END */}

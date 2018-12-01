@@ -1,10 +1,12 @@
 import React from 'react';
 
+//TO DO: create info
+
 const MoreInfo = (props) => {
 
     // FUNCTIONS START
 
-    //Display Info
+    // Display Info
     // Function for displaying more info if the user clicked the button
     const displayInfo = () => {
         if (props.infoButton == false) {
