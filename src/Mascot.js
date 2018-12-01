@@ -9,7 +9,7 @@ import React from 'react';
 const Mascot = () => {
     return (
         <div className="mascot__textContainer"> 
-            <p className="mascot__text">You're doing GRRREAT!</p>
+            <p className="mascot__text">Hi! I'm Angstel!</p>
         </div>
     )
 }

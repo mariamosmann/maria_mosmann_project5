@@ -5,6 +5,8 @@ import UserList from "./UserList";
 import MoreInfo from "./MoreInfo";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg";
+import ribbon from "./assets/ribbon.svg";
+
 // import messages from "./messages";
 import Mascot from "./Mascot";
 
@@ -241,7 +243,9 @@ class App extends Component {
             <div className="mascot__credit">
               <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="mascot__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
 
-              <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>  
+              <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>
+
+              <a href="https://thenounproject.com/visuadio/" className="mascot__link" target="_blank">Ribbon SVG by Felipe Alvarado from the Noun Project</a>   
             </div>      
 
           </div>          
