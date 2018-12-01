@@ -228,7 +228,11 @@ class App extends Component {
             <div className="mascot__imageContainer">
               <img src="" alt="" className="mascot__image" />
             </div>
-            {/* MASCOT IMAGE END */}            
+            {/* MASCOT IMAGE END */}      
+
+            <div className="mascot__credit">
+              <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster by Vectors Market from the Noun Project</a>
+            </div>      
 
           </div>          
         </aside>

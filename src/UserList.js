@@ -41,6 +41,7 @@ class UserList extends Component {
             <div className="userList__wrapper wrapper">
                 <h2>User List</h2>
 
+                    {/* Changing the class and the icon */}
                     <p className={
                         this.state.doable1Task
                         ?
@@ -95,6 +96,7 @@ class UserList extends Component {
                     </span>
                     </p>
 
+                {/* resets the list in firebase */}
                 <input
                     onClick={this.props.resetList}
                     type="submit"
