@@ -3,6 +3,8 @@ import './App.css';
 import firebase from "./firebase";
 import UserList from "./UserList";
 import MoreInfo from "./MoreInfo";
+import monster from "./assets/monster.svg";
+import bubble from "./assets/bubble.svg";
 
 const dbRef = firebase.database().ref("dtbList"); 
 
@@ -217,21 +219,28 @@ class App extends Component {
             </div>
             {/* MORE INFO END */}
 
-            {/* MASCOT TEXT START */}
-            <div className="mascot__textContainer">
-              <img src="" alt="" className="mascot__textBubble" />
-              <p className="mascot__text"></p>
-            </div>
-            {/* MASCOT TEXT END */}
+            {/* MASCOT TEXT BUBBLE START */}
+            <div className="mascot__textBubble">
+              <div className="mascot__bubbleContainer">
+                <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
+              </div>
+
+              <div className="mascot__textContainer">
+                <p className="mascot__text">You're doing great!</p>
+              </div>  
+            </div>          
+            {/* MASCOT TEXT BUBBLE END */}
 
             {/* MASCOT IMAGE START */}
             <div className="mascot__imageContainer">
-              <img src="" alt="" className="mascot__image" />
+              <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" />
             </div>
             {/* MASCOT IMAGE END */}      
 
             <div className="mascot__credit">
-              <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster by Vectors Market from the Noun Project</a>
+              <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="mascot__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
+
+              <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>  
             </div>      
 
           </div>          
