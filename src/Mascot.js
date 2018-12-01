@@ -8,8 +8,8 @@ import React from 'react';
 
 const Mascot = () => {
     return (
-        <div>
-            <p>You're doing GRRREAT!</p>
+        <div className="mascot__textContainer"> 
+            <p className="mascot__text">You're doing GRRREAT!</p>
         </div>
     )
 }

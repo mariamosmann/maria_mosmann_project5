@@ -226,13 +226,9 @@ class App extends Component {
               <div className="mascot__bubbleContainer">
                 <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
               </div>
-
-              <div className="mascot__textContainer">
-                <p className="mascot__text">
-                {/* displaying mascot messages */}
-                <Mascot />
-                </p>
-              </div>  
+                             
+              {/* displaying mascot messages */}
+              <Mascot />
             </div>          
             {/* MASCOT TEXT BUBBLE END */}
 
