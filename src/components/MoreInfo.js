@@ -16,7 +16,7 @@ const MoreInfo = (props) => {
         } else if (props.infoButton == true) {
             return (
                 <div className="moreInfo__textContainer">
-                    <h3 className="moreInfo__heading">Anxiety Disorder</h3>
+                    <h3 className="moreInfo__heading">Anxiety Disorders</h3>
 
                     <h4 className="moreInfo__heading moreInfo__heading--small">Text from the <a href="https://cmha.ca/" className="moreInfo__link moreInfo__link--margin" target="_blank">Canadian Mental Health Association</a></h4>                    
 

@@ -32,6 +32,14 @@ class UserList extends Component {
             })
         }            
     }
+
+    resetClasses = (event) => {
+        this.setState({
+            doable1Task: false,
+            doable2Task: false,
+            dailyGoalTask: false
+        })
+    }
     
     // Display
     // function for displaying user list if there is one 
@@ -39,68 +47,73 @@ class UserList extends Component {
         if(this.props.doable1 != "") {
             return (
             <div className="userList__wrapper wrapper">
-                <h2>User List</h2>
+                <h2 className="userList__heading">Things <span className="userList__heading userList__heading--color">I Can</span> do Today</h2>
 
+                <ul className="userList__list"> 
                     {/* Changing the class and the icon */}
-                    <p className={
+                    <li className={
                         this.state.doable1Task
                         ?
-                        "userList__text--taskCompleted"
+                        "userList__item--taskCompleted"
                         :
-                        "userList__text"
-                    }>
-                    {this.props.doable1} <span className="userList__span">
+                        "userList__item"
+                        }>
+                        <span className="userList__item--color userList__item">#1</span> {this.props.doable1} <span className="userList__span">
                         <i onClick={this.taskDone} id="doable1Task" className={
                         this.state.doable1Task
                         ? 
                         "userList__icon far fa-check-square"
-                         :
+                            :
                         "userList__icon far fa-square"
-                    }></i>
-                    </span>
-                    </p>
+                        }>
+                        </i>
+                        </span>                
+                    </li>
 
-                    <p className={
+                    <li className={
                         this.state.doable2Task
                         ?
-                        "userList__text--taskCompleted"
+                        "userList__item--taskCompleted"
                         :
-                        "userList__text"
-                    }>
-                    {this.props.doable2} <span className="userList__span">
+                        "userList__item"
+                        }>
+                        <span className="userList__item--color userList__item">#2</span>  {this.props.doable2} <span className="userList__span">
                         <i onClick={this.taskDone} id="doable2Task" className={
                         this.state.doable2Task
                         ?
                         "userList__icon far fa-check-square"
                         :
                         "userList__icon far fa-square"
-                    }></i>
-                    </span>
-                    </p>
+                        }>
+                        </i>
+                        </span>
+                    </li>
 
-                    <p className={
+                    <li className={
                         this.state.dailyGoalTask
                         ?
-                        "userList__text--taskCompleted"
+                        "userList__item--taskCompleted"
                         :
-                        "userList__text"
-                    }>
-                    {this.props.dailyGoal} <span className="userList__span">
+                        "userList__item"
+                        }>
+                        <span className="userList__item--color userList__item">#Final Boss!</span> {this.props.dailyGoal} <span className="userList__span">
                         <i onClick={this.taskDone} id="dailyGoalTask" className={
                         this.state.dailyGoalTask
                         ?
                         "userList__icon far fa-check-square"
                         :
                         "userList__icon far fa-square"
-                        }></i>
-                    </span>
-                    </p>
+                        }>
+                        </i>
+                        </span>
+                    </li>
+                </ul>
 
                 {/* resets the list in firebase */}
                 <input
                     onClick={this.props.resetList}
                     type="submit"
-                    value="Reset the list" className="userList__resetListButton"
+                    value="Reset the list" className="userList__resetListButton button"
                 />
                 </div>
             )

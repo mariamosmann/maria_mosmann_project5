@@ -163,97 +163,106 @@ class App extends Component {
   // RENDER START
   render() {
     return (      
-      <div className="App"> 
+      <div className="App">
 
-        {/* HEADER START */}
-        <header className="header">
-          <div className="header__wrapper wrapper">
-            <h1 className="header__heading"><span className="header__heading header__heading--color">I CAN</span> Do List</h1>
+      {/* HEADER START */}
+      <header className="header">
+        <div className="header__wrapper wrapper">
+          <h1 className="header__heading"><span className="header__heading header__heading--color">I CAN</span> Do List</h1>
 
-            <h2 className="header__heading header__heading--small">A <span className="header__heading header__heading--color header__heading--small">POSITIVE</span> To Do List</h2>
-          </div>
-        </header>
-        {/* HEADER END */}
+          <h2 className="header__heading header__heading--small">A <span className="header__heading header__heading--color header__heading--small">POSITIVE</span> To Do List</h2>
+        </div>
+      </header>
+      {/* HEADER END */} 
 
-        {/* USER ENTRIES START */}
-        <section className="userEntries">
+      {/* CONTENT START */}
+      <div className="content">
 
-          {/* USER ENTRIES WRAPPER START */}
-          <div className="userEntries__wrapper wrapper">
-            <h2 className="userEntries__heading">Things <span className="userEntries__heading userEntries__heading--color">I Can</span> do Today</h2>
+        {/* MAIN START */}
+        <main className="main">          
 
-            <p className="userEntries__text">People affected by an Anxiety Disorder know this cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
+          {/* USER ENTRIES START */}
+          <section className="userEntries">
 
-            <p className="userEntries__text">It was designed using a few known tools to fight anxiety: focus on one task at a time, limit the length of your list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>  
+            {/* USER ENTRIES WRAPPER START */}
+            <div className="userEntries__wrapper wrapper">
+              <h2 className="userEntries__heading">Shifting the <span className="userEntries__heading userEntries__heading--color">focus</span></h2>
 
-            <p className="userEntries__text">No matter what you do today, you're doing great!</p>
+              <p className="userEntries__text">People affected by an Anxiety Disorder already know the cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
 
-            {/* MORE INFO START */}
-            <div className="userEntries__moreInfo moreInfo">
-              <button
-                className="moreInfo__button" onClick={this.buttonClick}>{this.state.buttonText}</button>
-              {/* displaying more info about anxiety */}
-              <MoreInfo
-                infoButton={this.state.infoButton}
-              />
+              <p className="userEntries__text">It was designed using common tools for fighting anxiety: do one task at a time, limit the length of your to do list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>  
+
+              <p className="userEntries__text">No matter what you accomplish today, you're doing great!</p>
+
+              {/* MORE INFO START */}
+              <div className="userEntries__moreInfo moreInfo">
+                <button
+                  className="moreInfo__button button" onClick={this.buttonClick}>{this.state.buttonText}</button>
+                {/* displaying more info about anxiety */}
+                <MoreInfo
+                  infoButton={this.state.infoButton}
+                />
+              </div>
+              {/* MORE INFO END */}       
             </div>
-            {/* MORE INFO END */}       
-          </div>
-          {/* USER ENTRIES WRAPPER END */}
-          
-          {/* FORM START */}
-          <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
+            {/* USER ENTRIES WRAPPER END */}
+            
+            {/* FORM START */}
+            <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-            {/* FORM WRAPPER START */}
-            <div className="form__wrapper wrapper">
-              <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task today:</label>
-              <input required
-                type="text"
-                onChange={this.handleChange}
-                id="doable1"
-                className="form__field"
-                value={this.state.doable1}
-              />
+              {/* FORM WRAPPER START */}
+              <div className="form__wrapper wrapper">
+                <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task today:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="doable1"
+                  className="form__field"
+                  value={this.state.doable1}
+                />
 
-              <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-              <input required
-                type="text"
-                onChange={this.handleChange}
-                id="doable2"
-                className="form__field"
-                value={this.state.doable2}
-              />
+                <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="doable2"
+                  className="form__field"
+                  value={this.state.doable2}
+                />
 
-              <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-              <input required
-                type="text"
-                onChange={this.handleChange}
-                id="dailyGoal"
-                className="form__field form__field--margin"
-                value={this.state.dailyGoal}
-              />
+                <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="dailyGoal"
+                  className="form__field form__field--margin"
+                  value={this.state.dailyGoal}
+                />
 
-              <input type="submit" value="You've got this!" className="form__submit"/>
-            </div>
-            {/* FORM WRAPPER END */}
+                <input type="submit" value="You've got this!" className="form__submit button"/>
+              </div>
+              {/* FORM WRAPPER END */}
 
-          </form>
-          {/* FORM END */}
+            </form>
+            {/* FORM END */}
 
-        </section>
-        {/* USER ENTRIES END */}
+          </section>
+          {/* USER ENTRIES END */}
 
-        {/* USER LIST START */}
-        <section className="userList">
-          {/* where user list will be displayed */}
-          <UserList         
-          doable1={this.state.dtbList.doable1}
-          doable2={this.state.dtbList.doable2}
-          dailyGoal={this.state.dtbList.dailyGoal} 
-          resetList={this.resetList}
-          />          
-        </section>
-        {/* USER LIST END */}
+          {/* USER LIST START */}
+          <section className="userList">
+            {/* where user list will be displayed */}
+            <UserList         
+            doable1={this.state.dtbList.doable1}
+            doable2={this.state.dtbList.doable2}
+            dailyGoal={this.state.dtbList.dailyGoal} 
+            resetList={this.resetList}
+            />          
+          </section>
+          {/* USER LIST END */}
+
+          </main>
+        {/* MAIN END */}
 
         {/* MASCOT START */}
         <aside className="mascot">
@@ -280,25 +289,33 @@ class App extends Component {
             {/* MASCOT TEXT BUBBLE END */}
             
             {/* MASCOT IMAGE START */}
-            <div className="mascot__imageContainer"             
-            >
+            <div className="mascot__imageContainer">
               <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" onClick={this.changeMessage}/>
             </div>
-            {/* MASCOT IMAGE END */} 
-
-            {/* MASCOT CREDIT START */}
-            <div className="mascot__credit">
-              <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="mascot__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
-
-              <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>
-
-              <a href="https://thenounproject.com/visuadio/" className="mascot__link" target="_blank">Ribbon SVG by Felipe Alvarado from the Noun Project</a>
-            </div>
-            {/* MASCOT CREDIT END */}
-            
+            {/* MASCOT IMAGE END */}            
           </div>
         </aside>
         {/* MASCOT END */}
+
+      </div> 
+      {/* CONTENT END */}
+
+      {/* FOOTER START */}
+      <footer className="footer">
+        {/* FOOTER WRAPPER START */}
+        <div className="footer__wrapper wrapper">
+          <p className="footer__text">Developed by  
+          <a href="http://tuni.tech" target="_blank" className="footer__link footer__link--inline">Tuni</a> | 2018</p>
+
+          <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="footer__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
+
+          <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="footer__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>
+
+          <a href="https://thenounproject.com/visuadio/" className="footer__link" target="_blank">Ribbon SVG by Felipe Alvarado from the Noun Project</a>
+        </div>
+        {/* FOOTER WRAPPER END */}
+      </footer>
+      {/* FOOTER END */}        
 
       </div>
     );
