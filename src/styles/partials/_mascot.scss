@@ -1,0 +1,14 @@
+.mascot {
+    background: $colorAccent;
+    padding: 30px 0;
+    &__wrapper {
+        width: 90%;
+    }
+    &__textBubble {
+        position: relative;
+    }
+    &__messages {
+        position: absolute;
+        top: 0;
+    }
+} 

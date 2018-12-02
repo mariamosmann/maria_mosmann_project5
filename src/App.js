@@ -120,7 +120,7 @@ class App extends Component {
     }
 
     //updating firebase with the empty object
-    dbRef.set(newList);
+    dbRef.set(newList);    
   }
 
   //Button click
@@ -273,7 +273,7 @@ class App extends Component {
             {/* BUBBLE START */}
             <div className="mascot__textBubble">
               <div className="mascot__bubbleContainer">
-                <img src={bubble} alt="A square speech bubble." className="mascot__bubble" />
+                <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
               </div>
               {/* BUBBLE END */}
 

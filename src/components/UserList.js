@@ -31,15 +31,7 @@ class UserList extends Component {
                 [thisTask]: false
             })
         }            
-    }
-
-    resetClasses = (event) => {
-        this.setState({
-            doable1Task: false,
-            doable2Task: false,
-            dailyGoalTask: false
-        })
-    }
+    }    
     
     // Display
     // function for displaying user list if there is one 
