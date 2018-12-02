@@ -305,7 +305,7 @@ class App extends Component {
         {/* FOOTER WRAPPER START */}
         <div className="footer__wrapper wrapper">
           <p className="footer__text">Developed by  
-          <a href="http://tuni.tech" target="_blank" className="footer__link footer__link--inline">Tuni</a> | 2018</p>
+          <a href="http://tuni.tech" target="_blank" className="footer__link footer__link--inline"> Tuni</a> | 2018</p>
 
           <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="footer__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
 

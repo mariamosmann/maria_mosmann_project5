@@ -9,6 +9,15 @@
     }
     &__messages {
         position: absolute;
-        top: 0;
+        width: 85%;
+        top: 7%;
+        left: 7%;
+    }
+    &__text {
+        font-weight: 700;
+        text-align: center;
+    }
+    &__imageContainer {
+        padding: 20px 0;
     }
 } 
