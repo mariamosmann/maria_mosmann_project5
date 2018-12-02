@@ -177,6 +177,8 @@ class App extends Component {
 
         {/* USER ENTRIES START */}
         <section className="userEntries">
+
+          {/* USER ENTRIES WRAPPER START */}
           <div className="userEntries__wrapper wrapper">
             <h2 className="userEntries__heading">Things <span className="userEntries__heading userEntries__heading--color">I Can</span> do Today</h2>
 
@@ -195,42 +197,49 @@ class App extends Component {
                 infoButton={this.state.infoButton}
               />
             </div>
-            {/* MORE INFO END */}
+            {/* MORE INFO END */}       
+          </div>
+          {/* USER ENTRIES WRAPPER END */}
+          
+          {/* FORM START */}
+          <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-            {/* FORM START */}
-            <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
-              <label htmlFor="doable1" className="form__label">I can finish this task today:</label>
+            {/* FORM WRAPPER START */}
+            <div className="form__wrapper wrapper">
+              <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task today:</label>
               <input required
-              type="text" 
-              onChange={this.handleChange}
-              id="doable1"
-              className="form__field"
-              value={this.state.doable1}              
+                type="text"
+                onChange={this.handleChange}
+                id="doable1"
+                className="form__field"
+                value={this.state.doable1}
               />
 
-              <label htmlFor="doable2" className="form__label">If I'm done with the fist task I'll focus on doing this:</label>
+              <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
               <input required
-              type="text" 
-              onChange={this.handleChange}
-              id="doable2"
-              className="form__field"
-              value={this.state.doable2}
+                type="text"
+                onChange={this.handleChange}
+                id="doable2"
+                className="form__field"
+                value={this.state.doable2}
               />
 
-              <label htmlFor="dailyGoal" className="form__label">This task scares me but I'll do my best and try to accomplish it today:</label>
+              <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
               <input required
-              type="text" 
-              onChange={this.handleChange}
-              id="dailyGoal"
-              className="form__field"
-              value={this.state.dailyGoal}
+                type="text"
+                onChange={this.handleChange}
+                id="dailyGoal"
+                className="form__field form__field--margin"
+                value={this.state.dailyGoal}
               />
 
               <input type="submit" value="You've got this!" className="form__submit"/>
-            </form>
-            {/* FORM END */}
+            </div>
+            {/* FORM WRAPPER END */}
 
-          </div>
+          </form>
+          {/* FORM END */}
+
         </section>
         {/* USER ENTRIES END */}
 
