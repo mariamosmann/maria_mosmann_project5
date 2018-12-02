@@ -1,5 +1,10 @@
-.userList {
-    padding: 30px 0;
+.userList {    
+    &__wrapper {
+        padding: 30px 0;
+        &--empty {
+            display: none;
+        }
+    }
     &__heading {
         @include heading(32);
         &--color {
