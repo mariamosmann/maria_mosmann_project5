@@ -3,10 +3,10 @@ import './App.css';
 import firebase from "./components/firebase.js";
 import UserList from "./components/UserList.js";
 import MoreInfo from "./components/MoreInfo.js";
-import Mascot from "./components/Mascot.js";
+import messages from "./components/messages.js";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg"; 
-import messages from "./components/messages.js";
+
 
 
 const dbRef = firebase.database().ref("dtbList"); 
@@ -53,7 +53,7 @@ class App extends Component {
 
   //Handle Change
   //value being typed updating the respective state property in constructor
-  handleChange = (event) => {   
+  handleChange = (event) => {       
 
     // console.log(event.target.value); //just checking if I connected everything right
 
@@ -146,12 +146,14 @@ class App extends Component {
 
   changeMessage = () => {     
 
-    if (messageIndex < messages.length) {
+    const messagesLength = messages.length - 1;
+
+    if (messageIndex < messagesLength) {
       messageIndex = messageIndex + 1;
       this.setState({
         message: messages[messageIndex]
       })
-    } else if (messageIndex = messages.length) {
+    } else if (messageIndex = messagesLength) {
       messageIndex = 0;
       this.setState({
         message: messages[messageIndex]
@@ -246,15 +248,21 @@ class App extends Component {
           <div className="mascot__wrapper wrapper">
 
             {/* MASCOT TEXT BUBBLE START */}
+
+            {/* BUBBLE START */}
             <div className="mascot__textBubble">
               <div className="mascot__bubbleContainer">
                 <img src={bubble} alt="A square speech bubble." className="mascot__bubble" />
               </div>
+              {/* BUBBLE END */}
 
-              {/* Bubble message */}
-              <Mascot 
-              message={this.state.message}
-              />
+              {/* MESSAGE START */}
+              <div className="mascot__messages">
+                <p className="mascot__text">
+                  {this.state.message}
+                </p>
+              </div>
+              {/* MESSAGE END */}
 
             </div>
             {/* MASCOT TEXT BUBBLE END */}

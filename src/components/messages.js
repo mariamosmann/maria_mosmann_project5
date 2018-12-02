@@ -1,7 +1,7 @@
 // TO DO: add Random messages for the mascot
 
 const messages = [
-    "Hi! I'm Angstel! Click me to display different a message!",
+    "Hi! I'm Angstel! Click me to display a different message!",
     "You're doing great!",
     "Every effort you make counts.",
     "You can do it!",
