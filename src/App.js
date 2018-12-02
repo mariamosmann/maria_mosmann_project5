@@ -38,7 +38,7 @@ class App extends Component {
       // },
       //more info button
       infoButton: false,
-      buttonText: "Show More Information",
+      buttonText: "More About Anxiety Disorders",
 
       //bubble messages
       message: messages[messageIndex]   
@@ -137,7 +137,7 @@ class App extends Component {
     } else if (this.state.infoButton == true) {
       this.setState({
         infoButton: false,
-        buttonText: "Show More Information"
+        buttonText: "More About Anxiety Disorders"
       })
     }
   }
@@ -168,8 +168,9 @@ class App extends Component {
         {/* HEADER START */}
         <header className="header">
           <div className="header__wrapper wrapper">
-            <h1 className="header__heading">I-Can-Do-List</h1>
-            <h2 className="header__heading header__heading--small">Things I can do Today</h2>
+            <h1 className="header__heading"><span className="header__heading header__heading--color">I CAN</span> Do List</h1>
+
+            <h2 className="header__heading header__heading--small">A <span className="header__heading header__heading--color header__heading--small">POSITIVE</span> To Do List</h2>
           </div>
         </header>
         {/* HEADER END */}
@@ -177,7 +178,7 @@ class App extends Component {
         {/* USER ENTRIES START */}
         <section className="userEntries">
           <div className="userEntries__wrapper wrapper">
-            <h2 className="userEntries__heading">A Positive To Do List</h2>
+            <h2 className="userEntries__heading">Things <span className="userEntries__heading userEntries__heading--color">I Can</span> do Today</h2>
 
             <p className="userEntries__text">People affected by an Anxiety Disorder know this cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
 
@@ -198,7 +199,7 @@ class App extends Component {
 
             {/* FORM START */}
             <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
-              <label htmlFor="doable1" className="form__label">I can do this task today:</label>
+              <label htmlFor="doable1" className="form__label">I can finish this task today:</label>
               <input required
               type="text" 
               onChange={this.handleChange}
@@ -207,7 +208,7 @@ class App extends Component {
               value={this.state.doable1}              
               />
 
-              <label htmlFor="doable2" className="form__label">Once I finish the fist task I'll focus on just doing this:</label>
+              <label htmlFor="doable2" className="form__label">If I'm done with the fist task I'll focus on doing this:</label>
               <input required
               type="text" 
               onChange={this.handleChange}

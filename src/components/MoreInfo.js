@@ -16,9 +16,9 @@ const MoreInfo = (props) => {
         } else if (props.infoButton == true) {
             return (
                 <div className="moreInfo__textContainer">
-                    <h3 className="moreInfo_heading">Anxiety Disorder</h3>
+                    <h3 className="moreInfo__heading">Anxiety Disorder</h3>
 
-                    <h4 className="moreInfo__heading moreInfo__heading--small">Text from the <a href="https://cmha.ca/" className="moreInfo__link" target="_blank">Canadian Mental Health Association</a></h4>                    
+                    <h4 className="moreInfo__heading moreInfo__heading--small">Text from the <a href="https://cmha.ca/" className="moreInfo__link moreInfo__link--margin" target="_blank">Canadian Mental Health Association</a></h4>                    
 
                     <p className="moreInfo__text">We all feel nervous or worried at times. This anxiety can be a helpful feeling when it motivates us or warns us of danger. An anxiety disorder, on the other hand, causes unexpected or unhelpful anxiety that seriously impacts our lives, including how we think, feel, and act.</p>
 
@@ -26,9 +26,9 @@ const MoreInfo = (props) => {
 
                     <p className="moreInfo__text">Many people who experience an anxiety disorder think that they should just be able to ‘get over it’ on their own. Others may need time to recognize how deeply anxiety affects their life. However, anxiety disorders are real illnesses that affect a person’s well-being. It’s important to talk to a doctor about mental health concerns. Some physical health conditions cause symptoms of anxiety. A doctor will look at all possible causes of anxiety.</p>
 
-                    <p className="moreInfo__text">The complete text can be found <a href="https://cmha.ca/mental-health/understanding-mental-illness/anxiety-disorders" className="moreInfo__link" target="_blank">here</a>.</p>
+                    <p className="moreInfo__text">The complete text can be found <a href="https://cmha.ca/mental-health/understanding-mental-illness/anxiety-disorders" className="moreInfo__link moreInfo__link--margin" target="_blank">here</a>.</p>
 
-                    <h4 className="moreInfo__heading moreInfo__heading--h4">More helpful links:</h4>
+                    <h4 className="moreInfo__heading moreInfo__heading--small">More helpful links:</h4>
 
                     <a className="moreInfo__link" href="https://www.anxietycanada.com/" target="_blank">Anxiety Canada</a>
 
@@ -38,7 +38,8 @@ const MoreInfo = (props) => {
 
                     <a className="moreInfo__link" href="https://www.health.com/health/gallery/0,,20646990,00.html" target="_blank">12 Signs You May Have an Anxiety Disorder</a>
 
-                    <img src={ribbon} alt="Anxiety Disorder Teal Awareness Ribbon"/>
+                    <div className="moreInfo__imageContainer"><img src={ribbon} alt="Anxiety Disorder Teal Awareness Ribbon" /></div>
+                    
                 </div>
             )
         }

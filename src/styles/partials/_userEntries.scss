@@ -1,0 +1,18 @@
+.userEntries {
+    padding: 30px 0;
+    &__heading {
+        @include heading(30);
+        &--color {
+            color: $colorAccent;
+        }
+    }
+    &__text {
+        margin-top: 20px;
+    }
+    &__moreInfo {
+        margin: 20px auto 0 auto;
+    }
+    &__form {
+        margin: 20px auto 0 auto;
+    }
+}

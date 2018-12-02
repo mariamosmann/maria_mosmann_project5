@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    background: $background;
     font-size: ($fontSize / 10) * 1rem;    
     font-family: $fontFamily;
     color: $text;  
@@ -10,7 +11,7 @@ body {
 }
 
 p {
-    line-height: 24px;
+    line-height: 32px;
     margin: 0;
     padding: 0;
 }
@@ -18,8 +19,7 @@ p {
 a {
     color: $text;    
     text-decoration: none;   
-    padding: 0 10px;
-    display: block;       
+    padding: 0;     
 }
 
 // ul {
