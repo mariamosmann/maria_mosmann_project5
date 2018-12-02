@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase from "./firebase";
-import UserList from "./UserList";
-import MoreInfo from "./MoreInfo";
+import firebase from "./components/firebase.js";
+import UserList from "./components/UserList.js";
+import MoreInfo from "./components/MoreInfo.js";
+import Mascot from "./components/Mascot.js";
 import monster from "./assets/monster.svg";
-import bubble from "./assets/bubble.svg";
-import ribbon from "./assets/ribbon.svg";
+import bubble from "./assets/bubble.svg"; 
+import messages from "./components/messages.js";
 
-// import messages from "./messages";
-import Mascot from "./Mascot";
 
 const dbRef = firebase.database().ref("dtbList"); 
+let messageIndex = 0;
 
 // APP START
 class App extends Component {
@@ -39,16 +39,21 @@ class App extends Component {
         }
       },
       //more info button
-      infoButton: false
+      infoButton: false,
+      buttonText: "Show More Information",
+
+      //bubble messages
+      message: messages[messageIndex]   
+      }
     }
-  }
+  
   // CONSTRUCTOR END
 
   //FUNCTIONS START
 
   //Handle Change
   //value being typed updating the respective state property in constructor
-  handleChange = (event) => {      
+  handleChange = (event) => {   
 
     // console.log(event.target.value); //just checking if I connected everything right
 
@@ -128,13 +133,30 @@ class App extends Component {
 
     if (this.state.infoButton == false) {
       this.setState({
-        infoButton: true
+        infoButton: true,
+        buttonText: "Hide Information"
       })
     } else if (this.state.infoButton == true) {
       this.setState({
-        infoButton: false
+        infoButton: false,
+        buttonText: "Show More Information"
       })
     }
+  }
+
+  changeMessage = () => {     
+
+    if (messageIndex < messages.length) {
+      messageIndex = messageIndex + 1;
+      this.setState({
+        message: messages[messageIndex]
+      })
+    } else if (messageIndex = messages.length) {
+      messageIndex = 0;
+      this.setState({
+        message: messages[messageIndex]
+      })
+    }   
   }
 
   //FUNCTIONS END
@@ -158,6 +180,17 @@ class App extends Component {
             <h2 className="userEntries__heading">Tasks I can do Today</h2>
 
             <p className="userEntries__text">You can do this!</p>
+
+            {/* MORE INFO START */}
+            <div className="userEntries__moreInfo moreInfo">
+              <button
+                className="moreInfo__button" onClick={this.buttonClick}>{this.state.buttonText}</button>
+              {/* displaying more info about anxiety */}
+              <MoreInfo
+                infoButton={this.state.infoButton}
+              />
+            </div>
+            {/* MORE INFO END */}
 
             {/* FORM START */}
             <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
@@ -209,46 +242,41 @@ class App extends Component {
         {/* USER LIST END */}
 
         {/* MASCOT START */}
-        <aside className="mascot">   
+        <aside className="mascot">
           <div className="mascot__wrapper wrapper">
-
-            {/* MORE INFO START */}
-            <div className="mascot__moreInfo moreInfo">
-              <button 
-              className="moreInfo__button" onClick={this.buttonClick}>More Info</button>
-              {/* displaying more info about anxiety */}
-              <MoreInfo
-              infoButton={this.state.infoButton} 
-              />
-            </div>
-            {/* MORE INFO END */}
 
             {/* MASCOT TEXT BUBBLE START */}
             <div className="mascot__textBubble">
               <div className="mascot__bubbleContainer">
-                <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
+                <img src={bubble} alt="A square speech bubble." className="mascot__bubble" />
               </div>
-                             
-              {/* displaying mascot messages */}
-              <Mascot />
-            </div>          
-            {/* MASCOT TEXT BUBBLE END */}
 
-            {/* MASCOT IMAGE START */}
-            <div className="mascot__imageContainer">
-              <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" />
+              {/* Bubble message */}
+              <Mascot 
+              message={this.state.message}
+              />
+
             </div>
-            {/* MASCOT IMAGE END */}      
+            {/* MASCOT TEXT BUBBLE END */}
+            
+            {/* MASCOT IMAGE START */}
+            <div className="mascot__imageContainer"             
+            >
+              <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" onClick={this.changeMessage}/>
+            </div>
+            {/* MASCOT IMAGE END */} 
 
+            {/* MASCOT CREDIT START */}
             <div className="mascot__credit">
               <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="mascot__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
 
               <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="mascot__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>
 
-              <a href="https://thenounproject.com/visuadio/" className="mascot__link" target="_blank">Ribbon SVG by Felipe Alvarado from the Noun Project</a>   
-            </div>      
-
-          </div>          
+              <a href="https://thenounproject.com/visuadio/" className="mascot__link" target="_blank">Ribbon SVG by Felipe Alvarado from the Noun Project</a>
+            </div>
+            {/* MASCOT CREDIT END */}
+            
+          </div>
         </aside>
         {/* MASCOT END */}
 

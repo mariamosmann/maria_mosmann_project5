@@ -1,8 +1,5 @@
 import React from 'react';
-import ribbon from "./assets/ribbon.svg";
-
-
-//TO DO: create info
+import ribbon from "../assets/ribbon.svg";
 
 const MoreInfo = (props) => {
 
@@ -19,9 +16,9 @@ const MoreInfo = (props) => {
         } else if (props.infoButton == true) {
             return (
                 <div className="moreInfo__textContainer">
-                    <h2 className="moreInfo_heading">Anxiety Disorder</h2>
+                    <h3 className="moreInfo_heading">Anxiety Disorder</h3>
 
-                    <h3 className="moreInfo__heading moreInfo__heading--h3">Text from the <a href="https://cmha.ca/" className="moreInfo__link" target="_blank">Canadian Mental Health Association</a></h3>                    
+                    <h4 className="moreInfo__heading moreInfo__heading--small">Text from the <a href="https://cmha.ca/" className="moreInfo__link" target="_blank">Canadian Mental Health Association</a></h4>                    
 
                     <p className="moreInfo__text">We all feel nervous or worried at times. This anxiety can be a helpful feeling when it motivates us or warns us of danger. An anxiety disorder, on the other hand, causes unexpected or unhelpful anxiety that seriously impacts our lives, including how we think, feel, and act.</p>
 
