@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import "./styles/style.scss";
 import firebase from "./components/firebase.js";
 import UserList from "./components/UserList.js";
 import MoreInfo from "./components/MoreInfo.js";
 import messages from "./components/messages.js";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg"; 
-
-
 
 const dbRef = firebase.database().ref("dtbList"); 
 let messageIndex = 0;
@@ -23,21 +21,21 @@ class App extends Component {
       doable2: "",
       dailyGoal: "",
       //information sent to firebase is stored here when firebase returns the info
-      dtbList: {
-        doable1: {
-          task: "",
-          complete: false
-        },
+      dtbList: "",
+      //  {
+      //   doable1: {
+      //     task: "",
+      //   },
 
-        doable2: {
-          task: "",
-          complete: false
-        },
-        dailyGoal: {
-          task: "",
-          complete: false
-        }
-      },
+        doable2: "",
+        // {
+        //   task: "",
+        // },
+        dailyGoal: "", 
+        // {
+        //   task: "",
+        // }
+      // },
       //more info button
       infoButton: false,
       buttonText: "Show More Information",
@@ -71,19 +69,19 @@ class App extends Component {
 
     //making a variable to store the data that will be sent to firebase
     const updateList = {
-      doable1: {
-        task: this.state.doable1,
-        complete: false
-      },
+      doable1: this.state.doable1, 
+      // {
+      //   task: this.state.doable1,
+      // },
 
-      doable2: {
-        task: this.state.doable2,
-        complete: false
-      },
-      dailyGoal: {
-        task: this.state.dailyGoal,
-        complete: false
-      }
+      doable2: this.state.doable2, 
+      // {
+      //   task: this.state.doable2,
+      // },
+      dailyGoal: this.state.dailyGoal
+      // {
+      //   task: this.state.dailyGoal,
+      // }
     };
 
     //sending the info to firebase
@@ -106,19 +104,19 @@ class App extends Component {
 
     //making a variable to store empty values to be sent to firebase
     const newList = {
-      doable1: {
-        task: "",
-        complete: false
-      },
+      doable1: "",
+      // {
+      //   task: "",
+      // },
 
-      doable2: {
-        task: "",
-        complete: false
-      },
-      dailyGoal: {
-        task: "",
-        complete: false
-      }
+      doable2: "",
+      // {
+      //   task: "",
+      // },
+      dailyGoal: ""
+      // {
+      //   task: "",
+      // }
     }
 
     //updating firebase with the empty object
@@ -159,8 +157,7 @@ class App extends Component {
         message: messages[messageIndex]
       })
     }   
-  }
-
+  }  
   //FUNCTIONS END
 
   // RENDER START
@@ -171,7 +168,8 @@ class App extends Component {
         {/* HEADER START */}
         <header className="header">
           <div className="header__wrapper wrapper">
-            <h1 className="header__heading">Hello!</h1>
+            <h1 className="header__heading">I-Can-Do-List</h1>
+            <h2 className="header__heading header__heading--small">Things I can do Today</h2>
           </div>
         </header>
         {/* HEADER END */}
@@ -179,9 +177,13 @@ class App extends Component {
         {/* USER ENTRIES START */}
         <section className="userEntries">
           <div className="userEntries__wrapper wrapper">
-            <h2 className="userEntries__heading">Tasks I can do Today</h2>
+            <h2 className="userEntries__heading">A Positive To Do List</h2>
 
-            <p className="userEntries__text">You can do this!</p>
+            <p className="userEntries__text">People affected by an Anxiety Disorder know this cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
+
+            <p className="userEntries__text">It was designed using a few known tools to fight anxiety: focus on one task at a time, limit the length of your list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>  
+
+            <p className="userEntries__text">No matter what you do today, you're doing great!</p>
 
             {/* MORE INFO START */}
             <div className="userEntries__moreInfo moreInfo">
@@ -235,9 +237,9 @@ class App extends Component {
         <section className="userList">
           {/* where user list will be displayed */}
           <UserList         
-          doable1={this.state.dtbList.doable1.task}
-          doable2={this.state.dtbList.doable2.task}
-          dailyGoal={this.state.dtbList.dailyGoal.task} 
+          doable1={this.state.dtbList.doable1}
+          doable2={this.state.dtbList.doable2}
+          dailyGoal={this.state.dtbList.dailyGoal} 
           resetList={this.resetList}
           />          
         </section>
