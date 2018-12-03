@@ -1,6 +1,7 @@
 /* Landscape phones */
 @media (min-width: 480px) {
     .header {
+        height: 80vh;
         &__heading {
             font-size: 5.6rem;
             &--small {
@@ -63,6 +64,7 @@
         width: 90%;
     }
     .header {
+        height: 60vh;
         &__heading {
             &--small {
                 margin-top: 50px; 

@@ -88,9 +88,7 @@ class App extends Component {
 
   //Reset List
   //reseting whole list
-  resetList = (event) => {
-    //preventing the button to refresh the page
-    event.preventDefault();
+  resetList = () => {
 
     //making a variable to store empty values to be sent to firebase
     const newList = {
@@ -119,6 +117,7 @@ class App extends Component {
     //preventing the button from refreshing the page
     event.preventDefault();
 
+    //changing the button text
     if (this.state.infoButton === false) {
       this.setState({
         infoButton: true,
@@ -132,6 +131,8 @@ class App extends Component {
     }
   }
 
+  // Change Message
+  // changing the mascot message
   changeMessage = () => {     
 
     const messagesLength = messages.length - 1;
@@ -154,6 +155,7 @@ class App extends Component {
   render() {
     return (      
       <div className="App">
+      
 
       {/* HEADER START */}
       <header className="header">

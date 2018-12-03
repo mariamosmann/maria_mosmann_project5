@@ -31,7 +31,28 @@ class UserList extends Component {
                 [thisTask]: false
             })
         }            
-    }    
+    }  
+    
+    // Reset Class
+    // function to reset this component state
+    resetClass = () => {
+        this.setState({
+            doable1Task: false,
+            doable2Task: false,
+            dailyGoalTask: false
+        })
+    }
+
+    // Call Resets
+    // function to call the function that will reset this component state and also calls the function in App.js that resets firebase
+    callResets = (event) => {
+        //preventing the button to refresh the page
+        event.preventDefault();
+
+        //calling the functions
+        this.resetClass();
+        this.props.resetList();
+    }
     
     // Display
     // function for displaying user list if there is one 
@@ -101,9 +122,9 @@ class UserList extends Component {
                     </li>
                 </ul>
 
-                {/* resets the list in firebase */}
+                {/* resets the list in firebase and this component state */}
                 <input
-                    onClick={this.props.resetList}
+                    onClick={this.callResets}
                     type="submit"
                     value="Reset the list" className="userList__resetListButton button"
                 />

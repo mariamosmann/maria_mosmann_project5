@@ -1,5 +1,3 @@
-// TO DO: add Random messages for the mascot
-
 const messages = [
     "Hi! I'm Angstel, the Anxiety Monster! Click me to display a different message.",
     "When you see a (continue) is because I have more things to say! (continue)",
