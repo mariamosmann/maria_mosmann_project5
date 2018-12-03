@@ -21,21 +21,11 @@ class App extends Component {
       doable2: "",
       dailyGoal: "",
       //information sent to firebase is stored here when firebase returns the info
-      dtbList: "",
-      //  {
-      //   doable1: {
-      //     task: "",
-      //   },
-
+      dtbList: {
+        doable1: "",
         doable2: "",
-        // {
-        //   task: "",
-        // },
         dailyGoal: "", 
-        // {
-        //   task: "",
-        // }
-      // },
+      },
       //more info button
       infoButton: false,
       buttonText: "More About Anxiety Disorders",
@@ -129,12 +119,12 @@ class App extends Component {
     //preventing the button from refreshing the page
     event.preventDefault();
 
-    if (this.state.infoButton == false) {
+    if (this.state.infoButton === false) {
       this.setState({
         infoButton: true,
         buttonText: "Hide Information"
       })
-    } else if (this.state.infoButton == true) {
+    } else if (this.state.infoButton === true) {
       this.setState({
         infoButton: false,
         buttonText: "More About Anxiety Disorders"
@@ -151,7 +141,7 @@ class App extends Component {
       this.setState({
         message: messages[messageIndex]
       })
-    } else if (messageIndex = messagesLength) {
+    } else if (messageIndex === messagesLength) {
       messageIndex = 0;
       this.setState({
         message: messages[messageIndex]

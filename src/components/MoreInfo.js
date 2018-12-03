@@ -8,12 +8,12 @@ const MoreInfo = (props) => {
     // Display Info
     // Function for displaying more info if the user clicked the button
     const displayInfo = () => {
-        if (props.infoButton == false) {
+        if (props.infoButton === false) {
             return(
                 <div className="moreInfo__textContainer moreInfo__textContainer--empty">
                 </div>
             )
-        } else if (props.infoButton == true) {
+        } else if (props.infoButton === true) {
             return (
                 <div className="moreInfo__textContainer">
                     <h3 className="moreInfo__heading">Anxiety Disorders</h3>

@@ -1,4 +1,5 @@
 .userEntries {
+    width: 100%;
     padding-top: 30px;
     &__heading {
         @include heading(30);
@@ -11,5 +12,9 @@
     }
     &__moreInfo {
         margin: 30px auto 0 auto;
+    }
+    &__form {
+        padding: 0;
+        margin: 0;
     }
 }

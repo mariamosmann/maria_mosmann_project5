@@ -20,13 +20,13 @@ class UserList extends Component {
     taskDone = (event) => { 
         const thisTask = event.target.id 
 
-        if(this.state[thisTask] == false) {
+        if(this.state[thisTask] === false) {
             alert("You did it! Keep up the good work!");
 
             this.setState({
                 [thisTask]: true
             })
-        } else if (this.state[thisTask] == true) {
+        } else if (this.state[thisTask] === true) {
             this.setState({
                 [thisTask]: false
             })
@@ -36,7 +36,7 @@ class UserList extends Component {
     // Display
     // function for displaying user list if there is one 
     display = () => {
-        if(this.props.doable1 != "") {
+        if(this.props.doable1 !== "") {
             return (
             <div className="userList__wrapper wrapper">
                 <h2 className="userList__heading">Things <span className="userList__heading userList__heading--color">I Can</span> do Today</h2>
