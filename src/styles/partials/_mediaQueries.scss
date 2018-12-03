@@ -19,7 +19,7 @@
     }
     .moreInfo {
         &__heading {
-            font-size: 3.2rem;
+            font-size: 3rem;
             margin-top: 30px;
             &--small {
                 font-size: 1.6rem;
@@ -33,10 +33,16 @@
     .form {
         padding: 75px 0;
         margin-top: 50px;
+        &__heading {
+            font-size: 3.6rem;
+        }
     }
     .userList {    
         &__wrapper {
             padding: 50px 0;
+        }
+        &__heading {
+            font-size: 3.6rem;
         }
     }
     .mascot {
@@ -52,6 +58,9 @@
 
 /* Landscape phone to portrait tablet */
 @media (min-width: 768px) {
+    .wrapper {
+        width: 90%;
+    }
     .header {
         &__heading {
             &--small {
@@ -71,6 +80,11 @@
             margin-top: 50px;
         }
     }
+    .button {
+        &:hover {
+            box-shadow: 7px 7px 0 $text;
+        }
+    }    
     .form {
         margin-top: 75px;
     }
@@ -80,22 +94,116 @@
         }
     }
     .mascot {
-        padding: 50px 0;
         &__wrapper {
-            width: 75%;
+            width: 85%;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
         }
         &__textBubble {
-            width: 60%;
+            width: 45%;
         }
         &__imageContainer {
-            width: 60%;
-        }
-    } 
+            width: 50%;
+        } 
+        &__text {
+            font-size: 2.4rem;
+            margin-top: 25px;
+            width: 85%;
+        }       
+    }
 }
 
 /* Portrait tablet and small desktops */
 @media (min-width: 940px) {
-
+    body {
+        font-size: 2.4rem;
+    }
+    .header {
+        &__heading {
+            font-size: 8rem;
+            &--small {
+                font-size: 5rem;
+            }
+        }
+    }
+    .userEntries {
+        padding-top: 100px;
+        &__heading {
+            font-size: 4rem;
+            text-align: left;
+        }
+        &__text {
+            margin-top: 30px;
+        }
+    }
+    .moreInfo {
+        &__heading {
+            font-size: 3.4rem;
+            margin-top: 50px;
+            text-align: left;
+            &--small {
+                font-size: 1.8rem;
+            }
+        }
+        &__imageContainer {
+            width: 10%;
+        }
+        &__text {
+            margin-top: 30px;
+        }
+    }
+    .button {
+        font-size: 2.2rem;
+        margin-top: 50px;
+    }
+    .form {
+        padding: 100px 50px;
+        margin-top: 100px;
+        &__heading {
+            font-size: 4rem;
+            text-align: left;
+        }
+        &__field {
+        margin: 10px 0 30px 0;
+        background: $colorAccent;
+        border: none;
+        }
+    }
+    .userList {
+        &__heading {
+            font-size: 4rem;
+            text-align: left;
+        }
+        &__list {
+            padding: 20px 0;
+        }
+        &__item {
+            margin-top: 30px;
+            &--taskCompleted {
+                margin-top: 30px;
+                opacity: 0.5;
+            }
+            &--color {
+                color: $color;
+            }
+        }
+    }
+    .mascot {
+        &__wrapper {
+        }
+        &__textBubble {
+            width: 35%;
+        }
+        &__imageContainer {
+            width: 40%;
+        } 
+        &__text {
+            font-size: 2.4rem;
+            margin-top: 25px;
+            width: 85%;
+        }       
+    }    
 }
 
 /* Landscape tablet and laptops*/

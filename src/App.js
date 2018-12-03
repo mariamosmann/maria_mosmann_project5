@@ -175,130 +175,126 @@ class App extends Component {
       </header>
       {/* HEADER END */} 
 
-      {/* CONTENT START */}
-      <div className="content">
+      {/* MAIN START */}
+      <main className="main">          
 
-        {/* MAIN START */}
-        <main className="main">          
+        {/* USER ENTRIES START */}
+        <section className="userEntries">
 
-          {/* USER ENTRIES START */}
-          <section className="userEntries">
+          {/* USER ENTRIES WRAPPER START */}
+          <div className="userEntries__wrapper wrapper">
+            <h2 className="userEntries__heading">Shifting the <span className="userEntries__heading userEntries__heading--color">focus</span></h2>
 
-            {/* USER ENTRIES WRAPPER START */}
-            <div className="userEntries__wrapper wrapper">
-              <h2 className="userEntries__heading">Shifting the <span className="userEntries__heading userEntries__heading--color">focus</span></h2>
+            <p className="userEntries__text">People affected by an Anxiety Disorder already know the cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
 
-              <p className="userEntries__text">People affected by an Anxiety Disorder already know the cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
+            <p className="userEntries__text">It was designed using common tools for fighting anxiety: do one task at a time, limit the length of your to do list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>  
 
-              <p className="userEntries__text">It was designed using common tools for fighting anxiety: do one task at a time, limit the length of your to do list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>  
+            <p className="userEntries__text">No matter what you accomplish today, you're doing great!</p>
 
-              <p className="userEntries__text">No matter what you accomplish today, you're doing great!</p>
-
-              {/* MORE INFO START */}
-              <div className="userEntries__moreInfo moreInfo">
-                <button
-                  className="moreInfo__button button" onClick={this.buttonClick}>{this.state.buttonText}</button>
-                {/* displaying more info about anxiety */}
-                <MoreInfo
-                  infoButton={this.state.infoButton}
-                />
-              </div>
-              {/* MORE INFO END */}       
+            {/* MORE INFO START */}
+            <div className="userEntries__moreInfo moreInfo">
+              <button
+                className="moreInfo__button button" onClick={this.buttonClick}>{this.state.buttonText}</button>
+              {/* displaying more info about anxiety */}
+              <MoreInfo
+                infoButton={this.state.infoButton}
+              />
             </div>
-            {/* USER ENTRIES WRAPPER END */}
-            
-            {/* FORM START */}
-            <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
-
-              {/* FORM WRAPPER START */}
-              <div className="form__wrapper wrapper">
-                <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task today:</label>
-                <input required
-                  type="text"
-                  onChange={this.handleChange}
-                  id="doable1"
-                  className="form__field"
-                  value={this.state.doable1}
-                />
-
-                <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-                <input required
-                  type="text"
-                  onChange={this.handleChange}
-                  id="doable2"
-                  className="form__field"
-                  value={this.state.doable2}
-                />
-
-                <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-                <input required
-                  type="text"
-                  onChange={this.handleChange}
-                  id="dailyGoal"
-                  className="form__field form__field--margin"
-                  value={this.state.dailyGoal}
-                />
-
-                <input type="submit" value="You've got this!" className="form__submit button"/>
-              </div>
-              {/* FORM WRAPPER END */}
-
-            </form>
-            {/* FORM END */}
-
-          </section>
-          {/* USER ENTRIES END */}
-
-          {/* USER LIST START */}
-          <section className="userList">
-            {/* where user list will be displayed */}
-            <UserList         
-            doable1={this.state.dtbList.doable1}
-            doable2={this.state.dtbList.doable2}
-            dailyGoal={this.state.dtbList.dailyGoal} 
-            resetList={this.resetList}
-            />          
-          </section>
-          {/* USER LIST END */}
-
-          </main>
-        {/* MAIN END */}
-
-        {/* MASCOT START */}
-        <aside className="mascot">
-          <div className="mascot__wrapper wrapper">
-
-            {/* MASCOT TEXT BUBBLE START */}
-
-            {/* BUBBLE START */}
-            <div className="mascot__textBubble">
-              <div className="mascot__bubbleContainer">
-                <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
-              </div>
-              {/* BUBBLE END */}
-
-              {/* MESSAGE START */}
-              <div className="mascot__messages">
-                <p className="mascot__text">
-                  {this.state.message}
-                </p>
-              </div>
-              {/* MESSAGE END */}
-
-            </div>
-            {/* MASCOT TEXT BUBBLE END */}
-            
-            {/* MASCOT IMAGE START */}
-            <div className="mascot__imageContainer">
-              <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" onClick={this.changeMessage}/>
-            </div>
-            {/* MASCOT IMAGE END */}            
+            {/* MORE INFO END */}       
           </div>
-        </aside>
-        {/* MASCOT END */}
+          {/* USER ENTRIES WRAPPER END */}
+          
+          {/* FORM START */}
+          <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-      </div> 
-      {/* CONTENT END */}
+            {/* FORM WRAPPER START */}
+            <div className="form__wrapper wrapper">
+              <h2 className="form__heading">Today...</h2>
+
+              <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
+              <input required
+                type="text"
+                onChange={this.handleChange}
+                id="doable1"
+                className="form__field"
+                value={this.state.doable1}
+              />
+
+              <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
+              <input required
+                type="text"
+                onChange={this.handleChange}
+                id="doable2"
+                className="form__field"
+                value={this.state.doable2}
+              />
+
+              <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
+              <input required
+                type="text"
+                onChange={this.handleChange}
+                id="dailyGoal"
+                className="form__field form__field--margin"
+                value={this.state.dailyGoal}
+              />
+
+              <input type="submit" value="You've got this!" className="form__submit button"/>
+            </div>
+            {/* FORM WRAPPER END */}
+
+          </form>
+          {/* FORM END */}
+
+        </section>
+        {/* USER ENTRIES END */}
+
+        {/* USER LIST START */}
+        <section className="userList">
+          {/* where user list will be displayed */}
+          <UserList         
+          doable1={this.state.dtbList.doable1}
+          doable2={this.state.dtbList.doable2}
+          dailyGoal={this.state.dtbList.dailyGoal} 
+          resetList={this.resetList}
+          />          
+        </section>
+        {/* USER LIST END */}
+
+        </main>
+      {/* MAIN END */}
+
+      {/* MASCOT START */}
+      <section className="mascot">
+        <div className="mascot__wrapper wrapper">
+
+          {/* MASCOT TEXT BUBBLE START */}
+
+          {/* BUBBLE START */}
+          <div className="mascot__textBubble">
+            <div className="mascot__bubbleContainer">
+              <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
+            </div>
+            {/* BUBBLE END */}
+
+            {/* MESSAGE START */}
+            <div className="mascot__messages">
+              <p className="mascot__text">
+                {this.state.message}
+              </p>
+            </div>
+            {/* MESSAGE END */}
+
+          </div>
+          {/* MASCOT TEXT BUBBLE END */}
+          
+          {/* MASCOT IMAGE START */}
+          <div className="mascot__imageContainer">
+            <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" onClick={this.changeMessage}/>
+          </div>
+          {/* MASCOT IMAGE END */}            
+        </div>
+      </section>
+      {/* MASCOT END */}
 
       {/* FOOTER START */}
       <footer className="footer">
@@ -307,11 +303,11 @@ class App extends Component {
           <p className="footer__text">Developed by  
           <a href="http://tuni.tech" target="_blank" className="footer__link footer__link--inline"> Tuni</a> | 2018</p>
 
-          <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="footer__link" target="_blank">Speech square SVG by Made by Made from the Noun Project</a>
-
-          <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="footer__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>
-
           <a href="https://thenounproject.com/visuadio/" className="footer__link" target="_blank">Ribbon SVG by Felipe Alvarado from the Noun Project</a>
+
+          <a href="https://thenounproject.com/made.somewhere/collection/speech-bubble/" className="footer__link" target="_blank">Speech mark SVG by Made by Made from the Noun Project</a>
+
+          <a href="https://thenounproject.com/vectorsmarket/collection/cute-funny-monster-characters/" className="footer__link" target="_blank">Greek Monster SVG by Vectors Market from the Noun Project</a>  
         </div>
         {/* FOOTER WRAPPER END */}
       </footer>

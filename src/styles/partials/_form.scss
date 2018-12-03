@@ -2,6 +2,13 @@
     background: $color;
     width: 100%;
     padding: 50px 0;
+    margin-top: 30px;
+    &__heading {
+        @include heading(30);
+        color: $background;
+        text-align: left;
+        margin-bottom: 20px;
+    }
     &__label {
         display: block;
         width: 100%;
