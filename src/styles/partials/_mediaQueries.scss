@@ -1,6 +1,96 @@
+/* Landscape phones */
+@media (min-width: 480px) {
+    .header {
+        &__heading {
+            font-size: 5.6rem;
+            &--small {
+                font-size: 4.2rem;
+            }
+        }
+    }
+    .userEntries {
+        padding-top: 50px;
+        &__heading {
+            font-size: 3.6rem;
+        }
+    }
+    .button {
+        font-size: 2rem;
+    }
+    .moreInfo {
+        &__heading {
+            font-size: 3.2rem;
+            margin-top: 30px;
+            &--small {
+                font-size: 1.6rem;
+            }
+        }
+        &__imageContainer {
+            width: 20%;
+            margin-top: 30px;
+        }
+    }
+    .form {
+        padding: 75px 0;
+        margin-top: 50px;
+    }
+    .userList {    
+        &__wrapper {
+            padding: 50px 0;
+        }
+    }
+    .mascot {
+        &__textBubble {
+            width: 75%;
+        }
+        &__text {
+            font-size: 2.8rem;
+            margin-top: 20px;
+        }
+    }
+}
+
 /* Landscape phone to portrait tablet */
 @media (min-width: 768px) {
-
+    .header {
+        &__heading {
+            &--small {
+                margin-top: 50px; 
+            }
+        }
+    }
+    .userEntries {
+        padding-top: 75px;
+    }
+    .moreInfo {
+        &__heading {
+            margin-top: 50px;
+        }
+        &__imageContainer {
+            width: 12%;
+            margin-top: 50px;
+        }
+    }
+    .form {
+        margin-top: 75px;
+    }
+    .userList {    
+        &__wrapper {
+            padding: 75px 0;
+        }
+    }
+    .mascot {
+        padding: 50px 0;
+        &__wrapper {
+            width: 75%;
+        }
+        &__textBubble {
+            width: 60%;
+        }
+        &__imageContainer {
+            width: 60%;
+        }
+    } 
 }
 
 /* Portrait tablet and small desktops */

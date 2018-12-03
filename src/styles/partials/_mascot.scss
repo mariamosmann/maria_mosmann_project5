@@ -6,18 +6,28 @@
     }
     &__textBubble {
         position: relative;
+        width: 90%;
+        margin: 0 auto;
     }
     &__messages {
         position: absolute;
-        width: 85%;
-        top: 7%;
-        left: 7%;
+        top: 0%;
+        left: 0%;
+        bottom: 0%;
+        right: 0%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
     }
     &__text {
+        margin-top: 10px;
         font-weight: 700;
         text-align: center;
+        width: 90%;
     }
     &__imageContainer {
         padding: 20px 0;
+        width: 80%;
+        margin: 0 auto;
     }
 } 

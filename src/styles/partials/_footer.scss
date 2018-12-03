@@ -4,12 +4,14 @@
     color: $background;    
     &__text {
         font-size: 1.8rem;
+        text-align: center;
     }
     &__link {
         display: block;
         color: $background;
         font-size: 1.2rem;
         margin-top: 5px;
+        text-align: center;
         &--inline {
             display: inline;
             font-size: 1.8rem;
