@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import "./styles/style.scss";
+
+//CORRECT THIS
 import firebase from "./components/firebase.js";
 import UserList from "./components/UserList.js";
 import MoreInfo from "./components/MoreInfo.js";
@@ -7,8 +9,11 @@ import messages from "./components/messages.js";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg"; 
 
-const dbRef = firebase.database().ref("dtbList"); 
+const provider = new firebase.auth.GoogleAuthProvider();
+const auth = firebase.auth();
 let messageIndex = 0;
+
+//WORK ON DISPLAYING INFO IF USER IS LOGED IN AND ALSO GUEST MODE + email auth
 
 // APP START
 class App extends Component {
@@ -16,11 +21,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      //user input
+      //user info
+      user: null, //default because we need to log in to use the page
+      //user to do list
       doable1: "",
       doable2: "",
       dailyGoal: "",
-      //information sent to firebase is stored here when firebase returns the info
+      //information sent to firebase is stored here when firebase returns the info, it has to have the same structure or react will be faster than firebase and will try to retrieve info that firebase didn't had time to return yet
       dtbList: {
         doable1: "",
         doable2: "",
@@ -29,7 +36,6 @@ class App extends Component {
       //more info button
       infoButton: false,
       buttonText: "More About Anxiety Disorders",
-
       //bubble messages
       message: messages[messageIndex]   
       }
@@ -42,10 +48,7 @@ class App extends Component {
   //Handle Change
   //value being typed updating the respective state property in constructor
   handleChange = (event) => {       
-
-    // console.log(event.target.value); //just checking if I connected everything right
-
-    //updating state using the id of the input where the user is typing
+    //updating state using the id of the input where the user is typing, id is the same as its correspondent key in state
     this.setState({
       [event.target.id]: event.target.value
     }) 
@@ -59,30 +62,42 @@ class App extends Component {
 
     //making a variable to store the data that will be sent to firebase
     const updateList = {
-      doable1: this.state.doable1, 
-      // {
-      //   task: this.state.doable1,
-      // },
-
+      doable1: this.state.doable1,
       doable2: this.state.doable2, 
-      // {
-      //   task: this.state.doable2,
-      // },
       dailyGoal: this.state.dailyGoal
-      // {
-      //   task: this.state.dailyGoal,
-      // }
     };
 
     //sending the info to firebase
     //using set so the user updates the list instead of creating a new list
-    dbRef.set(updateList);
+    this.dbRef.set(updateList);
 
     //clearing form and state
     this.setState({
       doable1: "",
       doable2: "",
       dailyGoal: ""
+    })
+  }
+
+  //login
+  logIn = () => {
+    //signing in with a pop up and passing provider as an argument 
+    //when user clicks log in use method signInWithPopup (provided by Firebase)  
+    auth.signInWithPopup(provider).then((result) => { //result is the user info
+      this.setState({
+        user: result.user //the user info
+      });
+    });
+  }
+
+  //logout
+  logOut = () => {
+    //when user clicks log out use method signOut (provided by firebase) 
+    //set user state back to null
+    auth.signOut().then(() => {
+      this.setState({
+        user: null //back to default
+      })
     })
   }
 
@@ -93,22 +108,12 @@ class App extends Component {
     //making a variable to store empty values to be sent to firebase
     const newList = {
       doable1: "",
-      // {
-      //   task: "",
-      // },
-
       doable2: "",
-      // {
-      //   task: "",
-      // },
       dailyGoal: ""
-      // {
-      //   task: "",
-      // }
     }
 
     //updating firebase with the empty object
-    dbRef.set(newList);    
+    this.dbRef.set(newList);    
   }
 
   //Button click
@@ -143,7 +148,7 @@ class App extends Component {
         message: messages[messageIndex]
       })
     } else if (messageIndex === messagesLength) {
-      messageIndex = 0;
+      messageIndex = 0; //going back to the first message
       this.setState({
         message: messages[messageIndex]
       })
@@ -154,8 +159,7 @@ class App extends Component {
   // RENDER START
   render() {
     return (      
-      <div className="App">
-      
+      <div className="App">      
 
       {/* HEADER START */}
       <header className="header">
@@ -168,7 +172,23 @@ class App extends Component {
       {/* HEADER END */} 
 
       {/* MAIN START */}
-      <main className="main">          
+      <main className="main">  
+
+        {/* LOGIN START */}
+        {
+          this.state.user
+          ? (
+          <section className="userInfo">
+            <h2 className="userInfo__heading">It's good to see you, {this.state.user.displayName}!</h2>
+            <button className="userInfo__button" onClick={this.logOut}>Logout</button>
+          </section>)
+          : (
+          <section className="userInfo">
+            <h2 className="userInfo__heading">Welcome, friend!</h2>
+            <button className="userInfo__button" onClick={this.logIn}>Login</button>
+          </section>)
+        }
+        {/* LOGIN END */}
 
         {/* USER ENTRIES START */}
         <section className="userEntries">
@@ -312,14 +332,35 @@ class App extends Component {
 
   //COMPONENT DID MOUNT START
   componentDidMount() {
-    //attach event listenet to firebase
-    dbRef.on("value", snapshot => {
-      this.setState({
-        dtbList: snapshot.val()
-      })
-    })  
+    //onAuthStateChanged checks if there is an user logged in (method provided by Firebase)
+    auth.onAuthStateChanged((user) => {
+      if (user) { //checking if user is logged in or had logged in recently
+        this.setState({
+          user: user
+        },
+        () => {
+          //id specific to that user
+          this.dbRef = firebase.database().ref(`/${this.state.user.uid}`); //it's creating dbref in state
+
+          //attaching our event listener to firebase, everytime there's a change, update
+          this.dbRef.on("value", snapshot => {
+            //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
+            this.setState({
+              dtbList: snapshot.val() || {} //if its null set to an empty object
+            })
+          });
+        })
+      }      
+    }) 
   }
   //COMPONENT DID MOUNT END
+
+  //turning off the event listener, so when an user logs in it'll not see info from another user
+  componentWillUnmount() {
+    if (this.dbRef) {
+      this.dbRef.off();
+    }
+  }
 
 }
 // APP END
