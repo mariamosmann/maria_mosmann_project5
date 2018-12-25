@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import "./styles/style.scss";
 
 //CORRECT THIS
-import firebase from "./components/firebase.js";
+import firebase from "./firebase.js";
 import UserList from "./components/UserList.js";
 import MoreInfo from "./components/MoreInfo.js";
-import messages from "./components/messages.js";
+import messages from "./messages.js";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg";
 

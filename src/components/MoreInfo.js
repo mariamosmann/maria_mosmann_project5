@@ -30,16 +30,24 @@ const MoreInfo = (props) => {
 
                     <h4 className="moreInfo__heading moreInfo__heading--small">More helpful links:</h4>
 
-                    <a className="moreInfo__link" href="https://www.anxietycanada.com/" target="_blank">Anxiety Canada</a>
+                    <ul className="moreInfo__links">
+                        <li className="moreInfo__items">
+                            <a className="moreInfo__link" href="https://www.anxietycanada.com/" target="_blank">Anxiety Canada</a>
+                        </li>
+                        <li className="moreInfo__items">
+                            <a className="moreInfo__link" href="https://www.canada.ca/en/health-canada/services/healthy-living/your-health/diseases/mental-health-anxiety-disorders.html" target="_blank">Government of Canada - Anxiety Disorders</a>
+                        </li>
+                        <li className="moreInfo__items">
+                            <a className="moreInfo__link" href="http://www.anxietydisordersontario.ca/" target="_blank">The Anxiety Disorders Association of Ontario</a>   
+                        </li>
+                        <li className="moreInfo__items">
+                            <a className="moreInfo__link" href="https://www.health.com/health/gallery/0,,20646990,00.html" target="_blank">12 Signs You May Have an Anxiety Disorder</a>
+                        </li>
+                    </ul>
 
-                    <a className="moreInfo__link" href="https://www.canada.ca/en/health-canada/services/healthy-living/your-health/diseases/mental-health-anxiety-disorders.html" target="_blank">Government of Canada - Anxiety Disorders</a>
-
-                    <a className="moreInfo__link" href="http://www.anxietydisordersontario.ca/" target="_blank">The Anxiety Disorders Association of Ontario</a>                    
-
-                    <a className="moreInfo__link" href="https://www.health.com/health/gallery/0,,20646990,00.html" target="_blank">12 Signs You May Have an Anxiety Disorder</a>
-
-                    <div className="moreInfo__imageContainer"><img src={ribbon} alt="Anxiety Disorder Teal Awareness Ribbon" /></div>
-                    
+                    <div className="moreInfo__imageContainer">
+                        <img src={ribbon} alt="Anxiety Disorder Teal Awareness Ribbon" />
+                    </div>                    
                 </div>
             )
         }
