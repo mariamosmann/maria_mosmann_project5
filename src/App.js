@@ -7,10 +7,15 @@ import UserList from "./components/UserList.js";
 import MoreInfo from "./components/MoreInfo.js";
 import messages from "./components/messages.js";
 import monster from "./assets/monster.svg";
-import bubble from "./assets/bubble.svg"; 
+import bubble from "./assets/bubble.svg";
 
+//VARIABLES
+
+//auth
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
+
+//angstl messages
 let messageIndex = 0;
 
 //WORK ON DISPLAYING INFO IF USER IS LOGED IN AND ALSO GUEST MODE + email auth
@@ -122,6 +127,7 @@ class App extends Component {
     //preventing the button from refreshing the page
     event.preventDefault();
 
+    console.log(this.state.user);
     //changing the button text
     if (this.state.infoButton === false) {
       this.setState({
@@ -177,9 +183,9 @@ class App extends Component {
         {/* LOGIN START */}
         {
           this.state.user
-          ? (
+              ? ( //this.state.user.displayName
           <section className="userInfo">
-            <h2 className="userInfo__heading">It's good to see you, {this.state.user.displayName}!</h2>
+            <h2 className="userInfo__heading">It's good to see you, {this.state.firstName}!</h2>
             <button className="userInfo__button" onClick={this.logOut}>Logout</button>
           </section>)
           : (
@@ -339,6 +345,10 @@ class App extends Component {
           user: user
         },
         () => {
+          //user's name
+          const fullName = this.state.user.displayName.split(" ");
+          const firstName = fullName[0];
+
           //id specific to that user
           this.dbRef = firebase.database().ref(`/${this.state.user.uid}`); //it's creating dbref in state
 
@@ -346,7 +356,8 @@ class App extends Component {
           this.dbRef.on("value", snapshot => {
             //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
             this.setState({
-              dtbList: snapshot.val() || {} //if its null set to an empty object
+              dtbList: snapshot.val() || {}, //if its null set to an empty object
+              firstName: firstName
             })
           });
         })
