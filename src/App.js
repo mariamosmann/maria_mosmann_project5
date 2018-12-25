@@ -170,9 +170,25 @@ class App extends Component {
       {/* HEADER START */}
       <header className="header">
         <div className="header__wrapper wrapper">
-          <h1 className="header__heading"><span className="header__heading header__heading--color">I CAN</span> Do List</h1>
+          {/* LOGIN START */}
+          {
+            this.state.user
+              ? (
+                <div className="header__logInOut">
+                  <button className="header__button" onClick={this.logOut}>Logout</button>
+                </div>)
+              : (
+                <div className="header__logInOut">
+                  <button className="header__button" onClick={this.logIn}>Login</button>
+                </div>)
+          }
+          {/* LOGIN END */}
 
-          <h2 className="header__heading header__heading--small">A <span className="header__heading header__heading--color header__heading--small">POSITIVE</span> To Do List</h2>
+          <div className="header__headingContainer">
+            <h1 className="header__heading"><span className="header__heading header__heading--color">I CAN</span> Do List</h1>
+
+            <h2 className="header__heading header__heading--small">A <span className="header__heading header__heading--color header__heading--small">POSITIVE</span> To Do List</h2>
+          </div>
         </div>
       </header>
       {/* HEADER END */} 
@@ -183,18 +199,16 @@ class App extends Component {
         {/* LOGIN START */}
         {
           this.state.user
-          ? ( 
-          <section className="userInfo">
-            <h2 className="userInfo__heading">It's good to see you, {this.state.firstName}!</h2>
-            <button className="userInfo__button" onClick={this.logOut}>Logout</button>
-          </section>)
-          : (
-          <section className="userInfo">
-            <h2 className="userInfo__heading">Welcome, friend!</h2>
-            <button className="userInfo__button" onClick={this.logIn}>Login</button>
-          </section>)
+            ? (
+              <section className="greeting">
+                  <h2 className="greeting__heading">It's good to see you, {this.state.firstName}!</h2>
+              </section>)
+            : (
+                <section className="greeting">
+                  <h2 className="greeting__heading">Welcome, friend!</h2>
+              </section>)
         }
-        {/* LOGIN END */}
+        {/* LOGIN END */}        
 
         {/* USER ENTRIES START */}
         <section className="userEntries">
@@ -340,7 +354,7 @@ class App extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) { //checking if user is logged in or had logged in recently
         this.setState({
-          user: user
+          user: user,
         },
         () => {
           //user's name
