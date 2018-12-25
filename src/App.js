@@ -33,7 +33,7 @@ class App extends Component {
       doable2: "",
       dailyGoal: "",
       //information sent to firebase is stored here when firebase returns the info, it has to have the same structure or react will be faster than firebase and will try to retrieve info that firebase didn't had time to return yet
-      dtbList: {
+      dbRef: {
         doable1: "",
         doable2: "",
         dailyGoal: "", 
@@ -92,7 +92,7 @@ class App extends Component {
       this.setState({
         user: result.user //the user info
       });
-    });
+    });    
   }
 
   //logout
@@ -183,7 +183,7 @@ class App extends Component {
         {/* LOGIN START */}
         {
           this.state.user
-              ? ( //this.state.user.displayName
+          ? ( 
           <section className="userInfo">
             <h2 className="userInfo__heading">It's good to see you, {this.state.firstName}!</h2>
             <button className="userInfo__button" onClick={this.logOut}>Logout</button>
@@ -270,9 +270,7 @@ class App extends Component {
         <section className="userList">
           {/* where user list will be displayed */}
           <UserList         
-          doable1={this.state.dtbList.doable1}
-          doable2={this.state.dtbList.doable2}
-          dailyGoal={this.state.dtbList.dailyGoal} 
+          dbRef={this.state.dbRef}
           resetList={this.resetList}
           />          
         </section>
@@ -356,7 +354,7 @@ class App extends Component {
           this.dbRef.on("value", snapshot => {
             //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
             this.setState({
-              dtbList: snapshot.val() || {}, //if its null set to an empty object
+              dbRef: snapshot.val() || {}, //if its null set to an empty object
               firstName: firstName
             })
           });

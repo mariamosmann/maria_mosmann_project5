@@ -53,71 +53,72 @@ class UserList extends Component {
         this.resetClass();
         this.props.resetList();
     }
+    // FUNCTIONS END
     
-    // Display
-    // function for displaying user list if there is one 
-    display = () => {
-        if(this.props.doable1 !== "") {
-            return (
+    // RENDER START
+    render() {
+        return (
+            this.props.dbRef.doable1
+            ? (
             <div className="userList__wrapper wrapper">
                 <h2 className="userList__heading">Things <span className="userList__heading userList__heading--color">I Can</span> do Today</h2>
 
-                <ul className="userList__list"> 
+                <ul className="userList__list">
                     {/* Changing the class and the icon */}
                     <li className={
                         this.state.doable1Task
-                        ?
-                        "userList__item--taskCompleted"
-                        :
-                        "userList__item"
-                        }>
-                        <span className="userList__item--color userList__item">#1</span> {this.props.doable1} <span className="userList__span">
-                        <i onClick={this.taskDone} id="doable1Task" className={
-                        this.state.doable1Task
-                        ? 
-                        "userList__icon far fa-check-square"
+                            ?
+                            "userList__item--taskCompleted"
                             :
-                        "userList__icon far fa-square"
-                        }>
-                        </i>
-                        </span>                
+                            "userList__item"
+                    }>
+                        <span className="userList__item--color userList__item">#1</span> {this.props.dbRef.doable1} <span className="userList__span">
+                            <i onClick={this.taskDone} id="doable1Task" className={
+                                this.state.doable1Task
+                                    ?
+                                    "userList__icon far fa-check-square"
+                                    :
+                                    "userList__icon far fa-square"
+                            }>
+                            </i>
+                        </span>
                     </li>
 
                     <li className={
                         this.state.doable2Task
-                        ?
-                        "userList__item--taskCompleted"
-                        :
-                        "userList__item"
-                        }>
-                        <span className="userList__item--color userList__item">#2</span>  {this.props.doable2} <span className="userList__span">
-                        <i onClick={this.taskDone} id="doable2Task" className={
-                        this.state.doable2Task
-                        ?
-                        "userList__icon far fa-check-square"
-                        :
-                        "userList__icon far fa-square"
-                        }>
-                        </i>
+                            ?
+                            "userList__item--taskCompleted"
+                            :
+                            "userList__item"
+                    }>
+                        <span className="userList__item--color userList__item">#2</span>  {this.props.dbRef.doable2} <span className="userList__span">
+                            <i onClick={this.taskDone} id="doable2Task" className={
+                                this.state.doable2Task
+                                    ?
+                                    "userList__icon far fa-check-square"
+                                    :
+                                    "userList__icon far fa-square"
+                            }>
+                            </i>
                         </span>
                     </li>
 
                     <li className={
                         this.state.dailyGoalTask
-                        ?
-                        "userList__item--taskCompleted"
-                        :
-                        "userList__item"
-                        }>
-                        <span className="userList__item--color userList__item">#Final Boss!</span> {this.props.dailyGoal} <span className="userList__span">
-                        <i onClick={this.taskDone} id="dailyGoalTask" className={
-                        this.state.dailyGoalTask
-                        ?
-                        "userList__icon far fa-check-square"
-                        :
-                        "userList__icon far fa-square"
-                        }>
-                        </i>
+                            ?
+                            "userList__item--taskCompleted"
+                            :
+                            "userList__item"
+                    }>
+                        <span className="userList__item--color userList__item">#Final Boss!</span> {this.props.dbRef.dailyGoal} <span className="userList__span">
+                            <i onClick={this.taskDone} id="dailyGoalTask" className={
+                                this.state.dailyGoalTask
+                                    ?
+                                    "userList__icon far fa-check-square"
+                                    :
+                                    "userList__icon far fa-square"
+                            }>
+                            </i>
                         </span>
                     </li>
                 </ul>
@@ -128,21 +129,13 @@ class UserList extends Component {
                     type="submit"
                     value="Reset the list" className="userList__resetListButton button"
                 />
-                </div>
+            </div>
+            ) 
+            :
+            (
+            <div className="userList__wrapper userList__wrapper--empty wrapper">
+            </div >
             )
-        } else {
-            return (
-                <div className="userList__wrapper userList__wrapper--empty wrapper">
-                </div>
-            )
-        }
-    } 
-    // FUNCTIONS END
-    
-    // RENDER START
-    render() {
-        return (
-            this.display()
         )
     }
     // RENDER END
