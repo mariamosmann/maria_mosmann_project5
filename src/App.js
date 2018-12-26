@@ -18,7 +18,12 @@ const auth = firebase.auth();
 //angstl messages
 let messageIndex = 0;
 
-//WORK ON DISPLAYING INFO IF USER IS LOGED IN AND ALSO GUEST MODE + email auth
+//guest mode
+//email login
+//add messages API
+//router
+//anxiety diary
+//make menu sticky once it reaches the top
 
 // APP START
 class App extends Component {
@@ -65,23 +70,27 @@ class App extends Component {
     //preventing the form from refreshing the page
     event.preventDefault();
 
-    //making a variable to store the data that will be sent to firebase
-    const updateList = {
-      doable1: this.state.doable1,
-      doable2: this.state.doable2, 
-      dailyGoal: this.state.dailyGoal
-    };
+    if (this.state.doable1.trim() === "" || this.state.doable2.trim() === "" || this.state.dailyGoal.trim() === "") {
+      alert("Please enter a task.");
+    } else {
+      //making a variable to store the data that will be sent to firebase
+      const updateList = {
+        doable1: this.state.doable1,
+        doable2: this.state.doable2,
+        dailyGoal: this.state.dailyGoal
+      };
 
-    //sending the info to firebase
-    //using set so the user updates the list instead of creating a new list
-    this.dbRef.set(updateList);
+      //sending the info to firebase
+      //using set so the user updates the list instead of creating a new list
+      this.dbRef.set(updateList);
 
-    //clearing form and state
-    this.setState({
-      doable1: "",
-      doable2: "",
-      dailyGoal: ""
-    })
+      //clearing form and state
+      this.setState({
+        doable1: "",
+        doable2: "",
+        dailyGoal: ""
+      })
+    }
   }
 
   //login
@@ -195,29 +204,51 @@ class App extends Component {
       </header>
       {/* HEADER END */} 
 
+      {/* NAV START */}
+      <nav className="nav">
+        <div className="nav__wrapper wrapper">
+
+          {/* MENU START */}
+          <ul className="nav__menu">
+            <li className="nav__item">
+              <a href="#" className="nav__link">Home</a>
+            </li>
+
+            <li className="nav__item">
+              <a href="#" className="nav__link">List</a>
+            </li>
+
+            <li className="nav__item">
+              <a href="#" className="nav__link">Diary</a>
+            </li>
+
+            <li className="nav__item">
+              <a href="#" className="nav__link">About</a>
+            </li>
+          </ul>
+          {/* MENU END */}
+
+          {/* GREETING START */}
+          {
+            this.state.user
+              ? (
+              <div className="nav__greeting">
+                <h2 className="nav__heading">It's good to see you, <span className="nav__span">{this.state.firstName}</span>!</h2>
+              </div>
+              )
+              : (
+              <div className="nav__greeting">
+                <h2 className="nav__heading">Welcome, friend!</h2>
+              </div>
+              )
+          }
+          {/* GREETING END */}    
+        </div>
+      </nav>
+      {/* NAV END */}
+
       {/* MAIN START */}
-      <main className="main">  
-
-        {/* GREETING START */}
-        {
-          this.state.user
-            ? (
-            <section className="greeting">
-              <div className="greeting__wrappper wrapper">
-                  <h2 className="greeting__heading">It's good to see you, <span className="greeting__span">{this.state.firstName}</span>!</h2>
-              </div>
-            </section>
-            )
-            : (
-            <section className="greeting">
-              <div className="greeting__wrappper wrapper">
-                <h2 className="greeting__heading">Welcome, friend!</h2>
-              </div>
-            </section>
-          )
-        }
-        {/* GREETING END */}        
-
+      <main className="main">        
         {/* USER ENTRIES START */}
         <section className="userEntries">
 

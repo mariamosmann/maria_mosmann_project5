@@ -9,6 +9,11 @@
             }
         }
     }
+    .nav {
+        &__wrapper {
+            align-items: flex-start;
+        }
+    }
     .userEntries {
         padding-top: 50px;
         &__heading {
@@ -74,6 +79,18 @@
             &--small {
                 margin-top: 50px; 
             }
+        }
+    }
+    .nav {
+        &__wrapper {
+            align-items: center;
+        }
+        &__menu {
+            margin-bottom: 0;
+            justify-content: space-between;
+        }
+        &__heading {
+            text-align: right;
         }
     }
     .userEntries {
