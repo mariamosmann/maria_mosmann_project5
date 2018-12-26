@@ -7,15 +7,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    &__wrapper {
-        border: 1px solid rebeccapurple;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
+    position: relative;
     &__logInOut {
-        margin-bottom: 50px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
     }
     &__headingContainer {
         width: 100%;

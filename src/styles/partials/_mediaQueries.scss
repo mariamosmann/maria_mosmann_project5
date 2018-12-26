@@ -31,10 +31,15 @@
             width: 20%;
             margin-top: 30px;
         }
+        &__textContainer {
+            margin-bottom: 50px;
+        }
+        &__button {
+            margin-bottom: 50px;
+        }
     }
     .form {
         padding: 75px 0;
-        margin-top: 50px;
         &__heading {
             font-size: 3.6rem;
         }
@@ -87,13 +92,11 @@
         }
     }
     .button {
+        margin-bottom: 75px;
         &:hover {
             box-shadow: 7px 7px 0 $text;
         }
     }    
-    .form {
-        margin-top: 75px;
-    }
     .userList {    
         &__wrapper {
             padding: 75px 0;
@@ -158,17 +161,22 @@
         &__imageContainer {
             width: 10%;
         }
+        &__textContainer {
+            margin-bottom: 100px;
+        }
         &__text {
             margin-top: 30px;
         }
     }
     .button {
         font-size: 2.2rem;
-        margin-top: 50px;
+        margin: 50px auto 100px auto;
+        &--simple {
+            margin: 0;
+        }
     }
     .form {
         padding: 100px 0;
-        margin-top: 100px;
         &__heading {
             font-size: 4rem;
             text-align: left;

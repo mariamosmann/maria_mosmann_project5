@@ -169,21 +169,23 @@ class App extends Component {
 
       {/* HEADER START */}
       <header className="header">
-        <div className="header__wrapper wrapper">
-          {/* LOGIN START */}
-          {
-            this.state.user
-              ? (
-                <div className="header__logInOut">
-                  <button className="header__button" onClick={this.logOut}>Logout</button>
-                </div>)
-              : (
-                <div className="header__logInOut">
-                  <button className="header__button" onClick={this.logIn}>Login</button>
-                </div>)
-          }
-          {/* LOGIN END */}
+        {/* LOGIN START */}
+        {
+          this.state.user
+          ? (
+          <div className="header__logInOut">
+            <button className="header__button button button--simple" onClick={this.logOut}>Logout</button>
+          </div>
+          )
+          : (
+          <div className="header__logInOut">
+              <button className="header__button button button--simple" onClick={this.logIn}>Login</button>
+          </div>
+          )
+        }
+        {/* LOGIN END */}
 
+        <div className="header__wrapper wrapper">      
           <div className="header__headingContainer">
             <h1 className="header__heading"><span className="header__heading header__heading--color">I CAN</span> Do List</h1>
 
@@ -196,19 +198,25 @@ class App extends Component {
       {/* MAIN START */}
       <main className="main">  
 
-        {/* LOGIN START */}
+        {/* GREETING START */}
         {
           this.state.user
             ? (
-              <section className="greeting">
-                  <h2 className="greeting__heading">It's good to see you, {this.state.firstName}!</h2>
-              </section>)
+            <section className="greeting">
+              <div className="greeting__wrappper wrapper">
+                  <h2 className="greeting__heading">It's good to see you, <span className="greeting__span">{this.state.firstName}</span>!</h2>
+              </div>
+            </section>
+            )
             : (
-                <section className="greeting">
-                  <h2 className="greeting__heading">Welcome, friend!</h2>
-              </section>)
+            <section className="greeting">
+              <div className="greeting__wrappper wrapper">
+                <h2 className="greeting__heading">Welcome, friend!</h2>
+              </div>
+            </section>
+          )
         }
-        {/* LOGIN END */}        
+        {/* GREETING END */}        
 
         {/* USER ENTRIES START */}
         <section className="userEntries">
@@ -237,44 +245,53 @@ class App extends Component {
           {/* USER ENTRIES WRAPPER END */}
           
           {/* FORM START */}
-          <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
+          {
+            this.state.user 
+            ? (
+            <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-            {/* FORM WRAPPER START */}
-            <div className="form__wrapper wrapper">
-              <h2 className="form__heading">Today...</h2>
+              {/* FORM WRAPPER START */}
+              <div className="form__wrapper wrapper">
+                <h2 className="form__heading">Today...</h2>
 
-              <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
-              <input required
-                type="text"
-                onChange={this.handleChange}
-                id="doable1"
-                className="form__field"
-                value={this.state.doable1}
-              />
+                <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="doable1"
+                  className="form__field"
+                  value={this.state.doable1}
+                />
 
-              <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-              <input required
-                type="text"
-                onChange={this.handleChange}
-                id="doable2"
-                className="form__field"
-                value={this.state.doable2}
-              />
+                <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="doable2"
+                  className="form__field"
+                  value={this.state.doable2}
+                />
 
-              <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-              <input required
-                type="text"
-                onChange={this.handleChange}
-                id="dailyGoal"
-                className="form__field form__field--margin"
-                value={this.state.dailyGoal}
-              />
+                <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="dailyGoal"
+                  className="form__field form__field--margin"
+                  value={this.state.dailyGoal}
+                />
 
-              <input type="submit" value="You've got this!" className="form__submit button"/>
-            </div>
-            {/* FORM WRAPPER END */}
+                <input type="submit" value="You've got this!" className="form__submit button" />
+              </div>
+              {/* FORM WRAPPER END */}
 
-          </form>
+            </form>
+            )
+            : (
+            <form className="userEntries__form form form--empty">
+            </form>
+            )  
+          }
           {/* FORM END */}
 
         </section>
