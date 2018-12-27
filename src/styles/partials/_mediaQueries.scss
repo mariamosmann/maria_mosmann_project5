@@ -103,13 +103,16 @@
                 margin-top: 30px;
             }
         }
+        &__button {
+            height: 40px;
+            margin-bottom: 75px;
+        }
         &__imageContainer {
             width: 12%;
             margin-top: 50px;
         }
     }
     .button {
-        margin-bottom: 75px;
         &:hover {
             box-shadow: 7px 7px 0 $text;
         }
@@ -184,10 +187,12 @@
         &__text {
             margin-top: 30px;
         }
+        &__button {
+            margin-bottom: 100px;
+        }
     }
     .button {
         font-size: 2.2rem;
-        margin: 50px auto 100px auto;
         &--simple {
             margin: 0;
         }

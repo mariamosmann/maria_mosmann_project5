@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import "./styles/style.scss";
-
-//CORRECT THIS
 import firebase from "./firebase.js";
 import UserList from "./components/UserList.js";
 import MoreInfo from "./components/MoreInfo.js";
@@ -136,7 +134,6 @@ class App extends Component {
     //preventing the button from refreshing the page
     event.preventDefault();
 
-    console.log(this.state.user);
     //changing the button text
     if (this.state.infoButton === false) {
       this.setState({
