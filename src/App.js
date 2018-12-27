@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import "./styles/style.scss";
 import firebase from "./firebase.js";
+import About from "./components/About.js";
 import UserList from "./components/UserList.js";
-import MoreInfo from "./components/MoreInfo.js";
 import messages from "./messages.js";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg";
@@ -20,7 +20,9 @@ let messageIndex = 0;
 //email login
 //add messages API
 //router
-//anxiety diary
+//anxiety journal
+//home text
+//fix styles
 //make menu sticky once it reaches the top
 
 // APP START
@@ -41,9 +43,6 @@ class App extends Component {
         doable2: "",
         dailyGoal: "", 
       },
-      //more info button
-      infoButton: false,
-      buttonText: "More About Anxiety Disorders",
       //bubble messages
       message: messages[messageIndex]   
       }
@@ -128,26 +127,6 @@ class App extends Component {
     this.dbRef.set(newList);    
   }
 
-  //Button click
-  //setting the button so it can display or hide MoreInfo component
-  buttonClick = (event) => {
-    //preventing the button from refreshing the page
-    event.preventDefault();
-
-    //changing the button text
-    if (this.state.infoButton === false) {
-      this.setState({
-        infoButton: true,
-        buttonText: "Hide Information"
-      })
-    } else if (this.state.infoButton === true) {
-      this.setState({
-        infoButton: false,
-        buttonText: "More About Anxiety Disorders"
-      })
-    }
-  }
-
   // Change Message
   // changing the mascot message
   changeMessage = () => {     
@@ -170,9 +149,9 @@ class App extends Component {
 
   // RENDER START
   render() {
-    return (      
-      <div className="App">      
-
+    return (
+      // APP START      
+      <div className="App">     
       {/* HEADER START */}
       <header className="header">
         {/* LOGIN START */}
@@ -216,7 +195,7 @@ class App extends Component {
             </li>
 
             <li className="nav__item">
-              <a href="#" className="nav__link">Diary</a>
+              <a href="#" className="nav__link">Journal</a>
             </li>
 
             <li className="nav__item">
@@ -245,88 +224,71 @@ class App extends Component {
       {/* NAV END */}
 
       {/* MAIN START */}
-      <main className="main">        
-        {/* USER ENTRIES START */}
-        <section className="userEntries">
+      <main className="main">
+        {/* HOME START */}
+        <section className="home">
+          <div className="home__wrapper wrapper">
+            <h2 className="home__heading">Intro</h2>
 
-          {/* USER ENTRIES WRAPPER START */}
-          <div className="userEntries__wrapper wrapper">
-            <h2 className="userEntries__heading">Shifting the <span className="userEntries__heading userEntries__heading--color">focus</span></h2>
+            <p className="home__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quas error eveniet excepturi ducimus, id consequatur, accusamus nulla consequuntur officia perspiciatis aperiam asperiores, veritatis quisquam? Enim mollitia at earum molestias.</p>
 
-            <p className="userEntries__text">People affected by an Anxiety Disorder already know the cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
-
-            <p className="userEntries__text">It was designed using common tools for fighting anxiety: do one task at a time, limit the length of your to do list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>  
-
-            <p className="userEntries__text">No matter what you accomplish today, you're doing great!</p>
-
-            {/* MORE INFO START */}
-            <div className="userEntries__moreInfo moreInfo">
-              <button
-                className="moreInfo__button button" onClick={this.buttonClick}>{this.state.buttonText}</button>
-              {/* displaying more info about anxiety */}
-              <MoreInfo
-                infoButton={this.state.infoButton}
-              />
-            </div>
-            {/* MORE INFO END */}       
+            <p className="home__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nisi libero reiciendis consequuntur illum asperiores magni est maiores, corporis officiis excepturi error sequi quia ex. Maiores molestiae dicta sed consectetur eveniet illum, minima, quasi, soluta ipsam aliquid consequuntur. Iure inventore consequatur, maiores nulla est nostrum officia officiis sint mollitia optio aliquam fugiat sequi similique delectus. Ex nobis modi rem sit dignissimos ut mollitia ratione neque accusamus impedit beatae harum eius dolorum, earum repellat ullam eveniet, eligendi, error ipsa culpa vel pariatur nostrum! Mollitia commodi animi, architecto necessitatibus modi iste alias sunt minima, id minus itaque eaque? Perferendis sit numquam quidem?</p>
           </div>
-          {/* USER ENTRIES WRAPPER END */}
+        </section>
+        {/* HOME END */}
           
+        {/* USER LIST START */}
+        <section className="userList">
           {/* FORM START */}
           {
-            this.state.user 
-            ? (
-            <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
+            this.state.user
+              ? (
+                <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-              {/* FORM WRAPPER START */}
-              <div className="form__wrapper wrapper">
-                <h2 className="form__heading">Today...</h2>
+                  {/* FORM WRAPPER START */}
+                  <div className="form__wrapper wrapper">
+                    <h2 className="form__heading">Today...</h2>
 
-                <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
-                <input required
-                  type="text"
-                  onChange={this.handleChange}
-                  id="doable1"
-                  className="form__field"
-                  value={this.state.doable1}
-                />
+                    <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
+                    <input required
+                      type="text"
+                      onChange={this.handleChange}
+                      id="doable1"
+                      className="form__field"
+                      value={this.state.doable1}
+                    />
 
-                <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-                <input required
-                  type="text"
-                  onChange={this.handleChange}
-                  id="doable2"
-                  className="form__field"
-                  value={this.state.doable2}
-                />
+                    <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
+                    <input required
+                      type="text"
+                      onChange={this.handleChange}
+                      id="doable2"
+                      className="form__field"
+                      value={this.state.doable2}
+                    />
 
-                <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-                <input required
-                  type="text"
-                  onChange={this.handleChange}
-                  id="dailyGoal"
-                  className="form__field form__field--margin"
-                  value={this.state.dailyGoal}
-                />
+                    <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
+                    <input required
+                      type="text"
+                      onChange={this.handleChange}
+                      id="dailyGoal"
+                      className="form__field form__field--margin"
+                      value={this.state.dailyGoal}
+                    />
 
-                <input type="submit" value="You've got this!" className="form__submit button" />
-              </div>
-              {/* FORM WRAPPER END */}
+                    <input type="submit" value="You've got this!" className="form__submit button" />
+                  </div>
+                  {/* FORM WRAPPER END */}
 
-            </form>
-            )
-            : (
-            <form className="userEntries__form form form--empty">
-            </form>
-            )  
+                </form>
+              )
+              : (
+                <form className="userEntries__form form form--empty">
+                </form>
+              )
           }
           {/* FORM END */}
 
-        </section>
-        {/* USER ENTRIES END */}
-
-        {/* USER LIST START */}
-        <section className="userList">
           {/* where user list will be displayed */}
           <UserList         
           dbRef={this.state.dbRef}
@@ -335,41 +297,52 @@ class App extends Component {
         </section>
         {/* USER LIST END */}
 
+        {/* JOURNAL START */}
+        <section className="journal">
+          <div className="journal__wrapper wrapper">
+            <h2 className="journal__heading">My Anxiety Journal</h2>
+          </div>
+        </section>
+        {/* JOURNAL END */}
+
+        {/* ABOUT START */}
+        <About />
+        {/* ABOUT END */}
+
+        {/* MASCOT START */}
+        <section className="mascot">
+          <div className="mascot__wrapper wrapper">
+
+            {/* MASCOT TEXT BUBBLE START */}
+
+            {/* BUBBLE START */}
+            <div className="mascot__textBubble">
+              <div className="mascot__bubbleContainer">
+                <img src={bubble} alt="A square speech bubble." className="mascot__bubble" />
+              </div>
+              {/* BUBBLE END */}
+
+              {/* MESSAGE START */}
+              <div className="mascot__messages">
+                <p className="mascot__text">
+                  {this.state.message}
+                </p>
+              </div>
+              {/* MESSAGE END */}
+
+            </div>
+            {/* MASCOT TEXT BUBBLE END */}
+
+            {/* MASCOT IMAGE START */}
+            <div className="mascot__imageContainer">
+              <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" onClick={this.changeMessage} />
+            </div>
+            {/* MASCOT IMAGE END */}
+          </div>
+        </section>
+        {/* MASCOT END */}
         </main>
       {/* MAIN END */}
-
-      {/* MASCOT START */}
-      <section className="mascot">
-        <div className="mascot__wrapper wrapper">
-
-          {/* MASCOT TEXT BUBBLE START */}
-
-          {/* BUBBLE START */}
-          <div className="mascot__textBubble">
-            <div className="mascot__bubbleContainer">
-              <img src={bubble} alt="A square speech bubble." className="mascot__bubble"/>
-            </div>
-            {/* BUBBLE END */}
-
-            {/* MESSAGE START */}
-            <div className="mascot__messages">
-              <p className="mascot__text">
-                {this.state.message}
-              </p>
-            </div>
-            {/* MESSAGE END */}
-
-          </div>
-          {/* MASCOT TEXT BUBBLE END */}
-          
-          {/* MASCOT IMAGE START */}
-          <div className="mascot__imageContainer">
-            <img src={monster} alt="Friendly furry monster with two horns and a big smile." className="mascot__image" onClick={this.changeMessage}/>
-          </div>
-          {/* MASCOT IMAGE END */}            
-        </div>
-      </section>
-      {/* MASCOT END */}
 
       {/* FOOTER START */}
       <footer className="footer">
@@ -386,9 +359,9 @@ class App extends Component {
         </div>
         {/* FOOTER WRAPPER END */}
       </footer>
-      {/* FOOTER END */}        
-
+      {/* FOOTER END */} 
       </div>
+      // APP END
     );
   }
   // RENDER END

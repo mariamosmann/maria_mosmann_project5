@@ -1,0 +1,16 @@
+.about {
+    width: 100%;
+    padding-top: 30px;
+    &__heading {
+        @include heading(30);
+        &--color {
+            color: $colorAccent;
+        }
+    }
+    &__text {
+        margin-top: 20px;
+    }
+    &__moreInfo {
+        margin: 30px auto 0 auto;
+    }
+}
