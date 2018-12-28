@@ -33,6 +33,7 @@ class App extends Component {
     this.state = {
       //user info
       user: null, //default because we need to log in to use the page
+      greetingName: null,
       //user to do list
       doable1: "",
       doable2: "",
@@ -101,17 +102,27 @@ class App extends Component {
     });    
   }
 
+  //guest login
+  guest = () => {
+    auth.signInAnonymously().then((result) => {
+      this.setState({
+        user: result.user,
+        greetingName: "Guest"
+      });
+    })
+  }
+
   //logout
   logOut = () => {
     //when user clicks log out use method signOut (provided by firebase) 
     //set user state back to null
     auth.signOut().then(() => {
       this.setState({
-        user: null //back to default
+        user: null, //back to default
       })
     })
   }
-
+  
   //Reset List
   //reseting whole list
   resetList = () => {
@@ -156,7 +167,7 @@ class App extends Component {
       <header className="header">
         {/* LOGIN START */}
         {
-          this.state.user
+          this.state.user 
           ? (
           <div className="header__logInOut">
             <button className="header__button button button--simple" onClick={this.logOut}>Logout</button>
@@ -165,6 +176,8 @@ class App extends Component {
           : (
           <div className="header__logInOut">
               <button className="header__button button button--simple" onClick={this.logIn}>Login</button>
+
+              <button className="header__button button button--simple button--color" onClick={this.guest}>Guest</button>
           </div>
           )
         }
@@ -206,10 +219,10 @@ class App extends Component {
 
           {/* GREETING START */}
           {
-            this.state.user
+            this.state.user 
               ? (
               <div className="nav__greeting">
-                <h2 className="nav__heading">It's good to see you, <span className="nav__span">{this.state.firstName}</span>!</h2>
+                <h2 className="nav__heading">It's good to see you, <span className="nav__span">{this.state.greetingName}</span>!</h2>
               </div>
               )
               : (
@@ -241,7 +254,8 @@ class App extends Component {
         <section className="userList">
           {/* FORM START */}
           {
-            this.state.user
+            this.state.user 
+
               ? (
                 <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
@@ -372,12 +386,18 @@ class App extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) { //checking if user is logged in or had logged in recently
         this.setState({
-          user: user,
+          user: user
         },
         () => {
           //user's name
-          const fullName = this.state.user.displayName.split(" ");
-          const firstName = fullName[0];
+          if (this.state.greetingName !== "Guest") {
+            const fullName = this.state.user.displayName.split(" ");
+            const firstName = fullName[0];
+
+            this.setState({
+              greetingName: firstName
+            })
+          }      
 
           //id specific to that user
           this.dbRef = firebase.database().ref(`/${this.state.user.uid}`); //it's creating dbref in state
@@ -386,8 +406,7 @@ class App extends Component {
           this.dbRef.on("value", snapshot => {
             //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
             this.setState({
-              dbRef: snapshot.val() || {}, //if its null set to an empty object
-              firstName: firstName
+              dbRef: snapshot.val() || {}, //if its null set to an empty object  
             })
           });
         })
@@ -402,7 +421,6 @@ class App extends Component {
       this.dbRef.off();
     }
   }
-
 }
 // APP END
 
