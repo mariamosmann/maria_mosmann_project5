@@ -16,11 +16,10 @@ const auth = firebase.auth();
 //angstl messages
 let messageIndex = 0;
 
-//guest mode
-//email login
-//add messages API
-//router
-//anxiety journal
+//email login -- maybe not yet
+//add messages API -- maybe not yet
+//router -- next!
+//anxiety journal -- #1 work on displaying the messages
 //home text
 //fix styles
 //make menu sticky once it reaches the top
@@ -44,6 +43,11 @@ class App extends Component {
         doable2: "",
         dailyGoal: "", 
       },
+      //user diary
+      diaryEntry: "",
+      dbRefDiary: {
+        diaryEntry: ""
+      },
       //bubble messages
       message: messages[messageIndex]   
       }
@@ -52,6 +56,37 @@ class App extends Component {
   // CONSTRUCTOR END
 
   //FUNCTIONS START
+
+  //login
+  logIn = () => {
+    //signing in with a pop up and passing provider as an argument 
+    //when user clicks log in use method signInWithPopup (provided by Firebase)  
+    auth.signInWithPopup(provider).then((result) => { //result is the user info
+      this.setState({
+        user: result.user //the user info
+      });
+    });
+  }
+
+  //guest login
+  guest = () => {
+    auth.signInAnonymously().then((result) => {
+      this.setState({
+        user: result.user
+      });
+    })
+  }
+
+  //logout
+  logOut = () => {
+    //when user clicks log out use method signOut (provided by firebase) 
+    //set user state back to null
+    auth.signOut().then(() => {
+      this.setState({
+        user: null, //back to default
+      })
+    })
+  }
 
   //Handle Change
   //value being typed updating the respective state property in constructor
@@ -91,37 +126,6 @@ class App extends Component {
     }
   }
 
-  //login
-  logIn = () => {
-    //signing in with a pop up and passing provider as an argument 
-    //when user clicks log in use method signInWithPopup (provided by Firebase)  
-    auth.signInWithPopup(provider).then((result) => { //result is the user info
-      this.setState({
-        user: result.user //the user info
-      });
-    });    
-  }
-
-  //guest login
-  guest = () => {
-    auth.signInAnonymously().then((result) => {
-      this.setState({
-        user: result.user
-      });
-    })
-  }
-
-  //logout
-  logOut = () => {
-    //when user clicks log out use method signOut (provided by firebase) 
-    //set user state back to null
-    auth.signOut().then(() => {
-      this.setState({
-        user: null, //back to default
-      })
-    })
-  }
-  
   //Reset List
   //reseting whole list
   resetList = () => {
@@ -135,6 +139,28 @@ class App extends Component {
 
     //updating firebase with the empty object
     this.dbRef.set(newList);    
+  }
+
+  //Handle Submit Diary
+  //submitting diary entries 
+  handleSubmitDiary = (event) => {
+    event.preventDefault();
+
+  if (this.state.diaryEntry.trim() === "") {
+    alert("I know it's hard, but please enter how you're feeling today.");
+  } else {
+      //making a variable to store the data that will be sent to firebase
+      const newDiaryEntry = {
+        date: new Date().toDateString(),
+        diaryEntry: this.state.diaryEntry
+      };
+
+      this.dbRefDiary.push(newDiaryEntry);
+
+      this.setState({
+        diaryEntry: ""
+      });
+    }
   }
 
   // Change Message
@@ -312,9 +338,31 @@ class App extends Component {
 
         {/* JOURNAL START */}
         <section className="journal">
-          <div className="journal__wrapper wrapper">
-            <h2 className="journal__heading">My Anxiety Journal</h2>
-          </div>
+          {
+            this.state.user 
+            ? (
+            <div className="journal__wrapper wrapper">
+              <h2 className="journal__heading">My Anxiety Journal</h2>
+
+              <form onSubmit={this.handleSubmitDiary} action="" className="journal__form form">
+                <label htmlFor="diaryEntry" className="form__label">Today I feel:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="diaryEntry"
+                  className="form__field"
+                  value={this.state.diaryEntry}
+                />
+
+                <input type="submit" value="Save" className="form__submit button" />
+              </form>
+            </div>
+            )
+            : (
+              <div className="journal__wrapper--empty wrapper">
+              </div>
+            )
+          } 
         </section>
         {/* JOURNAL END */}
 
@@ -404,12 +452,20 @@ class App extends Component {
 
           //id specific to that user
           this.dbRef = firebase.database().ref(`/${this.state.user.uid}`); //it's creating dbref in state
+          this.dbRefDiary = firebase.database().ref(`/${this.state.user.uid}/diary`);
 
           //attaching our event listener to firebase, everytime there's a change, update
           this.dbRef.on("value", snapshot => {
             //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
             this.setState({
               dbRef: snapshot.val() || {}, //if its null set to an empty object  
+            })
+          })
+          
+          this.dbRefDiary.on("value", snapshot => {
+            //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
+            this.setState({
+              dbRefDiary: snapshot.val() || {}, //if its null set to an empty object  
             })
           });
         })
