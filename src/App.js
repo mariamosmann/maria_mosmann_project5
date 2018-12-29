@@ -106,8 +106,7 @@ class App extends Component {
   guest = () => {
     auth.signInAnonymously().then((result) => {
       this.setState({
-        user: result.user,
-        greetingName: "Guest"
+        user: result.user
       });
     })
   }
@@ -390,12 +389,16 @@ class App extends Component {
         },
         () => {
           //user's name
-          if (this.state.greetingName !== "Guest") {
+          if (this.state.user.displayName !== null) {
             const fullName = this.state.user.displayName.split(" ");
             const firstName = fullName[0];
 
             this.setState({
               greetingName: firstName
+            })
+          } else {
+            this.setState({
+              greetingName: "Guest"
             })
           }      
 

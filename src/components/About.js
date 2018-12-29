@@ -39,7 +39,6 @@ class About extends Component {
     render() {
         return (
             <section className="about">
-                {/* USER ENTRIES WRAPPER START */}
                 <div className="about__wrapper wrapper">
                     <h2 className="about__heading">Shifting the <span className="about__heading about__heading--color">focus</span></h2>
 
