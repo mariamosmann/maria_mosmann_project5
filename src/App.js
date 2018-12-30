@@ -44,10 +44,12 @@ class App extends Component {
         dailyGoal: "", 
       },
       //user diary
-      diaryEntry: "",
-      dbRefDiary: {
-        diaryEntry: ""
-      },
+      situation: "",
+      feelings: "",
+      physicalReaction: "",
+      rationalize: "",
+      //information sent to firebase is stored here
+      dbRefDiary: {},
       //bubble messages
       message: messages[messageIndex]   
       }
@@ -146,19 +148,25 @@ class App extends Component {
   handleSubmitDiary = (event) => {
     event.preventDefault();
 
-  if (this.state.diaryEntry.trim() === "") {
-    alert("I know it's hard, but please enter how you're feeling today.");
+  if (this.state.situation.trim() === "" || this.state.feelings.trim() === "" || this.state.physicalReaction.trim() === "") {
+    alert("I know it's hard, but please try your best to fill all fields.");
   } else {
       //making a variable to store the data that will be sent to firebase
       const newDiaryEntry = {
         date: new Date().toDateString(),
-        diaryEntry: this.state.diaryEntry
+        situation: this.state.situation,
+        feelings: this.state.feelings,
+        physicalReaction: this.state.physicalReaction,
+        rationalize: this.state.rationalize
       };
 
       this.dbRefDiary.push(newDiaryEntry);
 
       this.setState({
-        diaryEntry: ""
+        situation: "",
+        feelings: "",
+        physicalReaction: "",
+        rationalize: "",
       });
     }
   }
@@ -279,52 +287,48 @@ class App extends Component {
         <section className="userList">
           {/* FORM START */}
           {
-            this.state.user 
+            this.state.user
+            ? (
+            <div className="form__wrapper wrapper">
+              <h2 className="form__heading">Today...</h2>
 
-              ? (
-                <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
+              <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-                  {/* FORM WRAPPER START */}
-                  <div className="form__wrapper wrapper">
-                    <h2 className="form__heading">Today...</h2>
+                <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="doable1"
+                  className="form__field"
+                  value={this.state.doable1}
+                />
 
-                    <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
-                    <input required
-                      type="text"
-                      onChange={this.handleChange}
-                      id="doable1"
-                      className="form__field"
-                      value={this.state.doable1}
-                    />
+                <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="doable2"
+                  className="form__field"
+                  value={this.state.doable2}
+                />
 
-                    <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-                    <input required
-                      type="text"
-                      onChange={this.handleChange}
-                      id="doable2"
-                      className="form__field"
-                      value={this.state.doable2}
-                    />
+                <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="dailyGoal"
+                  className="form__field form__field--margin"
+                  value={this.state.dailyGoal}
+                />
 
-                    <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-                    <input required
-                      type="text"
-                      onChange={this.handleChange}
-                      id="dailyGoal"
-                      className="form__field form__field--margin"
-                      value={this.state.dailyGoal}
-                    />
-
-                    <input type="submit" value="You've got this!" className="form__submit button" />
-                  </div>
-                  {/* FORM WRAPPER END */}
-
-                </form>
-              )
-              : (
-                <form className="userEntries__form form form--empty">
-                </form>
-              )
+                <input type="submit" value="You've got this!" className="form__submit button" />
+              </form>
+            </div>
+            )
+            : (
+              <form className="userEntries__form form form--empty">
+              </form>
+            )
           }
           {/* FORM END */}
 
@@ -344,14 +348,66 @@ class App extends Component {
             <div className="journal__wrapper wrapper">
               <h2 className="journal__heading">My Anxiety Journal</h2>
 
+              <p className="journal__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quis id doloribus natus alias dolorem dolores dicta. Incidunt aperiam assumenda soluta officia. Sit molestias quae libero quia quas fugiat minima.</p>
+
               <form onSubmit={this.handleSubmitDiary} action="" className="journal__form form">
-                <label htmlFor="diaryEntry" className="form__label">Today I feel:</label>
+                <label htmlFor="situation" className="form__label">Today I felt anxious when:</label>
                 <input required
                   type="text"
                   onChange={this.handleChange}
-                  id="diaryEntry"
+                  id="situation"
                   className="form__field"
-                  value={this.state.diaryEntry}
+                  value={this.state.situation}
+                  placeholder="Describe what was happening."
+                />
+
+                <label htmlFor="feelings" className="form__label">When this happened it made me feel:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="feelings"
+                  className="form__field"
+                  value={this.state.feelings}
+                  placeholder="Describe your thoughts and emotions at that moment."
+                />
+
+                <label htmlFor="physicalReaction" className="form__label">I also had these physical reactions:</label>
+                <input required
+                  type="text"
+                  onChange={this.handleChange}
+                  id="physicalReaction"
+                  className="form__field"
+                  value={this.state.physicalReaction}
+                  placeholder="Describe how did you feel."
+                />
+
+                <p className="form__text">On a scale from 1 to 5 my anxiety level was:</p>
+                <div className="form__levels">
+                  <label htmlFor="level1" className="form__label">1</label>
+                  <input type="radio" name="level" id="level1" className="form__radio" value="1" defaultChecked/>
+
+                  <label htmlFor="level2" className="form__label">2</label>
+                  <input type="radio" name="level" id="level2" className="form__radio" value="2"/>
+
+                  <label htmlFor="level3" className="form__label">3</label>
+                  <input type="radio" name="level" id="level3" className="form__radio" value="3"/>
+
+                  <label htmlFor="level4" className="form__label">4</label>
+                  <input type="radio" name="level" id="level4" className="form__radio" value="4"/>
+
+                  <label htmlFor="level5" className="form__label">5</label>
+                  <input type="radio" name="level" id="level5" className="form__radio" value="5"/>
+                </div>
+                
+                <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to rationalize what happened if you want to. When you look back, how much of what made you anxious was real and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
+                <label htmlFor="rationalize" className="form__label">Next time this happens I'll try to remind myself that...</label>
+                <input 
+                  type="text"
+                  onChange={this.handleChange}
+                  id="rationalize"
+                  className="form__field"
+                  value={this.state.rationalize}
+                  placeholder="Try to rationalize what happened."
                 />
 
                 <input type="submit" value="Save" className="form__submit button" />
@@ -478,6 +534,7 @@ class App extends Component {
   componentWillUnmount() {
     if (this.dbRef) {
       this.dbRef.off();
+      this.dbRefDiary.off();
     }
   }
 }
