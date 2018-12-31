@@ -20,7 +20,6 @@ let messageIndex = 0;
 //email login -- maybe not yet
 //add messages API -- maybe not yet
 //router -- next!
-//anxiety journal -- #1 work on displaying the messages
 //home text
 //fix styles
 //make menu sticky once it reaches the top
@@ -48,6 +47,7 @@ class App extends Component {
       situation: "",
       feelings: "",
       physicalReaction: "",
+      anxietyLevel: "",
       notes: "",
       //information sent to firebase is stored here
       dbRefJournal: {},
@@ -108,22 +108,11 @@ class App extends Component {
   }
 
   handleChecked = (event) => {
-
-    if (this.state.level1 || this.state.level2 || this.state.level3 || this.state.level4 || this.state.level5) {
-      this.setState({
-        level1: false,
-        level2: false,
-        level3: false,
-        level4: false,
-        level5: false
-      })
-    }
-
     this.setState({
-      [event.target.id]: event.target.checked
-    })
+      anxietyLevel: event.target.value
+    }) 
   }
-
+  
   //Handle Submit
   //submitting user entries
   handleSubmit = (event) => {
@@ -173,18 +162,17 @@ class App extends Component {
   handleSubmitJournal = (event) => {
     event.preventDefault();
 
-  if (this.state.situation.trim() === "" || this.state.feelings.trim() === "" || this.state.physicalReaction.trim() === "") {
-    alert("I know it's hard, but please try your best to fill all fields.");
-  } else {
+    if (this.state.situation.trim() === "" || this.state.feelings.trim() === "" || this.state.physicalReaction.trim() === "") {
+      alert("I know it's hard, but please try your best to fill all fields.");
+    } else {
 
-    
-    
     //making a variable to store the data that will be sent to firebase
     const newJournalEntry = {
         date: new Date().toDateString(),
         situation: this.state.situation,
         feelings: this.state.feelings,
         physicalReaction: this.state.physicalReaction,
+        anxietyLevel: this.state.anxietyLevel,
         notes: this.state.notes
       };
 
@@ -194,6 +182,7 @@ class App extends Component {
         situation: "",
         feelings: "",
         physicalReaction: "",
+        anxietyLevel: "",
         notes: "",
       });
     }

@@ -34,7 +34,7 @@ class UserJournal extends Component {
                                
                                 <p className="entry__physicalReaction">Physical Reaction: {entry[1].physicalReaction}</p>
                              
-                                <p className="entry__scale">Anxiety Scale: {entry[1].scale}</p>
+                                <p className="entry__scale">Anxiety Level: {entry[1].anxietyLevel}</p>
 
                                 <p className="entry__notes">Notes: {entry[1].notes}</p>
                             </div>
