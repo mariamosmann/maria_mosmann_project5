@@ -60,80 +60,83 @@ class UserList extends Component {
         return (
             this.props.dbRef.doable1
             ? (
-            <div className="userList__wrapper wrapper">
-                <h2 className="userList__heading">Things <span className="userList__heading userList__heading--color">I Can</span> do Today</h2>
+            <div className="UserList">
+                <div className="userList__wrapper wrapper">
+                    <h2 className="userList__heading">Things <span className="userList__heading userList__heading--color">I Can</span> do Today</h2>
 
-                <ul className="userList__list">
-                    {/* Changing the class and the icon */}
-                    <li className={
-                        this.state.doable1Task
-                            ?
-                            "userList__item--taskCompleted"
-                            :
-                            "userList__item"
-                    }>
-                        <span className="userList__item--color userList__item">#1</span> {this.props.dbRef.doable1} <span className="userList__span">
-                            <i onClick={this.taskDone} id="doable1Task" className={
-                                this.state.doable1Task
-                                    ?
-                                    "userList__icon far fa-check-square"
-                                    :
-                                    "userList__icon far fa-square"
-                            }>
-                            </i>
-                        </span>
-                    </li>
+                    <ul className="userList__list">
+                        {/* Changing the class and the icon */}
+                        <li className={
+                            this.state.doable1Task
+                                ?
+                                "userList__item--taskCompleted"
+                                :
+                                "userList__item"
+                        }>
+                            <span className="userList__item--color userList__item">#1</span> {this.props.dbRef.doable1} <span className="userList__span">
+                                <i onClick={this.taskDone} id="doable1Task" className={
+                                    this.state.doable1Task
+                                        ?
+                                        "userList__icon far fa-check-square"
+                                        :
+                                        "userList__icon far fa-square"
+                                }>
+                                </i>
+                            </span>
+                        </li>
 
-                    <li className={
-                        this.state.doable2Task
-                            ?
-                            "userList__item--taskCompleted"
-                            :
-                            "userList__item"
-                    }>
-                        <span className="userList__item--color userList__item">#2</span>  {this.props.dbRef.doable2} <span className="userList__span">
-                            <i onClick={this.taskDone} id="doable2Task" className={
-                                this.state.doable2Task
-                                    ?
-                                    "userList__icon far fa-check-square"
-                                    :
-                                    "userList__icon far fa-square"
-                            }>
-                            </i>
-                        </span>
-                    </li>
+                        <li className={
+                            this.state.doable2Task
+                                ?
+                                "userList__item--taskCompleted"
+                                :
+                                "userList__item"
+                        }>
+                            <span className="userList__item--color userList__item">#2</span>  {this.props.dbRef.doable2} <span className="userList__span">
+                                <i onClick={this.taskDone} id="doable2Task" className={
+                                    this.state.doable2Task
+                                        ?
+                                        "userList__icon far fa-check-square"
+                                        :
+                                        "userList__icon far fa-square"
+                                }>
+                                </i>
+                            </span>
+                        </li>
 
-                    <li className={
-                        this.state.dailyGoalTask
-                            ?
-                            "userList__item--taskCompleted"
-                            :
-                            "userList__item"
-                    }>
-                        <span className="userList__item--color userList__item">#Final Boss!</span> {this.props.dbRef.dailyGoal} <span className="userList__span">
-                            <i onClick={this.taskDone} id="dailyGoalTask" className={
-                                this.state.dailyGoalTask
-                                    ?
-                                    "userList__icon far fa-check-square"
-                                    :
-                                    "userList__icon far fa-square"
-                            }>
-                            </i>
-                        </span>
-                    </li>
-                </ul>
+                        <li className={
+                            this.state.dailyGoalTask
+                                ?
+                                "userList__item--taskCompleted"
+                                :
+                                "userList__item"
+                        }>
+                            <span className="userList__item--color userList__item">#Final Boss!</span> {this.props.dbRef.dailyGoal} <span className="userList__span">
+                                <i onClick={this.taskDone} id="dailyGoalTask" className={
+                                    this.state.dailyGoalTask
+                                        ?
+                                        "userList__icon far fa-check-square"
+                                        :
+                                        "userList__icon far fa-square"
+                                }>
+                                </i>
+                            </span>
+                        </li>
+                    </ul>
 
-                {/* resets the list in firebase and this component state */}
-                <input
-                    onClick={this.callResets}
-                    type="submit"
-                    value="Reset the list" className="userList__resetListButton button"
-                />
-            </div>
+                    {/* resets the list in firebase and this component state */}
+                    <input
+                        onClick={this.callResets}
+                        type="submit"
+                        value="Reset the list" className="userList__resetListButton button"
+                    />
+                </div>
+            </div>    
+            
             ) 
             :
             (
-            <div className="userList__wrapper userList__wrapper--empty wrapper">
+            <div className="userList userList--empty">
             </div >
             )
         )
