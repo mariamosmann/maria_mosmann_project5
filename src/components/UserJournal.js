@@ -11,19 +11,20 @@ class UserJournal extends Component {
 
     // FUNCTIONS START
 
+
     // FUNCTIONS END
 
     // RENDER START
     render() {
         return (
-            Object.entries(this.props.dbRefJournal)[0]
+            this.props.dbRefJournal[0]
             ? (
             <div className="UserJournal">
                 <div className="userJournal__wrapper wrapper">
                     <h2 className="userJouranl__heading">My Anxiety Journal</h2>
 
                     {
-                    Object.entries(this.props.dbRefJournal).map(entry => {
+                    this.props.dbRefJournal.map((entry) => {
                         return (
                             <div className="userJournal__entry entry" key={entry[0]}>
                                 <p className="entry__date">Date: {entry[1].date}</p>
@@ -33,17 +34,34 @@ class UserJournal extends Component {
                                 <p className="entry__feelings">Feelings: {entry[1].feelings}</p>
                                
                                 <p className="entry__physicalReaction">Physical Reaction: {entry[1].physicalReaction}</p>
-                             
-                                <p className="entry__scale">Anxiety Level: {entry[1].anxietyLevel}</p>
 
-                                <p className="entry__notes">Notes: {entry[1].notes}</p>
+                                {
+                                    entry[1].anxietyLevel 
+                                    ? (
+                                    <p className="entry__scale">Anxiety Level: {entry[1].anxietyLevel}</p>
+                                    )
+                                    : (
+                                    <p className="entry__scale entry__scale--empty"></p>
+                                    )
+                                }
+                                
+                                {
+                                    entry[1].notes 
+                                    ? (
+                                    <p className="entry__notes">Notes: {entry[1].notes}</p>
+                                    )
+                                    : (
+                                    <p className="entry__notes"></p>
+                                    )
+                                }
+
+                                
                             </div>
                         )
                     })
                     }
                 </div>
             </div>
-            
             )
             : (
             <div className="journal__wrapper--empty wrapper">

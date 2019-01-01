@@ -20,6 +20,7 @@ let messageIndex = 0;
 //email login -- maybe not yet
 //add messages API -- maybe not yet
 //router -- next!
+// display only 5-10 messages -- maybe not yet
 //home text
 //fix styles
 //make menu sticky once it reaches the top
@@ -586,8 +587,11 @@ class App extends Component {
           
           this.dbRefJournal.on("value", snapshot => {
             //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
+
+            const journalArray = Object.entries(snapshot.val())
+
             this.setState({
-              dbRefJournal: snapshot.val() || {}, //if its null set to an empty object  
+              dbRefJournal: journalArray || [], //if its null set to an empty object  
             })
           });
         })
