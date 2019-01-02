@@ -135,44 +135,25 @@ class App extends Component {
 
       {/* NAV START */}
       <nav className="nav">
-        <div className="nav__wrapper wrapper">
+        {/* MENU START */}
+        <ul className="nav__wrapper wrapper">
+          <li className="nav__item">
+            <Link to="/" className="nav__link">Home</Link>
+          </li>
 
-          {/* MENU START */}
-          <ul className="nav__menu">
-            <li className="nav__item">
-              <a href="#" className="nav__link">Home</a>
-            </li>
+          <li className="nav__item">
+            <Link to="/todo" className="nav__link">To Do List</Link>
+          </li>
 
-            <li className="nav__item">
-              <a href="#" className="nav__link">List</a>
-            </li>
+          <li className="nav__item">
+            <Link to="/journal" className="nav__link">Journal</Link>
+          </li>
 
-            <li className="nav__item">
-              <a href="#" className="nav__link">Journal</a>
-            </li>
-
-            <li className="nav__item">
-              <a href="#" className="nav__link">About</a>
-            </li>
-          </ul>
-          {/* MENU END */}
-
-          {/* GREETING START */}
-          {
-            this.state.user 
-              ? (
-              <div className="nav__greeting">
-                <h2 className="nav__heading">It's good to see you, <span className="nav__span">{this.state.greetingName}</span>!</h2>
-              </div>
-              )
-              : (
-              <div className="nav__greeting">
-                <h2 className="nav__heading">Welcome, friend!</h2>  
-              </div>
-              )
-          }
-          {/* GREETING END */}    
-        </div>
+          <li className="nav__item">
+            <Link to="/about" className="nav__link">About</Link>
+          </li>
+        </ul>
+        {/* MENU END */}
       </nav>
       {/* NAV END */}
 
@@ -184,16 +165,16 @@ class App extends Component {
             this.state.user 
             ? (
               <div className="home__wrapper wrapper">
-                <h2 className="home__heading">Heading w/ user</h2>
+                <h2 className="home__heading">It's good to see you, <span className="nav__span">{this.state.greetingName}</span>!</h2>
 
-                <p className="home__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quas error eveniet excepturi ducimus, id consequatur, accusamus nulla consequuntur officia perspiciatis aperiam asperiores, veritatis quisquam? Enim mollitia at earum molestias.</p>
+                <p className="home__text">Text w/ talk, and asking what we'll do today</p>
               </div>
             ) 
             : (
               <div className="home__wrapper wrapper">
-                <h2 className="home__heading">Intro</h2>
+                <h2 className="home__heading">Welcome, friend!</h2>
 
-                <p className="home__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nisi libero reiciendis consequuntur illum asperiores magni est maiores, corporis officiis excepturi error sequi quia ex. Maiores molestiae dicta sed consectetur eveniet illum, minima, quasi, soluta ipsam aliquid consequuntur. Iure inventore consequatur, maiores nulla est nostrum officia officiis sint mollitia optio aliquam fugiat sequi similique delectus. Ex nobis modi rem sit dignissimos ut mollitia ratione neque accusamus impedit beatae harum eius dolorum, earum repellat ullam eveniet, eligendi, error ipsa culpa vel pariatur nostrum! Mollitia commodi animi, architecto necessitatibus modi iste alias sunt minima, id minus itaque eaque? Perferendis sit numquam quidem?</p>
+                <p className="home__text">Text explaining the app</p>
               </div>
             )
           }          
