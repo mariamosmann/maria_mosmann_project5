@@ -11,6 +11,8 @@ class Journal extends Component {
     constructor() {
         super();
         this.state = {
+            //user 
+            user: null,
             //user Journal
             situation: "",
             feelings: "",
@@ -196,6 +198,7 @@ class Journal extends Component {
                 {/* JOURNAL DISPLAY START */}
                 <UserJournal
                     dbRefJournal={this.state.dbRefJournal}
+                    user={this.state.user}
                 />
             </section>
         )
@@ -228,7 +231,13 @@ class Journal extends Component {
                 })
             } else {
                 this.setState({
-                    user: null
+                    user: null,
+                    situation: "",
+                    feelings: "",
+                    physicalReaction: "",
+                    anxietyLevel: "",
+                    notes: "",
+                    dbRefJournal: []
                 })
             }
         })

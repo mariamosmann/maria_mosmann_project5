@@ -22,7 +22,6 @@ const auth = firebase.auth();
 //angstl messages
 let messageIndex = 0;
 
-//router -- next!
 //home text
 //fix styles
 //make menu sticky once it reaches the top
@@ -34,7 +33,7 @@ class App extends Component {
     super();
     this.state = {
       //user info
-      user: null, //default because we need to log in to use the page
+      user: null, 
       greetingName: null,
       //bubble messages
       message: messages[messageIndex]   
@@ -72,13 +71,7 @@ class App extends Component {
     auth.signOut().then(() => {
       this.setState({
         user: null,
-        greetingName: null, 
-        dbRef: {
-          doable1: "",
-          doable2: "",
-          dailyGoal: "",
-        },
-        dbRefJournal: {}        
+        greetingName: null      
       })
     })
   }
@@ -209,21 +202,14 @@ class App extends Component {
         
         {/* TO DO LIST START */}
         <Route path="/todo" component={ToDo}/>
-        {/* <ToDo 
-        user={this.state.user}
-        /> */}
         {/* TO DO LIST END */}
 
         {/* JOURNAL START */}
         <Route path="/journal" component={Journal}/>
-        {/* <Journal 
-        user={this.state.user}
-        /> */}
         {/* JOURNAL END */}
 
         {/* ABOUT START */}
         <Route path="/about" component={About}/>
-        {/* <About /> */}
         {/* ABOUT END */}
 
         {/* MASCOT START */}
@@ -308,49 +294,11 @@ class App extends Component {
               greetingName: "Guest"
             })
           }      
-
-          //id specific to that user
-          this.dbRef = firebase.database().ref(`/${this.state.user.uid}`); //it's creating dbref in state
-          this.dbRefJournal = firebase.database().ref(`/${this.state.user.uid}/journal`);
-
-          //attaching our event listener to firebase, everytime there's a change, update
-          this.dbRef.on("value", snapshot => {
-            //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
-            this.setState({
-              dbRef: snapshot.val() || {}, //if its null set to an empty object  
-            })
-          })
-          
-          this.dbRefJournal.on("value", snapshot => {
-
-            if (snapshot.val()) {
-              const journalArray = Object.entries(snapshot.val())
-
-              this.setState({
-                dbRefJournal: journalArray 
-              })
-            } else {
-              this.setState({
-                dbRefJournal: []
-              })
-            }            
-          });
         })
       }      
     }) 
   }
   //COMPONENT DID MOUNT END
-
-  //turning off the event listener, so when an user logs in it'll not see info from another user
-  // componentWillUnmount() {
-  //   if (this.dbRef) {
-  //     this.dbRef.off();
-  //   }
-
-  //   if(this.dbRefJournal) {
-  //     this.dbRefJournal.off();
-  //   }
-  // }
 }
 // APP END
 

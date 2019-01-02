@@ -11,6 +11,8 @@ class ToDo extends Component {
     constructor() {
         super();
         this.state = {
+            //user 
+            user: null,
             //user to do list
             doable1: "",
             doable2: "",
@@ -87,7 +89,7 @@ class ToDo extends Component {
         return (
             <section className="toDo">
                 {
-                    this.props.user
+                    this.state.user
                     ? (
                         // TO DO USER ENTRIES START
                         <div className="userEntries">
@@ -150,16 +152,34 @@ class ToDo extends Component {
     //COMPONENT DID MOUNT START
     componentDidMount() {
         auth.onAuthStateChanged((user) => { 
-            //id specific to that user
-            this.dbRef = firebase.database().ref(`/${user.uid}/toDoList`); //it's creating dbref in state
-
-            //attaching our event listener to firebase, everytime there's a change, update
-            this.dbRef.on("value", snapshot => {
-                //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
+            if (user) {
                 this.setState({
-                    dbRef: snapshot.val() || {}, //if its null set to an empty object  
+                    user: user
+                }, () => {
+                    //id specific to that user
+                    this.dbRef = firebase.database().ref(`/${user.uid}/toDoList`); //it's creating dbref in state
+
+                    //attaching our event listener to firebase, everytime there's a change, update
+                    this.dbRef.on("value", snapshot => {
+                        //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
+                        this.setState({
+                            dbRef: snapshot.val() || {}, //if its null set to an empty object  
+                        })
+                    })
                 })
-            })
+            } else {
+                this.setState({
+                    user: null,
+                    doable1: "",
+                    doable2: "",
+                    dailyGoal: "",
+                    dbRef: {
+                        doable1: "",
+                        doable2: "",
+                        dailyGoal: "",
+                    }
+                })
+            }
         })
     }
     //COMPONENT DID MOUNT END
