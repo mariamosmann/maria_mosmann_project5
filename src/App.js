@@ -208,19 +208,22 @@ class App extends Component {
         {/* HOME END */}
         
         {/* TO DO LIST START */}
-        <ToDo 
+        <Route path="/todo" component={ToDo}/>
+        {/* <ToDo 
         user={this.state.user}
-        />
+        /> */}
         {/* TO DO LIST END */}
 
         {/* JOURNAL START */}
-        <Journal 
+        <Route path="/journal" component={Journal}/>
+        {/* <Journal 
         user={this.state.user}
-        />
+        /> */}
         {/* JOURNAL END */}
 
         {/* ABOUT START */}
-        <About />
+        <Route path="/about" component={About}/>
+        {/* <About /> */}
         {/* ABOUT END */}
 
         {/* MASCOT START */}

@@ -78,7 +78,7 @@ class Journal extends Component {
         return (
             <section className="journal">
                 {
-                    this.props.user
+                    this.state.user
                         ? (
                             // JOURNAL USER ENTRIES START
                             <div className="userEntries">
@@ -205,22 +205,32 @@ class Journal extends Component {
     //COMPONENT DID MOUNT START
     componentDidMount() {
         auth.onAuthStateChanged((user) => {
-            //id specific to that user
-            this.dbRefJournal = firebase.database().ref(`/${user.uid}/journal`);
+            if (user) {
+                this.setState({
+                    user: user
+                }, () => {
+                    //id specific to that user
+                    this.dbRefJournal = firebase.database().ref(`/${user.uid}/journal`);
 
-            this.dbRefJournal.on("value", snapshot => {
-                if (snapshot.val()) {
-                    const journalArray = Object.entries(snapshot.val())
+                    this.dbRefJournal.on("value", snapshot => {
+                        if (snapshot.val()) {
+                            const journalArray = Object.entries(snapshot.val())
 
-                    this.setState({
-                        dbRefJournal: journalArray
-                    })
-                } else {
-                    this.setState({
-                        dbRefJournal: []
-                    })
-                }
-            });
+                            this.setState({
+                                dbRefJournal: journalArray
+                            })
+                        } else {
+                            this.setState({
+                                dbRefJournal: []
+                            })
+                        }
+                    });
+                })
+            } else {
+                this.setState({
+                    user: null
+                })
+            }
         })
     }
     //COMPONENT DID MOUNT END
