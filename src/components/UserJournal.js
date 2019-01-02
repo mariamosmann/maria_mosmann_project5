@@ -9,11 +9,6 @@ class UserJournal extends Component {
     }
     // CONSTRUCTOR END
 
-    // FUNCTIONS START
-
-
-    // FUNCTIONS END
-
     // RENDER START
     render() {
         return (

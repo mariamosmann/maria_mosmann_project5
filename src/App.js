@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import "./styles/style.scss";
 import firebase from "./firebase.js";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import About from "./components/About.js";
-import UserList from "./components/UserList.js";
-import UserJournal from "./components/UserJournal.js";
+import ToDo from "./components/ToDo.js";
+import Journal from "./components/Journal.js";
 import messages from "./messages.js";
 import monster from "./assets/monster.svg";
 import bubble from "./assets/bubble.svg";
@@ -17,10 +22,7 @@ const auth = firebase.auth();
 //angstl messages
 let messageIndex = 0;
 
-//email login -- maybe not yet
-//add messages API -- maybe not yet
 //router -- next!
-// display only 5-10 messages -- maybe not yet
 //home text
 //fix styles
 //make menu sticky once it reaches the top
@@ -34,24 +36,6 @@ class App extends Component {
       //user info
       user: null, //default because we need to log in to use the page
       greetingName: null,
-      //user to do list
-      doable1: "",
-      doable2: "",
-      dailyGoal: "",
-      //information sent to firebase is stored here when firebase returns the info, it has to have the same structure or react will be faster than firebase and will try to retrieve info that firebase didn't had time to return yet
-      dbRef: {
-        doable1: "",
-        doable2: "",
-        dailyGoal: "", 
-      },
-      //user Journal
-      situation: "",
-      feelings: "",
-      physicalReaction: "",
-      anxietyLevel: "",
-      notes: "",
-      //information sent to firebase is stored here
-      dbRefJournal: {},
       //bubble messages
       message: messages[messageIndex]   
       }
@@ -99,96 +83,6 @@ class App extends Component {
     })
   }
 
-  //Handle Change
-  //value being typed updating the respective state property in constructor
-  handleChange = (event) => {       
-    //updating state using the id of the input where the user is typing, id is the same as its correspondent key in state
-    this.setState({
-      [event.target.id]: event.target.value
-    }) 
-  }
-
-  handleChecked = (event) => {
-    this.setState({
-      anxietyLevel: event.target.value
-    }) 
-  }
-  
-  //Handle Submit
-  //submitting user entries
-  handleSubmit = (event) => {
-    //preventing the form from refreshing the page
-    event.preventDefault();
-
-    if (this.state.doable1.trim() === "" || this.state.doable2.trim() === "" || this.state.dailyGoal.trim() === "") {
-      alert("Please enter a task.");
-    } else {
-      //making a variable to store the data that will be sent to firebase
-      const updateList = {
-        doable1: this.state.doable1,
-        doable2: this.state.doable2,
-        dailyGoal: this.state.dailyGoal
-      };
-
-      //sending the info to firebase
-      //using set so the user updates the list instead of creating a new list
-      this.dbRef.set(updateList);
-
-      //clearing form and state
-      this.setState({
-        doable1: "",
-        doable2: "",
-        dailyGoal: ""
-      })
-    }
-  }
-
-  //Reset List
-  //reseting whole list
-  resetList = () => {
-
-    //making a variable to store empty values to be sent to firebase
-    const newList = {
-      doable1: "",
-      doable2: "",
-      dailyGoal: ""
-    }
-
-    //updating firebase with the empty object
-    this.dbRef.set(newList);    
-  }
-
-  //Handle Submit Journal
-  //submitting Journalentries
-  handleSubmitJournal = (event) => {
-    event.preventDefault();
-
-    if (this.state.situation.trim() === "" || this.state.feelings.trim() === "" || this.state.physicalReaction.trim() === "") {
-      alert("I know it's hard, but please try your best to fill all fields.");
-    } else {
-
-    //making a variable to store the data that will be sent to firebase
-    const newJournalEntry = {
-        date: new Date().toDateString(),
-        situation: this.state.situation,
-        feelings: this.state.feelings,
-        physicalReaction: this.state.physicalReaction,
-        anxietyLevel: this.state.anxietyLevel,
-        notes: this.state.notes
-      };
-
-    this.dbRefJournal.push(newJournalEntry);
-
-      this.setState({
-        situation: "",
-        feelings: "",
-        physicalReaction: "",
-        anxietyLevel: "",
-        notes: "",
-      });
-    }
-  }
-
   // Change Message
   // changing the mascot message
   changeMessage = () => {     
@@ -212,7 +106,9 @@ class App extends Component {
   // RENDER START
   render() {
     return (
-      // APP START      
+      //ROUTER START
+      <Router>
+      {/* APP START */}
       <div className="App">     
       {/* HEADER START */}
       <header className="header">
@@ -278,7 +174,7 @@ class App extends Component {
               )
               : (
               <div className="nav__greeting">
-                <h2 className="nav__heading">Welcome, friend!</h2>
+                <h2 className="nav__heading">Welcome, friend!</h2>  
               </div>
               )
           }
@@ -291,202 +187,36 @@ class App extends Component {
       <main className="main">
         {/* HOME START */}
         <section className="home">
-          <div className="home__wrapper wrapper">
-            <h2 className="home__heading">Intro</h2>
-
-            <p className="home__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quas error eveniet excepturi ducimus, id consequatur, accusamus nulla consequuntur officia perspiciatis aperiam asperiores, veritatis quisquam? Enim mollitia at earum molestias.</p>
-
-            <p className="home__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nisi libero reiciendis consequuntur illum asperiores magni est maiores, corporis officiis excepturi error sequi quia ex. Maiores molestiae dicta sed consectetur eveniet illum, minima, quasi, soluta ipsam aliquid consequuntur. Iure inventore consequatur, maiores nulla est nostrum officia officiis sint mollitia optio aliquam fugiat sequi similique delectus. Ex nobis modi rem sit dignissimos ut mollitia ratione neque accusamus impedit beatae harum eius dolorum, earum repellat ullam eveniet, eligendi, error ipsa culpa vel pariatur nostrum! Mollitia commodi animi, architecto necessitatibus modi iste alias sunt minima, id minus itaque eaque? Perferendis sit numquam quidem?</p>
-          </div>
-        </section>
-        {/* HOME END */}
-          
-        {/* TO DO LIST START */}
-        <section className="toDo">
-          
-          {
-            this.state.user
-            ? (
-            // TO DO USER ENTRIES START
-            <div className="userEntries">
-              <div className="userEntries__wrapper wrapper">
-                <h2 className="userEntries__heading">Today...</h2>
-
-                {/* TO DO FORM START */}
-                <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
-
-                  <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
-                  <input required
-                    type="text"
-                    onChange={this.handleChange}
-                    id="doable1"
-                    className="form__field"
-                    value={this.state.doable1}
-                  />
-
-                  <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-                  <input required
-                    type="text"
-                    onChange={this.handleChange}
-                    id="doable2"
-                    className="form__field"
-                    value={this.state.doable2}
-                  />
-
-                  <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-                  <input required
-                    type="text"
-                    onChange={this.handleChange}
-                    id="dailyGoal"
-                    className="form__field form__field--margin"
-                    value={this.state.dailyGoal}
-                  />
-
-                  <input type="submit" value="You've got this!" className="form__submit button" />
-                </form>
-                {/* TO DO FORM END */}
-              </div>
-            </div> 
-            // TO DO USER ENTRIES END
-            )
-            : (
-              <div className="userEntries userEntries--empty">
-              </div>
-            )
-          }         
-
-          {/* TO DO LIST DISPLAY */}
-          <UserList        
-          dbRef={this.state.dbRef}
-          resetList={this.resetList}
-          />          
-        </section>
-        {/* TO DO LIST END */}
-
-        {/* JOURNAL START */}
-        <section className="journal">
           {
             this.state.user 
             ? (
-              // JOURNAL USER ENTRIES START
-              <div className="userEntries">
-                <div className="userEntries__wrapper wrapper">
-                  <h2 className="userEntries__heading">My Anxiety Journal</h2>
+              <div className="home__wrapper wrapper">
+                <h2 className="home__heading">Heading w/ user</h2>
 
-                  <p className="userEntries__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quis id doloribus natus alias dolorem dolores dicta. Incidunt aperiam assumenda soluta officia. Sit molestias quae libero quia quas fugiat minima.</p>
-
-                  {/* JOURNAL FORM START */}
-                  <form onSubmit={this.handleSubmitJournal} action="" className="userEntries__form form">
-                    <label htmlFor="situation" className="form__label">Today I felt anxious when:</label>
-                    <input required
-                      type="text"
-                      onChange={this.handleChange}
-                      id="situation"
-                      className="form__field"
-                      value={this.state.situation}
-                      placeholder="Describe what was happening."
-                    />
-
-                    <label htmlFor="feelings" className="form__label">When this happened it made me feel:</label>
-                    <input required
-                      type="text"
-                      onChange={this.handleChange}
-                      id="feelings"
-                      className="form__field"
-                      value={this.state.feelings}
-                      placeholder="Describe your thoughts and emotions at that moment."
-                    />
-
-                    <label htmlFor="physicalReaction" className="form__label">I also had these physical reactions:</label>
-                    <input required
-                      type="text"
-                      onChange={this.handleChange}
-                      id="physicalReaction"
-                      className="form__field"
-                      value={this.state.physicalReaction}
-                      placeholder="Describe how did you feel."
-                    />
-
-                    <p className="form__text">On a scale from 1 to 5 my anxiety level was:</p>
-                    <div className="form__levels">
-                      <label htmlFor="level1" className="form__label">1</label>
-                      <input 
-                      type="radio"
-                      onChange={this.handleChecked} 
-                      name="level" 
-                      id="level1" 
-                      className="form__radio" 
-                      value="1" 
-                       />
-
-                      <label htmlFor="level2" className="form__label">2</label>
-                      <input 
-                      type="radio"
-                      onChange={this.handleChecked} 
-                      name="level" 
-                      id="level2" 
-                      className="form__radio" 
-                      value="2"
-                      />
-
-                      <label htmlFor="level3" className="form__label">3</label>
-                      <input 
-                      type="radio"
-                      onChange={this.handleChecked} 
-                      name="level"
-                      id="level3" 
-                      className="form__radio" 
-                      value="3" />
-
-                      <label htmlFor="level4" className="form__label">4</label>
-                      <input 
-                      type="radio"
-                      onChange={this.handleChecked} 
-                      name="level" 
-                      id="level4" 
-                      className="form__radio" 
-                      value="4" />
-
-                      <label htmlFor="level5" className="form__label">5</label>
-                      <input 
-                      type="radio"
-                      onChange={this.handleChecked} 
-                      name="level" 
-                      id="level5" 
-                      className="form__radio" 
-                      value="5" />
-                    </div>
-
-                    <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to reason what happened if you want to. When you look back, how much of what made you anxious was real and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
-                    <label htmlFor="notes" className="form__label">Next time this happens I'll try to remind myself that...</label>
-                    <input
-                      type="text"
-                      onChange={this.handleChange}
-                      id="notes"
-                      className="form__field"
-                      value={this.state.notes}
-                      placeholder="Extra notes."
-                    />
-
-                    <input type="submit" value="Save" className="form__submit button" />
-                  </form>
-                  {/* JOURNAL FORM END */}
-                </div>
+                <p className="home__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quas error eveniet excepturi ducimus, id consequatur, accusamus nulla consequuntur officia perspiciatis aperiam asperiores, veritatis quisquam? Enim mollitia at earum molestias.</p>
               </div>
-              // JOURNAL USER ENTRIES END
-            )
+            ) 
             : (
-            <div className="userEntries userEntries--empty">
-            </div>
-            )
-          }
+              <div className="home__wrapper wrapper">
+                <h2 className="home__heading">Intro</h2>
 
-          {/* JOURNAL DISPLAY START */}
-          <UserJournal 
-            user={this.state.user}
-            dbRefJournal={this.state.dbRefJournal}
-          />
+                <p className="home__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nisi libero reiciendis consequuntur illum asperiores magni est maiores, corporis officiis excepturi error sequi quia ex. Maiores molestiae dicta sed consectetur eveniet illum, minima, quasi, soluta ipsam aliquid consequuntur. Iure inventore consequatur, maiores nulla est nostrum officia officiis sint mollitia optio aliquam fugiat sequi similique delectus. Ex nobis modi rem sit dignissimos ut mollitia ratione neque accusamus impedit beatae harum eius dolorum, earum repellat ullam eveniet, eligendi, error ipsa culpa vel pariatur nostrum! Mollitia commodi animi, architecto necessitatibus modi iste alias sunt minima, id minus itaque eaque? Perferendis sit numquam quidem?</p>
+              </div>
+            )
+          }          
         </section>
+        {/* HOME END */}
+        
+        {/* TO DO LIST START */}
+        <ToDo 
+        user={this.state.user}
+        />
+        {/* TO DO LIST END */}
+
+        {/* JOURNAL START */}
+        <Journal 
+        user={this.state.user}
+        />
         {/* JOURNAL END */}
 
         {/* ABOUT START */}
@@ -545,13 +275,16 @@ class App extends Component {
       </footer>
       {/* FOOTER END */} 
       </div>
-      // APP END
+      {/* APP END */}
+      </Router>
+      //ROUTER END
     );
   }
   // RENDER END
 
   //COMPONENT DID MOUNT START
   componentDidMount() {
+
     //onAuthStateChanged checks if there is an user logged in (method provided by Firebase)
     auth.onAuthStateChanged((user) => {
       if (user) { //checking if user is logged in or had logged in recently
@@ -586,13 +319,18 @@ class App extends Component {
           })
           
           this.dbRefJournal.on("value", snapshot => {
-            //check to see if snapshot.val() is null, if it is, we need to set state to an empty object, if it's got data, set the state to snapshot.val()
 
-            const journalArray = Object.entries(snapshot.val())
+            if (snapshot.val()) {
+              const journalArray = Object.entries(snapshot.val())
 
-            this.setState({
-              dbRefJournal: journalArray || [], //if its null set to an empty object  
-            })
+              this.setState({
+                dbRefJournal: journalArray 
+              })
+            } else {
+              this.setState({
+                dbRefJournal: []
+              })
+            }            
           });
         })
       }      
@@ -601,12 +339,15 @@ class App extends Component {
   //COMPONENT DID MOUNT END
 
   //turning off the event listener, so when an user logs in it'll not see info from another user
-  componentWillUnmount() {
-    if (this.dbRef) {
-      this.dbRef.off();
-      this.dbRefJournal.off();
-    }
-  }
+  // componentWillUnmount() {
+  //   if (this.dbRef) {
+  //     this.dbRef.off();
+  //   }
+
+  //   if(this.dbRefJournal) {
+  //     this.dbRefJournal.off();
+  //   }
+  // }
 }
 // APP END
 
