@@ -2,9 +2,6 @@
     background: $color;
     width: 100%;
     padding: 50px 0;
-    &--empty {
-        display: none;
-    }
     &__h2{
         @include heading(30);
         &--color {
@@ -13,9 +10,12 @@
         }
     }
     &__text {
-        margin: 30px 0;
+        margin: 75px auto;
         &:last-child {
             margin-bottom: 0; 
+        }
+        &--logOut {
+            margin: 0;
         }
     }
     &__span {

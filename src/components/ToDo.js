@@ -134,7 +134,10 @@ class ToDo extends Component {
                         // TO DO USER ENTRIES END
                     )
                     : (
-                        <div className="userEntries userEntries--empty">
+                        <div className="userEntries">
+                            <div className="userEntries__wrapper wrapper">
+                                <p className="userEntries__text userEntries__text--logOut">To use this section please log in with your <span className="userEntries__span">Google account</span> or as a <span className="userEntries__span">Guest</span>.</p>
+                            </div>
                         </div>
                     )
                 }

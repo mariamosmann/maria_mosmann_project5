@@ -181,7 +181,7 @@ class Journal extends Component {
                                             </div>
                                         </div>
 
-                                        <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to reason what happened if you want to. When you look back, how much of what made you anxious was actually happening in that way and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
+                                        <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to analyze what happened if you want to. When you look back, how much of what made you anxious was actually happening in that exact way and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
                                         <label htmlFor="notes" className="form__label">Next time this happens I'll try to remind myself that...</label>
                                         <textarea
                                             type="text"
@@ -200,7 +200,10 @@ class Journal extends Component {
                             // JOURNAL USER ENTRIES END
                         )
                         : (
-                            <div className="userEntries userEntries--empty">
+                            <div className="userEntries">
+                                <div className="userEntries__wrapper wrapper">
+                                    <p className="userEntries__text userEntries__text--logOut">To use this section please log in with your <span className="userEntries__span">Google account</span> or as a <span className="userEntries__span">Guest</span>.</p>
+                                </div>
                             </div>
                         )
                 }
