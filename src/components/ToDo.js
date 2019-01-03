@@ -94,37 +94,37 @@ class ToDo extends Component {
                         // TO DO USER ENTRIES START
                         <div className="userEntries">
                             <div className="userEntries__wrapper wrapper">
-                                <h3 className="userEntries__heading">Today...</h3>
+                                <h2 className="userEntries__h2 userEntries__h2--color">Today...</h2>
 
                                 {/* TO DO FORM START */}
                                 <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">
 
-                                    <label htmlFor="doable1" className="form__label"><span className="form__label form__label--color">I can</span>  finish this task:</label>
-                                    <input required
+                                    <label htmlFor="doable1" className="form__label"><span className="form__span">I can</span>  finish this task:</label>
+                                    <textarea required
                                         type="text"
                                         onChange={this.handleChange}
                                         id="doable1"
                                         className="form__field"
                                         value={this.state.doable1}
-                                    />
+                                        ></textarea>
 
-                                    <label htmlFor="doable2" className="form__label"><span className="form__label form__label--color">If</span> I'm done with the first task I'll <span className="form__label form__label--color">focus</span> on doing this:</label>
-                                    <input required
+                                    <label htmlFor="doable2" className="form__label"><span className="form__span">If</span> I'm done with the first task I'll <span className="form__span">focus</span> on doing this:</label>
+                                    <textarea required
                                         type="text"
                                         onChange={this.handleChange}
                                         id="doable2"
                                         className="form__field"
                                         value={this.state.doable2}
-                                    />
+                                        ></textarea>
 
-                                    <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__label form__label--color">I'll try my best</span> to accomplish it today:</label>
-                                    <input required
+                                    <label htmlFor="dailyGoal" className="form__label">This task scares me but <span className="form__span">I'll try my best</span> to accomplish it today:</label>
+                                    <textarea required
                                         type="text"
                                         onChange={this.handleChange}
                                         id="dailyGoal"
-                                        className="form__field form__field--margin"
+                                        className="form__field"
                                         value={this.state.dailyGoal}
-                                    />
+                                        ></textarea>
 
                                     <input type="submit" value="You've got this!" className="form__submit button" />
                                 </form>

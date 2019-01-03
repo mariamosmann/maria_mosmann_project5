@@ -7,13 +7,19 @@
     }
     &__h2{
         @include heading(30);
-        color: $background;
+        &--color {
+            color: $background;
+            margin-bottom: 30px;
+        }
     }
     &__text {
         margin: 30px 0;
         &:last-child {
             margin-bottom: 0; 
         }
+    }
+    &__span {
+        color: $background;
     }
     &__form {
         padding: 0;

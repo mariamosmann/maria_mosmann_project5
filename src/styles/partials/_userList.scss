@@ -6,7 +6,7 @@
             display: none;
         }
     }
-    &__heading {
+    &__h2 {
         @include heading(32);
         &--color {
             color: $colorAccent;

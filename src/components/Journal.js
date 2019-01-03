@@ -87,7 +87,7 @@ class Journal extends Component {
                                 <div className="userEntries__wrapper wrapper">
                                     <h2 className="userEntries__h2">Anxiety Journal</h2>
 
-                                    <p className="userEntries__text">Let your thoughts <span className="form__span">flow freely</span>. What time of the day it was? What was happening? Who was with you? Can you remember any sound or smell in particular? Write in as much <span className="form__span">detail</span> as you can.</p>
+                                    <p className="userEntries__text">Let your thoughts <span className="userEntries__span">flow freely</span>. What time of the day it was? What was happening? Who was with you? Can you remember any sound or smell in particular? Write in as much <span className="userEntries__span">detail</span> as you can.</p>
 
                                     {/* JOURNAL FORM START */}
                                     <form onSubmit={this.handleSubmitJournal} action="" className="userEntries__form form">

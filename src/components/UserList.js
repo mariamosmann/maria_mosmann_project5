@@ -62,7 +62,7 @@ class UserList extends Component {
             ? (
             <div className="UserList">
                 <div className="userList__wrapper wrapper">
-                    <h2 className="userList__heading">Things <span className="userList__heading userList__heading--color">I Can</span> do Today</h2>
+                    <h2 className="userList__h2">Things <span className="userList__h2 userList__h2--color">I Can</span> do Today</h2>
 
                     <ul className="userList__list">
                         {/* Changing the class and the icon */}
