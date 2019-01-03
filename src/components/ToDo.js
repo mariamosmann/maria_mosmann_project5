@@ -94,7 +94,7 @@ class ToDo extends Component {
                         // TO DO USER ENTRIES START
                         <div className="userEntries">
                             <div className="userEntries__wrapper wrapper">
-                                <h2 className="userEntries__heading">Today...</h2>
+                                <h3 className="userEntries__heading">Today...</h3>
 
                                 {/* TO DO FORM START */}
                                 <form onSubmit={this.handleSubmit} action="" className="userEntries__form form">

@@ -40,13 +40,19 @@ class About extends Component {
         return (
             <section className="about">
                 <div className="about__wrapper wrapper">
-                    <h2 className="about__heading">Shifting the <span className="about__heading about__heading--color">focus</span></h2>
+                    <h2 className="about__h2">About this<span className="about__h2 about__h2--color"> project</span></h2>
 
-                    <p className="about__text">People affected by an Anxiety Disorder already know the cycle: make a huge to do list, get overwhelmed by it, do nothing, hate yourself, repeat. If this cycle looks familiar, then this list is for you!</p>
+                    <p className="about__text">Every little thing is hard when you are affected by anxiety.</p>
 
-                    <p className="about__text">It was designed using common tools for fighting anxiety: do one task at a time, limit the length of your to do list, shift the focus from things that you have to do to things that you can do, and stay positive.</p>
+                    <p className="about__text">This project was developed while I was in <a href="https://hackeryou.com/" target="_blank" className="about__link">HackerYou</a> bootcamp. As we were approaching our final weeks everyone was feeling anxious and overwhelmed. The amount of coffee intake was growing exponentially, while the sleeping hours were decreasing by the same rate. I, a normally positive and cheerful person, was feeling down and terrably anxious. And then it hit me: excess of caffeine and lack of sleep! My triggers. I knew exactly how to go back to my normal self, and what kind of project I wanted to build next.</p>
 
-                    <p className="about__text">No matter what you accomplish today, you're doing great!</p>
+                    <p className="about__text">When I started the program I wanted to develop a project that I could keep working on after bootcamp. Something useful in the real world and that I cared about. Experiencing anxiety again reminded me how terrible it can be, and how simple habits can rewire your brain in the best way possible. I used to be a very anxious person. I also have friends who are affected by Anxiety Disorders, so if it was awful for me, I can only imagine what is like for them. In an effort to help them better, and also help me, I started researching about anxiety and what can be done to alleviate that.</p>
+
+                    <p className="about__text">There are plenty of tools, some work better than the others, it's a really personal matter and I advise trying them all. As this project develops I'll add some of my favourites.</p>
+
+                    <p className="about__text">If you're interested in collaborating in this project, please contact me! This is a work in progress, as we all should be.</p>
+
+                    
 
                     {/* MORE INFO START */}
                     <div className="about__moreInfo moreInfo">

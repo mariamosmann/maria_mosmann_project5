@@ -87,7 +87,7 @@ class Journal extends Component {
                                 <div className="userEntries__wrapper wrapper">
                                     <h2 className="userEntries__heading">My Anxiety Journal</h2>
 
-                                    <p className="userEntries__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quis id doloribus natus alias dolorem dolores dicta. Incidunt aperiam assumenda soluta officia. Sit molestias quae libero quia quas fugiat minima.</p>
+                                    <p className="userEntries__text">Let your thoughts flow freely and write in as much detail as you can. What time of the day it was? What was happening? Who was with you? Can you remember any sound or smell in particular?</p>
 
                                     {/* JOURNAL FORM START */}
                                     <form onSubmit={this.handleSubmitJournal} action="" className="userEntries__form form">
@@ -171,7 +171,7 @@ class Journal extends Component {
                                                 value="5" />
                                         </div>
 
-                                        <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to reason what happened if you want to. When you look back, how much of what made you anxious was real and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
+                                        <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to reason what happened if you want to. When you look back, how much of what made you anxious was actually happening in that way and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
                                         <label htmlFor="notes" className="form__label">Next time this happens I'll try to remind myself that...</label>
                                         <input
                                             type="text"
