@@ -85,102 +85,112 @@ class Journal extends Component {
                             // JOURNAL USER ENTRIES START
                             <div className="userEntries">
                                 <div className="userEntries__wrapper wrapper">
-                                    <h2 className="userEntries__heading">My Anxiety Journal</h2>
+                                    <h2 className="userEntries__h2">Anxiety Journal</h2>
 
-                                    <p className="userEntries__text">Let your thoughts flow freely and write in as much detail as you can. What time of the day it was? What was happening? Who was with you? Can you remember any sound or smell in particular?</p>
+                                    <p className="userEntries__text">Let your thoughts <span className="form__span">flow freely</span>. What time of the day it was? What was happening? Who was with you? Can you remember any sound or smell in particular? Write in as much <span className="form__span">detail</span> as you can.</p>
 
                                     {/* JOURNAL FORM START */}
                                     <form onSubmit={this.handleSubmitJournal} action="" className="userEntries__form form">
-                                        <label htmlFor="situation" className="form__label">Today I felt anxious when:</label>
-                                        <input required
+                                        <label htmlFor="situation" className="form__label">Today I felt anxious <span className="form__span">when</span>:</label>
+                                        <textarea required
                                             type="text"
                                             onChange={this.handleChange}
                                             id="situation"
                                             className="form__field"
                                             value={this.state.situation}
-                                            placeholder="Describe what was happening."
-                                        />
+                                            placeholder="What was happening."
+                                        ></textarea>
 
-                                        <label htmlFor="feelings" className="form__label">When this happened it made me feel:</label>
-                                        <input required
+                                        <label htmlFor="feelings" className="form__label">When this happened it made me <span className="form__span">feel</span>:</label>
+                                        <textarea required
                                             type="text"
                                             onChange={this.handleChange}
                                             id="feelings"
                                             className="form__field"
                                             value={this.state.feelings}
-                                            placeholder="Describe your thoughts and emotions at that moment."
-                                        />
+                                            placeholder="Your thoughts and emotions."
+                                        ></textarea>
 
-                                        <label htmlFor="physicalReaction" className="form__label">I also had these physical reactions:</label>
-                                        <input required
+                                        <label htmlFor="physicalReaction" className="form__label">I also had these <span className="form__span">physical</span> reactions:</label>
+                                        <textarea required
                                             type="text"
                                             onChange={this.handleChange}
                                             id="physicalReaction"
                                             className="form__field"
                                             value={this.state.physicalReaction}
-                                            placeholder="Describe how did you feel."
-                                        />
+                                            placeholder="How did you feel."
+                                        ></textarea>
 
-                                        <p className="form__text">On a scale from 1 to 5 my anxiety level was:</p>
+                                        <p className="form__text">On a scale from 1 to 5 my <span className="form__span">anxiety level was</span>:</p>
                                         <div className="form__levels">
-                                            <label htmlFor="level1" className="form__label">1</label>
-                                            <input
-                                                type="radio"
-                                                onChange={this.handleChecked}
-                                                name="level"
-                                                id="level1"
-                                                className="form__radio"
-                                                value="1"
-                                            />
+                                            <div className="form__level">
+                                                <label htmlFor="level1" className="form__label form__label--margin">1</label>
+                                                <input
+                                                    type="radio"
+                                                    onChange={this.handleChecked}
+                                                    name="level"
+                                                    id="level1"
+                                                    className="form__radio"
+                                                    value="1"
+                                                />
+                                            </div>
 
-                                            <label htmlFor="level2" className="form__label">2</label>
-                                            <input
-                                                type="radio"
-                                                onChange={this.handleChecked}
-                                                name="level"
-                                                id="level2"
-                                                className="form__radio"
-                                                value="2"
-                                            />
+                                            <div className="form__level">
+                                                <label htmlFor="level2" className="form__label form__label--margin">2</label>
+                                                <input
+                                                    type="radio"
+                                                    onChange={this.handleChecked}
+                                                    name="level"
+                                                    id="level2"
+                                                    className="form__radio"
+                                                    value="2"
+                                                />
+                                            </div>
 
-                                            <label htmlFor="level3" className="form__label">3</label>
-                                            <input
-                                                type="radio"
-                                                onChange={this.handleChecked}
-                                                name="level"
-                                                id="level3"
-                                                className="form__radio"
-                                                value="3" />
+                                            <div className="form__level">
+                                                <label htmlFor="level3" className="form__label form__label--margin">3</label>
+                                                <input
+                                                    type="radio"
+                                                    onChange={this.handleChecked}
+                                                    name="level"
+                                                    id="level3"
+                                                    className="form__radio"
+                                                    value="3" />
+                                            </div>
 
-                                            <label htmlFor="level4" className="form__label">4</label>
-                                            <input
-                                                type="radio"
-                                                onChange={this.handleChecked}
-                                                name="level"
-                                                id="level4"
-                                                className="form__radio"
-                                                value="4" />
+                                            <div className="form__level">
+                                                <label htmlFor="level4" className="form__label form__label--margin">4</label>
+                                                <input
+                                                    type="radio"
+                                                    onChange={this.handleChecked}
+                                                    name="level"
+                                                    id="level4"
+                                                    className="form__radio"
+                                                    value="4" />
+                                            </div>
 
-                                            <label htmlFor="level5" className="form__label">5</label>
-                                            <input
-                                                type="radio"
-                                                onChange={this.handleChecked}
-                                                name="level"
-                                                id="level5"
-                                                className="form__radio"
-                                                value="5" />
+                                            <div className="form__level">
+                                                <label htmlFor="level5" className="form__label form__label--margin">5</label>
+                                                <input
+                                                    type="radio"
+                                                    onChange={this.handleChecked}
+                                                    name="level"
+                                                    id="level5"
+                                                    className="form__radio"
+                                                    value="5" />
+                                            </div>
                                         </div>
 
                                         <p className="form__text"><span className="form__span">Optional:</span> now that this moment had passed you can try to reason what happened if you want to. When you look back, how much of what made you anxious was actually happening in that way and how much was the voice of your anxiety? If it was someone else in your shoes, what would you say to comfort them? Try to express your thoughts. You can also use this space to take extra notes.</p>
                                         <label htmlFor="notes" className="form__label">Next time this happens I'll try to remind myself that...</label>
-                                        <input
+                                        <textarea
                                             type="text"
                                             onChange={this.handleChange}
                                             id="notes"
                                             className="form__field"
                                             value={this.state.notes}
                                             placeholder="Extra notes."
-                                        />
+                                        ></textarea>
 
                                         <input type="submit" value="Save" className="form__submit button" />
                                     </form>

@@ -11,15 +11,38 @@
     }
     .nav {
         &__wrapper {
-            align-items: flex-start;
+            justify-content: flex-end;
+            width: 90%;
+        }
+        &__link {
+            font-size: 2rem;
+            padding: 15px;
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }   
+    .home {
+        padding: 50px 0;
+        &__h2 {
+            font-size: 3.6rem;
+        }
+        &__h3 {
+            font-size: 2.8rem;
         }
     }
-    .userEntries {
-        padding-top: 50px;
+
+    .form {
         &__heading {
             font-size: 3.6rem;
         }
+        &__levels {
+            justify-content: flex-start;
+        }
     }
+
+
+    ///////////
     .button {
         font-size: 2rem;
     }
@@ -43,12 +66,7 @@
             margin-bottom: 50px;
         }
     }
-    .form {
-        padding: 75px 0;
-        &__heading {
-            font-size: 3.6rem;
-        }
-    }
+    
     .userList {    
         &__wrapper {
             padding: 50px 0;
@@ -93,9 +111,14 @@
             text-align: right;
         }
     }
-    .userEntries {
-        padding-top: 75px;
+    .home {
+        padding: 75px 0;
     }
+
+
+
+
+    ///////////////
     .moreInfo {
         &__heading {
             margin-top: 50px;
@@ -160,16 +183,33 @@
             }
         }
     }
-    .userEntries {
+    .home {
         padding-top: 100px;
-        &__heading {
+        &__h2 {
             font-size: 4rem;
             text-align: left;
         }
-        &__text {
-            margin-top: 30px;
+        &__h3 {
+            font-size: 3.2rem;
+            text-align: left;
         }
     }
+
+    .form {
+        &__h2 {
+            font-size: 4rem;
+            text-align: left;
+        }
+        &__field {
+        margin: 10px 0 30px 0;
+        background: $colorAccent;
+        border: none;
+        }
+    }
+
+
+
+    ///////////////
     .moreInfo {
         &__heading {
             font-size: 3.4rem;
@@ -197,18 +237,7 @@
             margin: 0;
         }
     }
-    .form {
-        padding: 100px 0;
-        &__heading {
-            font-size: 4rem;
-            text-align: left;
-        }
-        &__field {
-        margin: 10px 0 30px 0;
-        background: $colorAccent;
-        border: none;
-        }
-    }
+
     .userList {
         &__heading {
             font-size: 4rem;
@@ -245,6 +274,10 @@
 
 /* Landscape tablet and laptops*/
 @media (min-width: 1024px) {
+
+
+
+    ////////////////
     .moreInfo {
         &__heading {
             margin-top: 75px;

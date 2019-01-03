@@ -1,16 +1,11 @@
 .nav {
-    padding: 30px 0;
+    padding: 15px 0;
     &__wrapper {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-    }
-    &__menu {
-        flex: 1 0 250px;
-        display: flex;
-        justify-content: center; 
-        margin-bottom: 15px;   
+        width: 100%;
     }
     &__item:hover .nav__link {
         color: $colorAccent;
@@ -18,23 +13,8 @@
     &__link {
         color: $color;
         font-weight: 700;
-        padding: 5px 10px;
-        font-size: 2rem;
-        transition: color 250ms;
-        &:first-child {
-            padding-left: 0;
-        }      
-    }
-    &__greeting {
-       flex: 3 0 250px; 
-       padding: 0 10px;
-    }
-    &__heading {
-        @include heading(20);
-        font-family: $fontFamily;
-        text-align: center;
-    }
-    &__span {
-        color: $colorAccent;
+        padding: 15px 5px;
+        font-size: 1.8rem;
+        transition: color 250ms;    
     }
 }

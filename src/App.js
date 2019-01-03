@@ -162,7 +162,7 @@ class App extends Component {
               this.state.user 
               ? (
                 <div className="home__wrapper wrapper">
-                  <h2 className="home__h2">It's good to see you, <span className="home__span">{this.state.greetingName}</span>!</h2>
+                      <h2 className="home__h2">It's good to see you, <span className="home__h2 home__h2--color">{this.state.greetingName}</span>!</h2>
 
                       <p className="home__text">Every day is a new opportunity, but if you're feeling overwhelmed or anxious, don't worry. It's ok to have bad days! Track those feelings in your <Link to="/journal" className="home__link">Anxiety Journal</Link>. </p>
 
@@ -171,7 +171,7 @@ class App extends Component {
               ) 
               : (
                 <div className="home__wrapper wrapper">
-                  <h2 className="home__h2">Welcome, friend!</h2>
+                  <h2 className="home__h2">Welcome, <span className="home__h2 home__h2--color">friend!</span></h2>
 
                   <p className="home__text">This app was made for people affected by anxiety. It features an anxiety journal and a to do list. You can use it as a guest, but if you want to keep your journal and list for future access, please log in!</p>
 

@@ -10,24 +10,32 @@
     position: relative;
     &__logInOut {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 15px;
+        right: 15px;
+        display: flex;
     }
     &__headingContainer {
         width: 100%;
     }
-    &__heading {
+    &__h1 {
         @include heading(48);      
         &--color { 
             font-family: $fontFamily;
             color: $text; 
             background: $colorAccent;
             padding: 0 5px;
-            box-shadow: 5px 5px 0 $text;
+            box-shadow: 4px 4px 0 $text;
         }
-        &--small {
-            font-size: 3.2rem;
-            margin-top: 30px; 
-        }
+    }
+    &__h2 {
+        @include heading(32);
+        margin-top: 30px;
+        &--color { 
+            font-family: $fontFamily;
+            color: $text; 
+            background: $colorAccent;
+            padding: 0 5px;
+            box-shadow: 4px 4px 0 $text;
+        } 
     }
 }

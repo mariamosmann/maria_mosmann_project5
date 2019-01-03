@@ -1,17 +1,19 @@
 .userEntries {
+    background: $color;
     width: 100%;
-    padding-top: 30px;
-    &__heading {
+    padding: 50px 0;
+    &--empty {
+        display: none;
+    }
+    &__h2{
         @include heading(30);
-        &--color {
-            color: $colorAccent;
-        }
+        color: $background;
     }
     &__text {
-        margin-top: 20px;
-    }
-    &__moreInfo {
-        margin: 30px auto 0 auto;
+        margin: 30px 0;
+        &:last-child {
+            margin-bottom: 0; 
+        }
     }
     &__form {
         padding: 0;
